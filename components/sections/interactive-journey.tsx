@@ -2,7 +2,27 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { Slider } from "@/components/ui/slider"
 import { cn } from "@/lib/utils"
+
+const LOAN_MIN = 40_000
+const LOAN_MAX = 1_250_000
+const SCORE_MIN = 300
+const SCORE_MAX = 850
+
+const usd0 = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  maximumFractionDigits: 0,
+})
+
+function formatLoanShort(n: number): string {
+  if (n >= 1_000_000) {
+    const millions = (n / 1_000_000).toFixed(2).replace(/\.?0+$/, "")
+    return `$${millions} million`
+  }
+  return usd0.format(n)
+}
 
 const TABS = [
   { id: "buy", label: "I'm preparing to buy", icon: true },
@@ -39,6 +59,8 @@ const CONTENT: Record<
 
 export function InteractiveJourney() {
   const [active, setActive] = useState<(typeof TABS)[number]["id"]>("buy")
+  const [loan, setLoan] = useState(741_000)
+  const [score, setScore] = useState(720)
   const content = CONTENT[active]
 
   return (
@@ -84,17 +106,25 @@ export function InteractiveJourney() {
               <div className="space-y-10">
                 <SliderField
                   label="Loan Amount"
-                  value="$741,000"
-                  min="$40,000"
-                  max="$1.25 million"
-                  fill={53}
+                  value={usd0.format(loan)}
+                  min={usd0.format(LOAN_MIN)}
+                  max={formatLoanShort(LOAN_MAX)}
+                  sliderValue={loan}
+                  sliderMin={LOAN_MIN}
+                  sliderMax={LOAN_MAX}
+                  sliderStep={1000}
+                  onSliderChange={setLoan}
                 />
                 <SliderField
                   label="Estimated Credit Score"
-                  value="$42,000"
-                  min="$1,000"
-                  max="$500,000"
-                  fill={22}
+                  value={String(score)}
+                  min={String(SCORE_MIN)}
+                  max={String(SCORE_MAX)}
+                  sliderValue={score}
+                  sliderMin={SCORE_MIN}
+                  sliderMax={SCORE_MAX}
+                  sliderStep={1}
+                  onSliderChange={setScore}
                 />
               </div>
               <div className="mt-8 flex gap-2">
@@ -128,13 +158,21 @@ function SliderField({
   value,
   min,
   max,
-  fill,
+  sliderValue,
+  sliderMin,
+  sliderMax,
+  sliderStep,
+  onSliderChange,
 }: {
   label: string
   value: string
   min: string
   max: string
-  fill: number
+  sliderValue: number
+  sliderMin: number
+  sliderMax: number
+  sliderStep: number
+  onSliderChange: (next: number) => void
 }) {
   return (
     <div>
@@ -142,16 +180,14 @@ function SliderField({
       <p className="mb-4 font-serif text-[32px] font-semibold tracking-[-0.64px] text-gray-900">
         {value}
       </p>
-      <div className="relative h-1 rounded-full bg-gray-200">
-        <div
-          className="absolute inset-y-0 left-0 rounded-full bg-[var(--brand-blue)]"
-          style={{ width: `${fill}%` }}
-        />
-        <div
-          className="absolute top-1/2 size-3.5 -translate-y-1/2 rounded-full bg-[var(--brand-blue)] ring-2 ring-white"
-          style={{ left: `${fill}%`, marginLeft: -7 }}
-        />
-      </div>
+      <Slider
+        value={[sliderValue]}
+        min={sliderMin}
+        max={sliderMax}
+        step={sliderStep}
+        onValueChange={(v) => onSliderChange(v[0])}
+        aria-label={label}
+      />
       <div className="mt-2 flex justify-between text-sm text-[#99968e]">
         <span>{min}</span>
         <span>{max}</span>
