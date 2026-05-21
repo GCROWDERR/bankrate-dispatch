@@ -30,7 +30,7 @@ const TILES = [
   },
 ]
 
-export function ProductsV2() {
+export function Products() {
   return (
     <SectionShell className="py-20">
       <h2 className="max-w-[760px] font-serif text-[length:var(--text-heading-lg)] font-semibold leading-[1.15] tracking-[-2px] text-gray-900">

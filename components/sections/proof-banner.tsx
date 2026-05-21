@@ -19,7 +19,7 @@ const STATS: StatProps[] = [
   },
 ]
 
-export function ProofBannerV2() {
+export function ProofBanner() {
   return (
     <SectionShell className="pt-20 pb-12">
       <div className="grid gap-4 md:grid-cols-3">

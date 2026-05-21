@@ -70,7 +70,7 @@ function ExpertCard({
   )
 }
 
-export function ExpertTeamV2() {
+export function ExpertTeam() {
   return (
     <SectionShell className="py-20">
       <div className="mx-auto max-w-[760px] text-center">

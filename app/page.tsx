@@ -1,14 +1,14 @@
 import { Nav } from "@/components/sections/nav"
-import { HeroV2 } from "@/components/sections/v2/hero"
-import { ProofBannerV2 } from "@/components/sections/v2/proof-banner"
-import { IdentityStatement } from "@/components/sections/v2/identity-statement"
-import { AudiencePathing } from "@/components/sections/v2/audience-pathing"
-import { MemberExperienceV2 } from "@/components/sections/v2/member-experience"
-import { RatesAndCalculator } from "@/components/sections/v2/rates-calculator"
-import { EditorialResearch } from "@/components/sections/v2/editorial-research"
-import { ExpertTeamV2 } from "@/components/sections/v2/expert-team"
-import { ProductsV2 } from "@/components/sections/v2/products"
-import { B2BEndcap } from "@/components/sections/v2/b2b-endcap"
+import { Hero } from "@/components/sections/hero"
+import { ProofBanner } from "@/components/sections/proof-banner"
+import { IdentityStatement } from "@/components/sections/identity-statement"
+import { AudiencePathing } from "@/components/sections/audience-pathing"
+import { MemberExperience } from "@/components/sections/member-experience"
+import { RatesAndCalculator } from "@/components/sections/rates-calculator"
+import { EditorialResearch } from "@/components/sections/editorial-research"
+import { ExpertTeam } from "@/components/sections/expert-team"
+import { Products } from "@/components/sections/products"
+import { B2BEndcap } from "@/components/sections/b2b-endcap"
 import { Footer } from "@/components/sections/footer"
 
 export default function HomePage() {
@@ -16,18 +16,18 @@ export default function HomePage() {
     <>
       <div className="bg-[#f5f2eb]">
         <Nav variant="cream" />
-        <HeroV2 />
+        <Hero />
       </div>
 
       <main className="bg-[var(--surface-cream)]">
-        <ProofBannerV2 />
+        <ProofBanner />
         <IdentityStatement />
         <AudiencePathing />
-        <MemberExperienceV2 />
+        <MemberExperience />
         <RatesAndCalculator />
         <EditorialResearch />
-        <ExpertTeamV2 />
-        <ProductsV2 />
+        <ExpertTeam />
+        <Products />
         <B2BEndcap />
       </main>
 

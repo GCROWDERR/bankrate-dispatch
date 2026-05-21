@@ -16,7 +16,7 @@ const FEATURES = [
   },
 ]
 
-export function MemberExperienceV2() {
+export function MemberExperience() {
   return (
     <SectionShell className="py-20">
       <div className="overflow-hidden rounded-5xl bg-blue-900 px-6 py-12 md:px-12 md:py-20 text-white">

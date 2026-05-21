@@ -15,7 +15,7 @@ const RATES = [
 /**
  * Hero — Figma Homepage redesign node 192:1278 (Bankrate_Hero_2.17).
  */
-export function HeroV2() {
+export function Hero() {
   return (
     <section
       className="flex min-h-[min(810px,100dvh)] items-center justify-center bg-[#f5f2eb] px-6 pb-10 pt-6 md:px-12 lg:px-12"
