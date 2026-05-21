@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -13,19 +13,29 @@ const NAV_LINKS = [
   "Insurance",
 ]
 
+const POPULAR_SEARCHES = ["Mortgage rates", "Balance transfer credit cards", "Car insurance quotes"]
+const TOOLS = ["Mortgage calculator", "Loan calculator", "CD calculator"]
+
 export function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [searchOpen, setSearchOpen] = useState(false)
+  const searchInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : ""
-    return () => {
-      document.body.style.overflow = ""
-    }
-  }, [menuOpen])
+    document.body.style.overflow = menuOpen || searchOpen ? "hidden" : ""
+    return () => { document.body.style.overflow = "" }
+  }, [menuOpen, searchOpen])
+
+  useEffect(() => {
+    if (searchOpen) searchInputRef.current?.focus()
+  }, [searchOpen])
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false)
+      if (event.key === "Escape") {
+        setMenuOpen(false)
+        setSearchOpen(false)
+      }
     }
     window.addEventListener("keydown", onKeyDown)
     return () => window.removeEventListener("keydown", onKeyDown)
@@ -66,6 +76,7 @@ export function Nav() {
           </Button>
           <button
             type="button"
+            onClick={() => setSearchOpen(true)}
             className="flex h-12 w-12 items-center justify-center rounded-[10px] border border-primary transition-colors hover:bg-primary/10"
             aria-label="Search"
           >
@@ -90,6 +101,7 @@ export function Nav() {
         <div className="flex items-center gap-4">
           <button
             type="button"
+            onClick={() => setSearchOpen(true)}
             className="flex size-10 items-center justify-center"
             aria-label="Search"
           >
@@ -135,6 +147,73 @@ export function Nav() {
           </Button>
         </div>
       </div>
+      {/* Search overlay */}
+      {searchOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-start justify-center bg-blue-900/70 pt-[72px] px-4"
+          onClick={() => setSearchOpen(false)}
+        >
+          <div
+            className="w-full max-w-[760px] overflow-hidden rounded-2xl bg-white shadow-xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Input */}
+            <div className="flex items-center gap-3 border-b border-gray-200 px-6 py-4">
+              <input
+                ref={searchInputRef}
+                type="search"
+                placeholder="Search..."
+                className="flex-1 text-[18px] text-gray-900 placeholder:text-gray-400 outline-none"
+              />
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden className="shrink-0 text-primary">
+                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2"/>
+                <path d="M16.5 16.5L21 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </div>
+
+            {/* Popular searches */}
+            <div className="px-6 py-5">
+              <p className="mb-3 flex items-center gap-2 text-[13px] font-semibold text-gray-500">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+                  <path d="M3 12h4l3-9 4 18 3-9h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                Popular searches
+              </p>
+              <ul>
+                {POPULAR_SEARCHES.map((item) => (
+                  <li key={item}>
+                    <a href="#" className="block py-2.5 text-[16px] font-semibold text-gray-900 hover:text-primary">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Tools */}
+            <div className="border-t border-gray-100 px-6 py-5">
+              <p className="mb-3 flex items-center gap-2 text-[13px] font-semibold text-gray-500">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+                  <rect x="3" y="3" width="8" height="8" rx="1" stroke="currentColor" strokeWidth="1.8"/>
+                  <rect x="13" y="3" width="8" height="8" rx="1" stroke="currentColor" strokeWidth="1.8"/>
+                  <rect x="3" y="13" width="8" height="8" rx="1" stroke="currentColor" strokeWidth="1.8"/>
+                  <rect x="13" y="13" width="8" height="8" rx="1" stroke="currentColor" strokeWidth="1.8"/>
+                </svg>
+                Tools
+              </p>
+              <ul>
+                {TOOLS.map((item) => (
+                  <li key={item}>
+                    <a href="#" className="block py-2.5 text-[16px] font-semibold text-gray-900 hover:text-primary">
+                      {item}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }
