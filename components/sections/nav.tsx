@@ -42,7 +42,7 @@ export function Nav() {
   }, [])
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-blue-800 bg-blue-900">
+    <nav className="w-full border-b border-blue-800 bg-blue-900">
       {/* Desktop */}
       <div className="mx-auto hidden h-[82px] max-w-[1312px] items-center justify-between px-16 lg:flex">
         <a href="/" className="block shrink-0" aria-label="Bankrate home">
