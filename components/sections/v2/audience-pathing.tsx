@@ -46,9 +46,6 @@ export function AudiencePathing() {
             className="flex flex-col gap-6 rounded-3xl border border-gray-200 bg-white p-10"
           >
             <div className="flex items-baseline gap-4">
-              <span className="font-serif text-[14px] font-semibold tracking-[0.2em] text-primary">
-                PATH {path.id}
-              </span>
               <h3 className="font-serif text-[28px] font-semibold leading-[1.2] tracking-[-1px] text-gray-900">
                 {path.title}
               </h3>
