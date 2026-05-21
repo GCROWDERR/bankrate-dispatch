@@ -14,8 +14,8 @@ import { FooterV2 } from "@/components/sections/v2/footer"
 export default function HomepageV2() {
   return (
     <>
+      <Nav />
       <div className="bg-blue-900">
-        <Nav />
         <HeroV2 />
       </div>
 

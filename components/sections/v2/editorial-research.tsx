@@ -58,7 +58,7 @@ export function EditorialResearch() {
           <p className="text-[14px] text-white/60">{LEAD.author}</p>
           <div className="relative mt-auto overflow-hidden rounded-2xl">
             <Image
-              src="/images/Homes-Hidden-Costs-of-Homeownership-Data-Study.webp"
+              src="/images/homeownership-tax.png"
               alt="Key with house-shaped keychain made from a dollar bill"
               width={800}
               height={450}
