@@ -177,6 +177,14 @@
 }
 
 @font-face {
+  font-family: "RecifeText";
+  src: url("/fonts/RecifeText-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "CircularStd";
   src: url("https://www.bankrate.com/static/fonts/CircularStd-Book.woff2") format("woff2");
   font-weight: 400;
@@ -369,8 +377,7 @@
   --color-info: var(--info);
   --color-info-foreground: var(--info-foreground);
 
-  /* RecifeText — set on <html> via next/font in layout.tsx */
-  --font-serif: var(--font-serif), ui-serif, Georgia, serif;
+  --font-serif: "RecifeText", ui-serif, Georgia, serif;
 
   /* Token system defines sm–xl; map shadcn/ui extra shadow sizes */
   --shadow-2xs: var(--shadow-sm);

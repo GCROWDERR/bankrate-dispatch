@@ -1,25 +1,26 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { SectionShell } from "@/components/home/shared"
+import { authorAvatar } from "@/lib/author-avatars"
 
 const EXPERTS = [
   {
     name: "Sarah Foster",
     title: "Principal Analyst",
     specialty: "Mortgage markets, Fed policy, and what rate moves actually mean for buyers",
-    avatar: "/images/expert-3.png",
+    avatar: authorAvatar("Sarah Foster"),
   },
   {
     name: "Alex Gailey",
     title: "Senior Editor",
     specialty: "Consumer banking, high-yield savings, and how to make deposits work harder",
-    avatar: "/images/expert-1.png",
+    avatar: authorAvatar("Alex Gailey"),
   },
   {
     name: "Greg McBride",
     title: "Chief Financial Analyst",
     specialty: "Macro trends, household balance sheets, and decades of independent rate research",
-    avatar: "/images/expert-4.png",
+    avatar: authorAvatar("Greg McBride"),
   },
 ]
 
