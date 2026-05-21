@@ -26,7 +26,7 @@ const EXPERTS = [
 export function ExpertTeamV2() {
   return (
     <SectionShell className="py-20">
-      <div className="overflow-hidden rounded-[48px] bg-blue-900 px-16 py-20 text-white">
+      <div className="overflow-hidden rounded-5xl bg-blue-900 px-16 py-20 text-white">
         <div className="mx-auto max-w-[760px] text-center">
           <h2 className="font-serif text-[48px] font-semibold leading-[1.15] tracking-[-2px]">
             The people behind the data

@@ -19,7 +19,7 @@ const FEATURES = [
 export function MemberExperienceV2() {
   return (
     <SectionShell className="py-20">
-      <div className="overflow-hidden rounded-[48px] bg-blue-900 px-12 py-20 text-white">
+      <div className="overflow-hidden rounded-5xl bg-blue-900 px-12 py-20 text-white">
         <div className="mx-auto max-w-[760px] text-center">
           <h2 className="font-serif text-[48px] font-semibold leading-[1.15] tracking-[-2px]">
             Your rate doesn&apos;t have to be a one-time guess

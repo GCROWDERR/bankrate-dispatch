@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { SectionShell } from "@/components/home/shared"
 import { cn } from "@/lib/utils"
 
@@ -60,34 +61,33 @@ export function RatesAndCalculator() {
 }
 
 function RateTable() {
-  const [active, setActive] = useState<(typeof RATE_TABS)[number]["id"]>("30yr")
-  const current = RATE_TABS.find((t) => t.id === active) ?? RATE_TABS[0]
-
   return (
     <div className="mt-12 overflow-hidden rounded-3xl bg-white">
-      <div className="flex flex-wrap border-b border-gray-200">
-        {RATE_TABS.map((tab) => (
-          <button
-            key={tab.id}
-            type="button"
-            onClick={() => setActive(tab.id)}
-            className={cn(
-              "flex-1 px-6 py-5 text-[15px] font-semibold tracking-[-0.2px] transition-colors",
-              active === tab.id
-                ? "border-b-2 border-primary text-primary"
-                : "border-b-2 border-transparent text-gray-900/60 hover:text-gray-900"
-            )}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
+      <Tabs defaultValue="30yr">
+        <div className="border-b border-gray-200 pb-[8px]">
+          <TabsList variant="line" className="flex-wrap p-0 rounded-none h-auto w-full">
+            {RATE_TABS.map((tab) => (
+              <TabsTrigger
+                key={tab.id}
+                value={tab.id}
+                className="flex-1 px-6 py-5 text-[15px] font-semibold tracking-[-0.2px]"
+              >
+                {tab.label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </div>
 
-      <div className="grid grid-cols-1 gap-6 p-10 md:grid-cols-3">
-        <Cell label="Bankrate best rate" value={`${(current.rate - 0.86).toFixed(2)}%`} highlight />
-        <Cell label="National average" value={`${current.rate.toFixed(2)}%`} />
-        <Cell label="Points" value={current.points.toFixed(1)} />
-      </div>
+        {RATE_TABS.map((tab) => (
+          <TabsContent key={tab.id} value={tab.id}>
+            <div className="grid grid-cols-1 gap-6 p-10 md:grid-cols-3">
+              <Cell label="Bankrate best rate" value={`${(tab.rate - 0.86).toFixed(2)}%`} highlight />
+              <Cell label="National average" value={`${tab.rate.toFixed(2)}%`} />
+              <Cell label="Points" value={tab.points.toFixed(1)} />
+            </div>
+          </TabsContent>
+        ))}
+      </Tabs>
 
       <div className="border-t border-gray-200 p-6 text-center">
         <a
