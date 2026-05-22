@@ -85,7 +85,12 @@ export function Products() {
             key={tile.title}
             className="flex h-full flex-col gap-6 rounded-3xl bg-white p-8"
           >
-            <tile.Icon className="size-12 text-primary" />
+            <div
+              className="relative h-[68px] w-[72px] bg-[url('/images/scribble-bg.svg')] bg-contain bg-no-repeat"
+              aria-hidden
+            >
+              <tile.Icon className="absolute left-[11px] top-[9px] size-12 text-primary" />
+            </div>
             <h3 className="font-serif text-[24px] font-semibold leading-[1.2] tracking-[-0.5px] text-gray-900">
               {tile.title}
             </h3>
