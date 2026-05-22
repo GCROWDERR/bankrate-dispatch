@@ -184,10 +184,20 @@ type NavVariant = "dark" | "cream"
 export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
   const isCream = variant === "cream"
   const [menuOpen, setMenuOpen] = useState(false)
+  const [menuMounted, setMenuMounted] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<number | null>(null)
   const searchInputRef = useRef<HTMLInputElement>(null)
   const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    if (menuOpen) {
+      setMenuMounted(true)
+      return
+    }
+    const t = setTimeout(() => setMenuMounted(false), 300)
+    return () => clearTimeout(t)
+  }, [menuOpen])
 
   const openMenu = (i: number) => {
     if (closeTimeout.current) {
@@ -308,17 +318,13 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
-            className="flex size-6 items-center justify-center"
+            className={cn(
+              "flex size-6 items-center justify-center",
+              isCream ? "text-blue-900" : "text-white"
+            )}
             aria-label="Search"
           >
-            <Image
-              src="/images/search.svg"
-              alt=""
-              width={24}
-              height={24}
-              className={cn(isCream && "brightness-0")}
-              aria-hidden
-            />
+            <SearchIcon className="size-6" />
           </button>
         </div>
       </div>
@@ -359,17 +365,13 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
-            className="flex size-10 items-center justify-center"
+            className={cn(
+              "flex size-10 items-center justify-center",
+              isCream ? "text-blue-900" : "text-white"
+            )}
             aria-label="Search"
           >
-            <Image
-              src="/images/search.svg"
-              alt=""
-              width={20}
-              height={20}
-              className={cn(isCream && "brightness-0")}
-              aria-hidden
-            />
+            <SearchIcon className="size-5" />
           </button>
           <MobileMenuButton
             open={menuOpen}
@@ -379,23 +381,42 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
         </div>
       </div>
 
-      {/* Mobile menu panel */}
-      {menuOpen && (
-        <div
-          id="mobile-nav-menu"
-          className="fixed inset-0 z-40 flex flex-col bg-gray-50 py-6 lg:hidden"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Main navigation"
-        >
-          <div className="flex justify-end px-6 pb-4">
+      {/* Mobile menu drawer */}
+      {menuMounted && (
+        <>
+          <div
+            className={cn(
+              "fixed inset-0 z-40 bg-blue-900/40 lg:hidden",
+              menuOpen
+                ? "animate-in fade-in duration-300"
+                : "animate-out fade-out fill-mode-forwards duration-200"
+            )}
+            onClick={() => setMenuOpen(false)}
+            aria-hidden
+          />
+          <div
+            id="mobile-nav-menu"
+            className={cn(
+              "fixed inset-y-0 right-0 z-40 flex w-full max-w-[448px] flex-col bg-gray-50 py-6 shadow-2xl lg:hidden",
+              menuOpen
+                ? "animate-in slide-in-from-right duration-300 ease-out"
+                : "animate-out slide-out-to-right fill-mode-forwards duration-200 ease-in"
+            )}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Main navigation"
+          >
+          <div className="flex justify-end px-6 pb-4 max-[360px]:px-4">
             <button
               type="button"
               onClick={() => setMenuOpen(false)}
               aria-label="Close menu"
-              className="flex size-6 items-center justify-center text-gray-900"
+              className={cn(
+                "flex size-6 items-center justify-center text-gray-900",
+                menuOpen && "animate-in fade-in zoom-in-95 duration-300 delay-150 fill-mode-backwards"
+              )}
             >
-              <CloseIcon />
+              <CloseIcon className="size-5" />
             </button>
           </div>
 
@@ -404,21 +425,21 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
               <li key={link.label}>
                 <a
                   href="#"
-                  className="flex items-center justify-between px-6 py-4 font-serif text-[20px] font-bold leading-[1.2] tracking-[-0.15px] text-gray-900"
+                  className="flex items-center justify-between px-6 py-4 font-serif text-[20px] font-bold leading-[1.2] tracking-[-0.15px] text-gray-900 max-[360px]:px-4"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}
-                  <TrianglePlay className="text-primary" />
+                  <CaretRight className="size-3 text-primary" />
                 </a>
               </li>
             ))}
           </ul>
 
-          <hr className="mx-6 my-6 border-gray-200" />
+          <hr className="mx-6 my-6 border-gray-200 max-[360px]:mx-4" />
 
           <a
             href="#"
-            className="px-6 py-4 text-[16px] font-semibold tracking-[-0.25px] text-blue-900"
+            className="px-6 py-4 text-[16px] font-semibold tracking-[-0.25px] text-blue-900 max-[360px]:px-4"
             onClick={() => setMenuOpen(false)}
           >
             How we&rsquo;re paid
@@ -426,29 +447,22 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
 
           <div className="flex-1" />
 
-          <div className="px-6 pb-4">
+          <div className="px-6 pb-4 max-[360px]:px-4">
             <button
               type="button"
               onClick={() => {
                 setMenuOpen(false)
                 setSearchOpen(true)
               }}
-              className="flex w-full items-center gap-2 rounded border border-gray-500 bg-white px-3 py-2.5 text-left"
+              className="flex w-full items-center gap-2 rounded border border-gray-500 bg-white px-3 py-2.5 text-left text-gray-500"
               aria-label="Open search"
             >
-              <Image
-                src="/images/search.svg"
-                alt=""
-                width={16}
-                height={16}
-                className="brightness-0"
-                aria-hidden
-              />
-              <span className="text-[16px] tracking-[-0.25px] text-gray-500">Search...</span>
+              <SearchIcon className="size-4" />
+              <span className="text-[16px] tracking-[-0.25px]">Search...</span>
             </button>
           </div>
 
-          <div className="flex items-center justify-between px-6">
+          <div className="flex items-center justify-between gap-4 px-6 max-[360px]:px-4">
             <Image
               src="/images/logo-navy.svg"
               alt="Bankrate"
@@ -465,7 +479,8 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
               Log in or sign up
             </Button>
           </div>
-        </div>
+          </div>
+        </>
       )}
       {/* Search overlay */}
       {searchOpen && (
@@ -485,10 +500,7 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
                 placeholder="Search..."
                 className="flex-1 text-[18px] text-gray-900 placeholder:text-gray-400 outline-none"
               />
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden className="shrink-0 text-primary">
-                <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2"/>
-                <path d="M16.5 16.5L21 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
+              <SearchIcon className="size-[22px] shrink-0 text-primary" />
             </div>
 
             {/* Popular searches */}
@@ -547,56 +559,83 @@ function MobileMenuButton({
   light?: boolean
   onClick: () => void
 }) {
-  const barColor = light ? "bg-[#13223b]" : "bg-white"
   return (
     <button
       type="button"
-      className="flex size-10 items-center justify-center"
+      className={cn(
+        "flex size-10 items-center justify-center",
+        light ? "text-blue-900" : "text-white"
+      )}
       aria-expanded={open}
       aria-controls="mobile-nav-menu"
       aria-label={open ? "Close menu" : "Open menu"}
       onClick={onClick}
     >
-      <span className="flex w-5 flex-col gap-1">
-        <span
-          className={cn(
-            "h-0.5 w-5 transition-transform duration-200",
-            barColor,
-            open && "translate-y-[6px] rotate-45"
-          )}
-        />
-        <span
-          className={cn(
-            "h-0.5 w-5 transition-transform duration-200",
-            barColor,
-            open && "-translate-y-[6px] -rotate-45"
-          )}
-        />
-      </span>
+      <MenuIcon className="size-6" />
     </button>
   )
 }
 
-function ChevronIcon({ className }: { className?: string }) {
+function MenuIcon({ className }: { className?: string }) {
   return (
-    <svg width="8" height="8" viewBox="0 0 8 8" fill="none" aria-hidden className={cn("text-primary", className)}>
-      <path d="M1.5 2.5L4 5L6.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden
+      focusable="false"
+      className={className}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M3.81818 6.68177H16.0909C16.5409 6.68177 16.9091 6.31359 16.9091 5.86359C16.9091 5.41359 16.5409 5.04541 16.0909 5.04541H3.81818C3.36818 5.04541 3 5.41359 3 5.86359C3 6.31359 3.36818 6.68177 3.81818 6.68177ZM20.1818 12.8181H3.81818C3.36818 12.8181 3 12.45 3 12C3 11.55 3.36818 11.1818 3.81818 11.1818H20.1818C20.6318 11.1818 21 11.55 21 12C21 12.45 20.6318 12.8181 20.1818 12.8181ZM12 18.9545H3.81818C3.36818 18.9545 3 18.5863 3 18.1363C3 17.6863 3.36818 17.3182 3.81818 17.3182H12C12.45 17.3182 12.8182 17.6863 12.8182 18.1363C12.8182 18.5863 12.45 18.9545 12 18.9545Z"
+      />
     </svg>
   )
 }
 
-function TrianglePlay({ className }: { className?: string }) {
+function SearchIcon({ className }: { className?: string }) {
   return (
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden className={className}>
-      <path d="M3 2 L9.5 6 L3 10 Z" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden
+      focusable="false"
+      className={className}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M10.3116 1.5C5.70287 1.5 2 5.28 2 10C2 14.72 5.70287 18.5 10.3116 18.5C12.0336 18.5 13.6362 17.97 14.9601 17.06L19.9072 22.17C20.3352 22.61 21.032 22.61 21.46 22.17L21.679 21.95C22.107 21.57 22.107 20.85 21.679 20.41L16.7617 15.38C17.9263 13.92 18.6231 12.04 18.6231 10C18.6231 5.28 14.8705 1.5 10.3116 1.5ZM10.3116 3.69C13.686 3.69 16.4731 6.54 16.4731 10C16.4731 13.46 13.686 16.31 10.3116 16.31C6.93717 16.31 4.15006 13.46 4.15006 10C4.15006 6.54 6.8874 3.69 10.3116 3.69Z"
+      />
+    </svg>
+  )
+}
+
+function CaretRight({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden
+      focusable="false"
+      className={className}
+    >
+      <path d="M8.16765 21C7.83868 21 7.49326 20.8683 7.23008 20.6213C6.72018 20.1109 6.72018 19.2712 7.23008 18.7608L13.974 12.0103L7.23008 5.24331C6.72018 4.73291 6.72018 3.89321 7.23008 3.3828C7.73999 2.8724 8.57886 2.8724 9.08877 3.3828L16.7702 11.0718C17.2801 11.5822 17.2801 12.4219 16.7702 12.9323L9.08877 20.6213C8.82559 20.8847 8.49662 21 8.1512 21H8.16765Z" />
     </svg>
   )
 }
 
 function CloseIcon({ className }: { className?: string }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden className={className}>
-      <path d="M4 4L16 16M16 4L4 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden
+      focusable="false"
+      className={className}
+    >
+      <path d="M18.8806 3.2806C19.3882 2.77292 20.2114 2.77292 20.719 3.2806C21.2267 3.78828 21.2267 4.6114 20.719 5.11908L13.8384 11.9998L20.7196 18.881C21.2273 19.3887 21.2273 20.2118 20.7196 20.7194C20.2119 21.2271 19.3888 21.2271 18.8811 20.7194L11.9999 13.8382L5.11865 20.7194C4.61097 21.2271 3.78786 21.2271 3.28017 20.7194C2.77249 20.2118 2.77249 19.3887 3.28017 18.881L10.1614 11.9998L3.28072 5.11908C2.77304 4.6114 2.77304 3.78828 3.28072 3.2806C3.7884 2.77292 4.61152 2.77292 5.1192 3.2806L11.9999 10.1613L18.8806 3.2806Z" />
     </svg>
   )
 }
