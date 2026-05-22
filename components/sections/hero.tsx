@@ -2,18 +2,13 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
 const RATES = [
-  { label: "National avg · 30-yr fixed", value: "6.85%", source: "Freddie Mac PMMS" },
-  { label: "National avg · 15-yr fixed", value: "6.12%", source: "Freddie Mac PMMS" },
-  {
-    label: "Bankrate best offer today",
-    value: "5.99%",
-    source: "Bankrate marketplace",
-    highlight: true,
-  },
+  { term: "30-yr fixed", apy: "6.85%" },
+  { term: "15-yr fixed", apy: "6.12%" },
+  { term: "Best offer", apy: "5.99%", highlight: true },
 ] as const
 
 /**
- * Hero — Figma Homepage redesign node 192:1278 (Bankrate_Hero_2.17).
+ * Hero — left column from Figma 192:1278, right rate panel from Figma 212:2597.
  */
 export function Hero() {
   return (
@@ -46,63 +41,76 @@ export function Hero() {
           </Button>
         </div>
 
-        <div className="relative z-10 w-full shrink-0 lg:w-[359px]">
-          <Image
-            src="/images/hero-v2-sparkle.svg"
-            alt=""
-            width={66}
-            height={79}
-            className="pointer-events-none absolute -top-2 right-0 hidden lg:block"
-            aria-hidden
-          />
-          <div className="rounded-[17.6px] border border-white/10 bg-white/[0.04] p-4">
-            <div className="flex flex-col gap-3">
-              {RATES.map((rate) => (
-                <RateTile key={rate.label} {...rate} />
-              ))}
-            </div>
-            <p className="mt-4 text-[12px] leading-[1.7] text-white/55">
-              Live rates as of today. Updated daily across 600+ banks and credit unions.
-            </p>
-          </div>
-        </div>
+        <RatePanel />
       </div>
     </section>
   )
 }
 
-function RateTile({
-  label,
-  value,
-  source,
+function RatePanel() {
+  return (
+    <div className="relative z-10 w-full shrink-0 lg:w-[440px]">
+      <div className="relative aspect-[526/527]">
+        <Image
+          src="/images/hero-rate-bg.svg"
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 440px, 100vw"
+          className="pointer-events-none object-contain"
+          aria-hidden
+          priority
+        />
+        <Image
+          src="/images/hero-rate-sparkle.svg"
+          alt=""
+          width={47}
+          height={81}
+          className="pointer-events-none absolute left-[6%] top-[6%] z-20 w-[10%] rotate-[-140.55deg]"
+          aria-hidden
+        />
+        <div className="absolute inset-x-[10%] top-[10%] flex flex-col gap-2">
+          {RATES.map((rate) => (
+            <RateRow key={rate.term} {...rate} />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function RateRow({
+  term,
+  apy,
   highlight = false,
 }: {
-  label: string
-  value: string
-  source: string
+  term: string
+  apy: string
   highlight?: boolean
 }) {
   return (
-    <div
-      className={
-        highlight
-          ? "rounded-[14.4px] bg-[#0061fe] p-5"
-          : "rounded-[14.4px] bg-white/[0.05] p-5"
-      }
-    >
-      <p
-        className={`text-[12px] font-semibold leading-[1.3] ${
-          highlight ? "text-white" : "text-white/70"
-        }`}
-      >
-        {label}
-      </p>
-      <p className="mt-4 font-serif text-[40px] font-semibold leading-none tracking-[-1.5px] text-white">
-        {value}
-      </p>
-      <p className={`mt-3 text-[11px] leading-[1.5] ${highlight ? "text-white/80" : "text-white/45"}`}>
-        {source}
-      </p>
+    <div className="relative flex items-center justify-between rounded-[24px] bg-white px-7 py-6 shadow-[0_10px_24px_-12px_rgba(15,27,47,0.4)]">
+      <div className="flex flex-col gap-2">
+        <p className="text-[14px] leading-none tracking-[-0.7px] text-[#3b3b44]">Term</p>
+        <p className="text-[20px] font-bold leading-none text-[#00143d]">{term}</p>
+      </div>
+      <div className="relative flex flex-col items-start gap-2">
+        <p className="text-[14px] leading-none tracking-[-0.7px] text-[#3b3b44]">APY</p>
+        <p className="relative text-[36px] font-bold leading-none text-[#13223b]">
+          {apy}
+          {highlight && (
+            <span className="pointer-events-none absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 -rotate-90">
+              <Image
+                src="/images/hero-rate-circle.svg"
+                alt=""
+                width={60}
+                height={160}
+                className="block"
+                aria-hidden
+              />
+            </span>
+          )}
+        </p>
+      </div>
     </div>
   )
 }
