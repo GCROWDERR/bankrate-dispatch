@@ -38,35 +38,35 @@ const MORTGAGES_MENU: MegaMenuData = {
   ],
 }
 
-const BANKING_MENU: MegaMenuData = {
+const SAVINGS_MENU: MegaMenuData = {
   rail: [{ label: "Open an account" }],
   primary: {
-    title: "Accounts",
+    title: "Savings products",
     columns: [
       [
-        { label: "Checking accounts" },
-        { label: "Savings accounts" },
+        { label: "High-yield savings" },
+        { label: "CD rates" },
         { label: "Money market" },
       ],
       [
-        { label: "CDs" },
-        { label: "High-yield savings" },
-        { label: "Business banking" },
+        { label: "Best savings accounts" },
+        { label: "Bank reviews" },
+        { label: "Compare rates" },
       ],
     ],
   },
   secondary: {
-    title: "Tools",
+    title: "Tools & guides",
     links: [
-      { label: "Compare rates" },
       { label: "Savings calculator" },
       { label: "CD calculator" },
-      { label: "Bank reviews" },
+      { label: "Emergency fund guide" },
+      { label: "FDIC insurance basics" },
     ],
   },
   features: [
     { title: "Best high-yield savings of 2026", subtitle: "Subtitle text or read time" },
-    { title: "How to choose a bank", subtitle: "Subtitle text or read time" },
+    { title: "How to build an emergency fund", subtitle: "Subtitle text or read time" },
   ],
 }
 
@@ -134,8 +134,8 @@ const LOANS_MENU: MegaMenuData = {
   ],
 }
 
-const OUR_COMPANY_MENU: MegaMenuData = {
-  rail: [{ label: "Who we are" }],
+const WHO_WE_ARE_MENU: MegaMenuData = {
+  rail: [{ label: "About us" }],
   primary: {
     title: "Our company",
     columns: [
@@ -152,12 +152,40 @@ const OUR_COMPANY_MENU: MegaMenuData = {
     ],
   },
   secondary: {
-    title: "Our journalism",
+    title: "Careers",
     links: [
-      { label: "Newsroom" },
-      { label: "Bankrate Data Center" },
+      { label: "Open positions" },
+      { label: "Life at Bankrate" },
+      { label: "Benefits" },
+      { label: "Internships" },
+    ],
+  },
+}
+
+const NEWSROOM_MENU: MegaMenuData = {
+  rail: [{ label: "Top stories" }],
+  primary: {
+    title: "Newsroom",
+    columns: [
+      [
+        { label: "Personal finance news" },
+        { label: "Market news" },
+        { label: "Press releases" },
+      ],
+      [
+        { label: "Research & data" },
+        { label: "Expert commentary" },
+        { label: "Bankrate Data Center" },
+      ],
+    ],
+  },
+  secondary: {
+    title: "Editorial",
+    links: [
       { label: "Bankrate's editorial team" },
       { label: "Editorial standards" },
+      { label: "Contributors" },
+      { label: "Awards" },
     ],
   },
   features: [
@@ -170,10 +198,11 @@ type NavLink = { label: string; megaMenu?: MegaMenuData }
 
 const NAV_LINKS: NavLink[] = [
   { label: "Mortgages", megaMenu: MORTGAGES_MENU },
-  { label: "Banking", megaMenu: BANKING_MENU },
+  { label: "Savings", megaMenu: SAVINGS_MENU },
   { label: "Credit cards", megaMenu: CREDIT_CARDS_MENU },
   { label: "Loans", megaMenu: LOANS_MENU },
-  { label: "Our company", megaMenu: OUR_COMPANY_MENU },
+  { label: "Who we are", megaMenu: WHO_WE_ARE_MENU },
+  { label: "Newsroom", megaMenu: NEWSROOM_MENU },
 ]
 
 const POPULAR_SEARCHES = ["Mortgage rates", "Balance transfer credit cards", "Car insurance quotes"]
@@ -275,8 +304,10 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
                     aria-haspopup={hasMenu || undefined}
                     aria-expanded={hasMenu ? activeMenu === i : undefined}
                     className={cn(
-                      "flex items-center px-6 text-sm font-semibold tracking-[-0.25px]",
-                      isCream ? "text-blue-900" : "text-white"
+                      "flex items-center px-6 text-sm font-semibold tracking-[-0.25px] transition-colors",
+                      isCream
+                        ? "text-blue-900 hover:bg-gray-200"
+                        : "text-white hover:bg-blue-800"
                     )}
                   >
                     {link.label}
@@ -285,26 +316,6 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
               )
             })}
           </ul>
-
-          <div className="flex h-full items-stretch">
-            <div className="flex items-center" aria-hidden>
-              <span
-                className={cn(
-                  "h-10 w-px",
-                  isCream ? "bg-gray-300" : "bg-blue-800"
-                )}
-              />
-            </div>
-            <a
-              href="#"
-              className={cn(
-                "flex items-center px-6 text-sm font-semibold tracking-[-0.25px]",
-                isCream ? "text-blue-900" : "text-white"
-              )}
-            >
-              How we&rsquo;re paid
-            </a>
-          </div>
         </div>
 
         <div className="flex shrink-0 items-center gap-6">
@@ -434,16 +445,6 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
               </li>
             ))}
           </ul>
-
-          <hr className="mx-6 my-6 border-gray-200 max-[360px]:mx-4" />
-
-          <a
-            href="#"
-            className="px-6 py-4 text-[16px] font-semibold tracking-[-0.25px] text-blue-900 max-[360px]:px-4"
-            onClick={() => setMenuOpen(false)}
-          >
-            How we&rsquo;re paid
-          </a>
 
           <div className="flex-1" />
 
