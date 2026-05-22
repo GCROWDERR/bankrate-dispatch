@@ -7,98 +7,98 @@ import { MegaMenu, type MegaMenuData } from "@/components/sections/mega-menu"
 import { cn } from "@/lib/utils"
 
 const MORTGAGES_MENU: MegaMenuData = {
-  rail: [{ label: "Who we are" }],
+  rail: [{ label: "Apply now" }],
   primary: {
-    title: "Our company",
+    title: "Mortgages",
     columns: [
       [
-        { label: "About Bankrate" },
-        { label: "Our founder" },
-        { label: "Leadership" },
+        { label: "Today's mortgage rates" },
+        { label: "Refinance rates" },
+        { label: "Mortgage calculator" },
       ],
       [
-        { label: "Contact us" },
-        { label: "AI policy" },
-        { label: "Legal" },
-      ],
-    ],
-  },
-  secondary: {
-    title: "Our journalism",
-    links: [
-      { label: "Newsroom" },
-      { label: "Bankrate Data Center" },
-      { label: "Bankrate's editorial team" },
-      { label: "Editorial standards" },
-    ],
-  },
-  features: [
-    { title: "Hidden Homeownership Tax", subtitle: "Subtitle text or read time" },
-    { title: "Featured Title", subtitle: "Subtitle text or read time" },
-  ],
-}
-
-const INVESTING_MENU: MegaMenuData = {
-  rail: [{ label: "Get started" }],
-  primary: {
-    title: "Investment products",
-    columns: [
-      [
-        { label: "Brokerage accounts" },
-        { label: "Robo-advisors" },
-        { label: "IRAs" },
-      ],
-      [
-        { label: "401(k) plans" },
-        { label: "ETFs & mutual funds" },
-        { label: "Stocks & bonds" },
+        { label: "FHA loans" },
+        { label: "VA loans" },
+        { label: "Jumbo loans" },
       ],
     ],
   },
   secondary: {
     title: "Tools & guides",
     links: [
-      { label: "Investment calculator" },
-      { label: "How to start investing" },
-      { label: "Retirement planning" },
-      { label: "Investing tax basics" },
+      { label: "First-time homebuyer guide" },
+      { label: "Affordability calculator" },
+      { label: "Closing costs" },
+      { label: "Mortgage glossary" },
     ],
   },
   features: [
-    { title: "Best online brokers of 2026", subtitle: "Subtitle text or read time" },
-    { title: "How to start investing", subtitle: "Subtitle text or read time" },
+    { title: "Best mortgage lenders of 2026", subtitle: "Subtitle text or read time" },
+    { title: "How to get pre-approved", subtitle: "Subtitle text or read time" },
   ],
 }
 
-const B2B_MENU: MegaMenuData = {
-  rail: [{ label: "Solutions" }],
+const BANKING_MENU: MegaMenuData = {
+  rail: [{ label: "Open an account" }],
   primary: {
-    title: "Products",
+    title: "Accounts",
     columns: [
       [
-        { label: "Lead generation" },
-        { label: "Content syndication" },
-        { label: "API & data" },
+        { label: "Checking accounts" },
+        { label: "Savings accounts" },
+        { label: "Money market" },
       ],
       [
-        { label: "Co-branded sites" },
-        { label: "Advertising" },
-        { label: "Custom solutions" },
+        { label: "CDs" },
+        { label: "High-yield savings" },
+        { label: "Business banking" },
       ],
     ],
   },
   secondary: {
-    title: "Industries",
+    title: "Tools",
     links: [
-      { label: "Banking" },
-      { label: "Insurance" },
-      { label: "Lending" },
-      { label: "Fintech" },
+      { label: "Compare rates" },
+      { label: "Savings calculator" },
+      { label: "CD calculator" },
+      { label: "Bank reviews" },
     ],
   },
   features: [
-    { title: "Partner success stories", subtitle: "Subtitle text or read time" },
-    { title: "Request a demo", subtitle: "Subtitle text or read time" },
+    { title: "Best high-yield savings of 2026", subtitle: "Subtitle text or read time" },
+    { title: "How to choose a bank", subtitle: "Subtitle text or read time" },
+  ],
+}
+
+const CREDIT_CARDS_MENU: MegaMenuData = {
+  rail: [{ label: "Compare cards" }],
+  primary: {
+    title: "Cards by category",
+    columns: [
+      [
+        { label: "Cash back" },
+        { label: "Travel rewards" },
+        { label: "Balance transfer" },
+      ],
+      [
+        { label: "0% intro APR" },
+        { label: "Business cards" },
+        { label: "Student cards" },
+      ],
+    ],
+  },
+  secondary: {
+    title: "Tools & guides",
+    links: [
+      { label: "Card matcher" },
+      { label: "Pre-qualify offers" },
+      { label: "Credit card calculator" },
+      { label: "Building credit" },
+    ],
+  },
+  features: [
+    { title: "Best credit cards of 2026", subtitle: "Subtitle text or read time" },
+    { title: "How to pick a card", subtitle: "Subtitle text or read time" },
   ],
 }
 
@@ -134,35 +134,35 @@ const LOANS_MENU: MegaMenuData = {
   ],
 }
 
-const INSURANCE_MENU: MegaMenuData = {
-  rail: [{ label: "Get quotes" }],
+const OUR_COMPANY_MENU: MegaMenuData = {
+  rail: [{ label: "Who we are" }],
   primary: {
-    title: "Coverage",
+    title: "Our company",
     columns: [
       [
-        { label: "Car insurance" },
-        { label: "Home insurance" },
-        { label: "Life insurance" },
+        { label: "About Bankrate" },
+        { label: "Our founder" },
+        { label: "Leadership" },
       ],
       [
-        { label: "Renters insurance" },
-        { label: "Health insurance" },
-        { label: "Pet insurance" },
+        { label: "Contact us" },
+        { label: "AI policy" },
+        { label: "Legal" },
       ],
     ],
   },
   secondary: {
-    title: "Resources",
+    title: "Our journalism",
     links: [
-      { label: "Compare quotes" },
-      { label: "State guides" },
-      { label: "Coverage explained" },
-      { label: "Claims help" },
+      { label: "Newsroom" },
+      { label: "Bankrate Data Center" },
+      { label: "Bankrate's editorial team" },
+      { label: "Editorial standards" },
     ],
   },
   features: [
-    { title: "Best car insurance of 2026", subtitle: "Subtitle text or read time" },
-    { title: "Insurance shopping guide", subtitle: "Subtitle text or read time" },
+    { title: "Hidden Homeownership Tax", subtitle: "Subtitle text or read time" },
+    { title: "Featured Title", subtitle: "Subtitle text or read time" },
   ],
 }
 
@@ -170,10 +170,10 @@ type NavLink = { label: string; megaMenu?: MegaMenuData }
 
 const NAV_LINKS: NavLink[] = [
   { label: "Mortgages", megaMenu: MORTGAGES_MENU },
-  { label: "Investing", megaMenu: INVESTING_MENU },
-  { label: "B2B Partnerships", megaMenu: B2B_MENU },
+  { label: "Banking", megaMenu: BANKING_MENU },
+  { label: "Credit cards", megaMenu: CREDIT_CARDS_MENU },
   { label: "Loans", megaMenu: LOANS_MENU },
-  { label: "Insurance", megaMenu: INSURANCE_MENU },
+  { label: "Our company", megaMenu: OUR_COMPANY_MENU },
 ]
 
 const POPULAR_SEARCHES = ["Mortgage rates", "Balance transfer credit cards", "Car insurance quotes"]
@@ -237,7 +237,7 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
       )}
     >
       {/* Desktop */}
-      <div className="mx-auto hidden h-[82px] max-w-[1312px] items-center justify-between px-5 md:px-16 lg:flex">
+      <div className="mx-auto hidden h-[72px] max-w-[1312px] items-center gap-4 px-5 md:px-6 lg:flex">
         <a href="/" className="block shrink-0" aria-label="Bankrate home">
           <Image
             src={isCream ? "/images/logo-navy.svg" : "/images/logo.svg"}
@@ -249,47 +249,66 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
           />
         </a>
 
-        <ul className="flex items-center gap-8" role="list">
-          {NAV_LINKS.map((link, i) => {
-            const hasMenu = !!link.megaMenu
-            return (
-              <li
-                key={link.label}
-                onMouseEnter={hasMenu ? () => openMenu(i) : undefined}
-                onMouseLeave={hasMenu ? scheduleClose : undefined}
-              >
-                <a
-                  href="#"
-                  aria-haspopup={hasMenu || undefined}
-                  aria-expanded={hasMenu ? activeMenu === i : undefined}
-                  className={cn(
-                    "inline-flex items-center gap-0.5 text-[15px] font-semibold tracking-[-0.15px]",
-                    isCream ? "text-[#13223b]" : "text-white"
-                  )}
+        <div className="flex h-full min-w-0 flex-1 items-stretch justify-between">
+          <ul className="flex h-full items-stretch" role="list">
+            {NAV_LINKS.map((link, i) => {
+              const hasMenu = !!link.megaMenu
+              return (
+                <li
+                  key={link.label}
+                  className="flex"
+                  onMouseEnter={hasMenu ? () => openMenu(i) : undefined}
+                  onMouseLeave={hasMenu ? scheduleClose : undefined}
                 >
-                  {link.label}
-                  <ChevronIcon className={isCream ? "text-[#13223b]" : "text-primary"} />
-                </a>
-              </li>
-            )
-          })}
-        </ul>
+                  <a
+                    href="#"
+                    aria-haspopup={hasMenu || undefined}
+                    aria-expanded={hasMenu ? activeMenu === i : undefined}
+                    className={cn(
+                      "flex items-center px-6 text-sm font-semibold tracking-[-0.25px]",
+                      isCream ? "text-blue-900" : "text-white"
+                    )}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
 
-        <div className="flex items-center gap-2">
+          <div className="flex h-full items-stretch">
+            <div className="flex items-center" aria-hidden>
+              <span
+                className={cn(
+                  "h-10 w-px",
+                  isCream ? "bg-gray-300" : "bg-blue-800"
+                )}
+              />
+            </div>
+            <a
+              href="#"
+              className={cn(
+                "flex items-center px-6 text-sm font-semibold tracking-[-0.25px]",
+                isCream ? "text-blue-900" : "text-white"
+              )}
+            >
+              How we&rsquo;re paid
+            </a>
+          </div>
+        </div>
+
+        <div className="flex shrink-0 items-center gap-6">
           <Button
             variant="primary"
             size="default"
-            className="h-12 rounded-[10px] px-5 text-[16px] font-semibold tracking-[-0.16px]"
+            className="rounded px-4 py-3 text-sm font-bold tracking-[-0.25px]"
           >
             Log in or sign up
           </Button>
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
-            className={cn(
-              "flex h-12 w-12 items-center justify-center rounded-[10px] border border-primary p-3 transition-colors",
-              isCream ? "hover:bg-primary/10" : "hover:bg-primary/10"
-            )}
+            className="flex size-6 items-center justify-center"
             aria-label="Search"
           >
             <Image
@@ -307,7 +326,7 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
       {/* Desktop mega menu */}
       <div
         className={cn(
-          "fixed inset-x-0 bottom-0 top-[82px] z-30 hidden bg-blue-900/40 transition-opacity duration-500 lg:block",
+          "fixed inset-x-0 bottom-0 top-[72px] z-30 hidden bg-blue-900/40 transition-opacity duration-500 lg:block",
           activeMenu !== null ? "opacity-100" : "pointer-events-none opacity-0"
         )}
         onClick={() => setActiveMenu(null)}
