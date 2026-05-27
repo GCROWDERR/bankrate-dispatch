@@ -1,4 +1,5 @@
 import type { ComponentType } from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { SectionShell } from "@/components/home/shared"
 
@@ -41,6 +42,7 @@ type Tile = {
   body: string
   cta: string
   Icon: ComponentType<IconProps>
+  scribbleSrc: string
 }
 
 const TILES: Tile[] = [
@@ -50,6 +52,7 @@ const TILES: Tile[] = [
       "Most banks pay under 0.5%. The best ones pay more than 10× that. We track which is which, every week.",
     cta: "See today's rates",
     Icon: SavingsIcon,
+    scribbleSrc: "/images/product-scribble-savings.svg",
   },
   {
     title: "Credit cards",
@@ -57,18 +60,21 @@ const TILES: Tile[] = [
       "The most valuable cards on the market, ranked by what they actually pay you — not by who pays us to rank them.",
     cta: "Compare cards",
     Icon: CreditCardIcon,
+    scribbleSrc: "/images/product-scribble-credit.svg",
   },
   {
     title: "Home equity",
     body: "What your home is worth now — and how to put it to work.",
     cta: "Explore options",
     Icon: HomeEquityIcon,
+    scribbleSrc: "/images/product-scribble-equity.svg",
   },
   {
     title: "Personal loans",
     body: "Rates from lenders who've earned a place in this comparison.",
     cta: "See rates",
     Icon: LoanIcon,
+    scribbleSrc: "/images/product-scribble-loans.svg",
   },
 ]
 
@@ -86,10 +92,13 @@ export function Products() {
             className="flex h-full flex-col gap-6 rounded-3xl bg-white p-8"
           >
             <div
-              className="relative h-[68px] w-[72px] bg-[url('/images/scribble-bg.svg')] bg-contain bg-no-repeat"
+              className="relative h-[66px] w-[72px]"
               aria-hidden
             >
-              <tile.Icon className="absolute left-[11px] top-[9px] size-12 text-primary" />
+              <div className="absolute left-[11px] top-[13px] h-[40px] w-[41px]">
+                <Image src={tile.scribbleSrc} alt="" fill className="object-contain" />
+              </div>
+              <tile.Icon className="absolute left-[10px] top-[9px] size-12 text-[#00143d]" />
             </div>
             <h3 className="font-serif text-[24px] font-semibold leading-[1.2] tracking-[-0.5px] text-gray-900">
               {tile.title}
