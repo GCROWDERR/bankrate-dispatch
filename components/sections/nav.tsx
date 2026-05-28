@@ -355,30 +355,38 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
         </div>
       )}
 
-      {/* Mobile */}
-      <div className="flex h-[72px] items-center justify-between px-5 lg:hidden">
+      {/* Mobile — Figma 350:4923 */}
+      <div className="flex h-[62px] items-center justify-between px-6 lg:hidden">
         <a href="/" className="block shrink-0" aria-label="Bankrate home">
           <Image
             src={isCream ? "/images/logo-navy.svg" : "/images/logo.svg"}
             alt="Bankrate"
-            width={176}
-            height={28}
-            className="h-[25px] w-auto"
+            width={128}
+            height={20}
+            className="h-5 w-auto"
             priority
           />
         </a>
 
         <div className="flex items-center gap-4">
+          <Button
+            variant="primary"
+            size="sm"
+            className="h-8 shrink-0 rounded px-3 text-xs font-bold tracking-[-0.25px]"
+            onClick={() => setMenuOpen(false)}
+          >
+            Log in
+          </Button>
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
             className={cn(
-              "flex size-10 items-center justify-center",
+              "flex size-6 items-center justify-center",
               isCream ? "text-blue-900" : "text-white"
             )}
             aria-label="Search"
           >
-            <SearchIcon className="size-5" />
+            <SearchIcon className="size-6" />
           </button>
           <MobileMenuButton
             open={menuOpen}
@@ -482,7 +490,7 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
       {/* Search overlay */}
       {searchOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-start justify-center bg-blue-900/40k pt-[72px] px-4"
+          className="fixed inset-0 z-50 flex items-start justify-center bg-blue-900/40 pt-[62px] px-4 lg:pt-[72px]"
           onClick={() => setSearchOpen(false)}
         >
           <div

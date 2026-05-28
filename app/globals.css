@@ -107,6 +107,8 @@
   --color-white: #ffffff;
   --color-black: #000000;
   --color-transparent: transparent;
+  /* Rebrand semantic — inverse / dark surfaces (= blue-900) */
+  --color-inverse: var(--color-blue-900);
   --font-roboto: "Roboto", var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-instrument-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, monospace;
@@ -260,6 +262,9 @@
      Kept as aliases for component readability; remove once components migrate. */
   --surface-cream: #f5f2eb;
   --brand-blue: #0061fe;
+  --color-inverse: var(--blue-900);
+  --color-heading: var(--blue-900);
+  --color-body-inverse: #f9f9fc;
 }
 
 /* ---------------------------------------------------------------------------

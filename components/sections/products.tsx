@@ -98,7 +98,7 @@ export function Products() {
               <div className="absolute left-[11px] top-[13px] h-[40px] w-[41px]">
                 <Image src={tile.scribbleSrc} alt="" fill className="object-contain" />
               </div>
-              <tile.Icon className="absolute left-[10px] top-[9px] size-12 text-[#00143d]" />
+              <tile.Icon className="absolute left-[10px] top-[9px] size-12 text-inverse" />
             </div>
             <h3 className="font-serif text-[24px] font-semibold leading-[1.2] tracking-[-0.5px] text-gray-900">
               {tile.title}

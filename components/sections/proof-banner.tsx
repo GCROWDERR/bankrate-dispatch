@@ -13,15 +13,16 @@ const STATS: StatProps[] = [
     label: "Banks and credit unions surveyed every week",
   },
   {
-    value: "$73,000",
-    valueSize: "sm",
+    value: "$73k",
+    valueSize: "lg",
     label: "Average saved by Bankrate mortgage users over 30 years",
   },
 ]
 
+/** Proof stats — Figma node 192:1438 */
 export function ProofBanner() {
   return (
-    <SectionShell className="pt-20 pb-12">
+    <SectionShell className="pb-12 pt-12 lg:pt-20">
       <div className="grid gap-4 md:grid-cols-3">
         {STATS.map((stat) => (
           <Stat key={stat.value} {...stat} />

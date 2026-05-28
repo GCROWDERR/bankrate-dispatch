@@ -18,6 +18,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={instrumentSans.variable}>
+      <head>
+        <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async />
+      </head>
       <body className="bg-[var(--surface-cream)] font-sans text-pretty text-gray-900 antialiased">
         {children}
       </body>
