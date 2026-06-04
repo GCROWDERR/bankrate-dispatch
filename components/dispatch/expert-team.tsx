@@ -1,7 +1,6 @@
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { SectionShell } from "@/components/home/shared"
-import { cn } from "@/lib/utils"
 
 type Expert = {
   name: string
@@ -70,11 +69,9 @@ function ExpertProfile({ expert }: { expert: Expert }) {
         className="h-[148px] w-[142px] shrink-0"
         sizes="142px"
       />
-      <div className="text-center leading-[1.7]">
+      <div className="min-w-[171px] text-center leading-[1.7]">
         <p className="text-base font-bold text-gray-900">{expert.name}</p>
-        <p className={cn("text-sm text-[#515260]", expert.name === "Linda Bell" && "max-w-[171px]")}>
-          {expert.role}
-        </p>
+        <p className="whitespace-nowrap text-sm text-[#515260]">{expert.role}</p>
       </div>
     </div>
   )
