@@ -7,11 +7,8 @@ export type DispatchInvestigation = {
   highlight: string
   href: string
   dataHref: string
-  stats: {
-    label: string
-    value: string
-    detail?: string
-  }[]
+  imageSrc: string
+  imageAlt: string
 }
 
 export type DispatchStory = {
@@ -34,21 +31,8 @@ export const FEATURED_INVESTIGATION: DispatchInvestigation = {
   highlight: "$142 billion",
   href: DISPATCH_HERO.href,
   dataHref: "#homeownership-tax-data",
-  stats: [
-    {
-      label: "National Average",
-      value: "$73k",
-      detail: "overpaid per homebuyer, lifetime of loan",
-    },
-    {
-      label: "Markets Reviewed",
-      value: "50 states · 412 MSAs",
-    },
-    {
-      label: "Loan Estimates",
-      value: "4.3M reviewed",
-    },
-  ],
+  imageSrc: DISPATCH_HERO.imageSrc ?? "/images/homeownership-tax.png",
+  imageAlt: DISPATCH_HERO.imageAlt ?? DISPATCH_HERO.title,
 }
 
 /** Dispatch stories grid — first item is the large featured card; hero topic is excluded. */

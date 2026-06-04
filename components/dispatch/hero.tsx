@@ -1,9 +1,10 @@
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Eyebrow } from "@/components/home/shared"
 import { FEATURED_INVESTIGATION } from "@/lib/dispatch-content"
 
 export function Hero() {
-  const { eyebrow, title, description, highlight, href, dataHref, stats } =
+  const { eyebrow, title, description, highlight, href, dataHref, imageSrc, imageAlt } =
     FEATURED_INVESTIGATION
 
   const descriptionParts = description.split(highlight)
@@ -47,39 +48,17 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="hidden w-full max-w-[400px] flex-col gap-3 lg:flex" aria-label="Investigation highlights">
-          {stats.map((stat, index) => (
-            <div
-              key={stat.label}
-              className={
-                index === 0
-                  ? "rounded-2xl bg-white/95 p-5 shadow-lg"
-                  : "rounded-2xl bg-blue-700/30 p-5 ring-1 ring-white/15 backdrop-blur"
-              }
-            >
-              <p
-                className={
-                  index === 0
-                    ? "text-[11px] uppercase tracking-[1.5px] text-gray-600"
-                    : "text-[11px] uppercase tracking-[1.5px] text-white/70"
-                }
-              >
-                {stat.label}
-              </p>
-              <p
-                className={
-                  index === 0
-                    ? "mt-1 font-serif text-[40px] font-semibold leading-none tracking-tight text-blue-700"
-                    : "mt-1 font-serif text-[28px] font-semibold leading-none text-white"
-                }
-              >
-                {stat.value}
-              </p>
-              {stat.detail ? (
-                <p className="mt-2 text-xs text-gray-700">{stat.detail}</p>
-              ) : null}
-            </div>
-          ))}
+        <div className="relative w-full shrink-0 lg:max-w-[480px] lg:flex-1">
+          <div className="relative aspect-[523/294] w-full overflow-hidden rounded-[24px]">
+            <Image
+              src={imageSrc}
+              alt={imageAlt}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 480px"
+              priority
+            />
+          </div>
         </div>
       </article>
     </section>
