@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
-import { SectionShell, SectionTitle } from "@/components/home/shared"
+import { Eyebrow, SectionShell, SectionTitle } from "@/components/home/shared"
 import { cn } from "@/lib/utils"
 
 type Story = {
@@ -125,14 +125,6 @@ function StoryImage({
   )
 }
 
-function CategoryEyebrow({ children }: { children: string }) {
-  return (
-    <p className="text-xs font-bold uppercase leading-[1.7] tracking-[0.15em] text-gray-600">
-      {children}
-    </p>
-  )
-}
-
 function StoryByline({ author, readMinutes }: { author: string; readMinutes: number }) {
   return (
     <p className="flex flex-wrap items-center gap-2 text-base leading-[1.7] tracking-tight text-gray-700">
@@ -162,7 +154,7 @@ function FeaturedStoryCard({ story, className }: { story: Story; className?: str
       />
       <div className="flex flex-col gap-4 p-2">
         <div className="flex flex-col gap-2">
-          <CategoryEyebrow>{story.categoryLabel}</CategoryEyebrow>
+          <Eyebrow>{story.categoryLabel}</Eyebrow>
           <h3 className="line-clamp-2 font-serif text-xl leading-[1.2] tracking-tight text-blue-900">
             {story.title}
           </h3>
@@ -186,7 +178,7 @@ function HorizontalStoryCard({ story }: { story: Story }) {
       />
       <div className="flex min-w-0 flex-1 flex-col justify-center gap-4 p-2">
         <div className="flex flex-col gap-2">
-          <CategoryEyebrow>{story.categoryLabel}</CategoryEyebrow>
+          <Eyebrow>{story.categoryLabel}</Eyebrow>
           <h3 className="line-clamp-2 font-serif text-xl leading-[1.2] tracking-tight text-blue-900">
             {story.title}
           </h3>

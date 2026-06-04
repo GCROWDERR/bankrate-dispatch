@@ -55,9 +55,22 @@ export function ReadMoreLink({
   )
 }
 
-export function Eyebrow({ children }: { children: React.ReactNode }) {
+export function Eyebrow({
+  children,
+  className,
+}: {
+  children: React.ReactNode
+  className?: string
+}) {
   return (
-    <p className="text-[13px] font-semibold tracking-[-0.13px] text-[var(--brand-blue)]">{children}</p>
+    <p
+      className={cn(
+        "text-sm font-bold uppercase leading-[1.7] tracking-[2.5px] text-gray-600",
+        className
+      )}
+    >
+      {children}
+    </p>
   )
 }
 
