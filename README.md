@@ -1,4 +1,4 @@
-# Bankrate Homepage — Next.js
+# Bankrate Dispatch — Next.js
 
 Built with **Next.js 16**, **React 19**, **Tailwind v4**, and the **Ledger design system**.
 
