@@ -1,5 +1,7 @@
 # Bankrate Dispatch — Next.js
 
+Prototype hosted on Vercel from [`bankrate-prototypes/bankrate-dispatch`](https://github.com/bankrate-prototypes/bankrate-dispatch).
+
 Built with **Next.js 16**, **React 19**, **Tailwind v4**, and the **Ledger design system**.
 
 ## Getting started
