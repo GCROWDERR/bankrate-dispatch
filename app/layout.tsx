@@ -10,17 +10,14 @@ const instrumentSans = Instrument_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "Bankrate — Your bank has a mortgage rate. We have a better one.",
+  title: "Bankrate Dispatch — Investigative Financial Journalism",
   description:
-    "Join 25 million people who use Bankrate's 50 years of data to outsmart the big banks and find the loan they actually deserve.",
+    "Watchdog reporting and data investigations on how Americans overpay for mortgages and what to do about it.",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={instrumentSans.variable}>
-      <head>
-        <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async />
-      </head>
       <body className="bg-[var(--surface-cream)] font-sans text-pretty text-gray-900 antialiased">
         {children}
       </body>

@@ -1,17 +1,13 @@
 import { Nav } from "@/components/sections/nav"
-import { Hero } from "@/components/sections/hero"
-import { ProofBanner } from "@/components/sections/proof-banner"
-import { IdentityStatement } from "@/components/sections/identity-statement"
-import { AudiencePathing } from "@/components/sections/audience-pathing"
-import { MemberExperience } from "@/components/sections/member-experience"
-import { RatesAndCalculator } from "@/components/sections/rates-calculator"
-import { EditorialResearch } from "@/components/sections/editorial-research"
-import { ExpertTeam } from "@/components/sections/expert-team"
-import { Products } from "@/components/sections/products"
-import { B2BEndcap } from "@/components/sections/b2b-endcap"
+import { Hero } from "@/components/dispatch/hero"
+import { Stories } from "@/components/dispatch/stories"
+import { Tracker } from "@/components/dispatch/tracker"
+import { Methodology } from "@/components/dispatch/methodology"
+import { Testimonials } from "@/components/dispatch/testimonials"
+import { Newsletter } from "@/components/dispatch/newsletter"
 import { Footer } from "@/components/sections/footer"
 
-export default function HomePage() {
+export default function DispatchPage() {
   return (
     <>
       <div className="bg-[#f5f2eb]">
@@ -20,15 +16,11 @@ export default function HomePage() {
       </div>
 
       <main className="bg-[var(--surface-cream)]">
-        <ProofBanner />
-        <IdentityStatement />
-        <AudiencePathing />
-        <MemberExperience />
-        <RatesAndCalculator />
-        <EditorialResearch />
-        <ExpertTeam />
-        <Products />
-        <B2BEndcap />
+        <Stories />
+        <Tracker />
+        <Methodology />
+        <Testimonials />
+        <Newsletter />
       </main>
 
       <Footer />

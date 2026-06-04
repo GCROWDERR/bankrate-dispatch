@@ -23,7 +23,7 @@ export function SectionTitle({ children, className }: { children: React.ReactNod
   return (
     <h2
       className={cn(
-        "text-center font-serif text-[48px] font-semibold leading-[1.2] tracking-[-2px] text-gray-900",
+        "font-serif text-[48px] font-semibold leading-[1.2] tracking-[-2px] text-gray-900",
         className
       )}
     >
