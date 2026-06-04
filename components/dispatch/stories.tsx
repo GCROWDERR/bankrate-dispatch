@@ -1,67 +1,10 @@
 import Image from "next/image"
-import { ArrowRight } from "lucide-react"
 import { Eyebrow, SectionShell, SectionTitle } from "@/components/home/shared"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+import { DISPATCH_STORIES, type DispatchStory } from "@/lib/dispatch-content"
 
-type Story = {
-  id: string
-  categoryLabel: string
-  title: string
-  excerpt: string
-  author: string
-  readMinutes: number
-  accent: string
-  imageSrc?: string
-}
-
-const STORIES: Story[] = [
-  {
-    id: "1",
-    categoryLabel: "Watchdog Reporting",
-    title: "How a single closing-cost line item became a $2,400 payday for the lender",
-    excerpt:
-      "An undercover review of 1,400 loan estimates exposes a fee that even mortgage brokers can't explain.",
-    author: "Matt Fellowes",
-    readMinutes: 12,
-    accent: "linear-gradient(135deg, #13223b 0%, #14387a 60%, #0061fe 100%)",
-    imageSrc: "/images/money-house.jpg",
-  },
-  {
-    id: "2",
-    categoryLabel: "Data Report",
-    title: "The Hunker-Down Economy",
-    excerpt:
-      "Refinance volume just hit a 27-year low. We mapped which metros are paying the price.",
-    author: "Bankrate Research",
-    readMinutes: 8,
-    accent: "linear-gradient(135deg, #104bb5 0%, #13223b 100%)",
-    imageSrc: "/images/credit-chain.jpg",
-  },
-  {
-    id: "3",
-    categoryLabel: "Community",
-    title: "The Housing Divide",
-    excerpt:
-      "Two zip codes, identical credit scores, $84,000 difference in lifetime mortgage cost.",
-    author: "Bankrate Editorial",
-    readMinutes: 14,
-    accent: "linear-gradient(135deg, #14387a 0%, #0061fe 100%)",
-    imageSrc: "/images/houseing-divide.jpg",
-  },
-  {
-    id: "4",
-    categoryLabel: "Mortgage Insights",
-    title: "Sun Belt Slowdown",
-    excerpt:
-      "Once the country's hottest markets, Phoenix and Austin now lead the nation in price corrections.",
-    author: "Bankrate Editorial",
-    readMinutes: 6,
-    accent: "linear-gradient(135deg, #13223b 0%, #104bb5 100%)",
-    imageSrc: "/images/sunbelt-housing.jpg",
-  },
-]
-
-const [FEATURED, ...REST] = STORIES
+const [FEATURED_STORY, ...MORE_STORIES] = DISPATCH_STORIES
 
 export function Stories() {
   return (
@@ -72,22 +15,18 @@ export function Stories() {
         </SectionTitle>
 
         <div className="flex w-full flex-col gap-6 lg:min-h-[480px] lg:flex-row lg:gap-6">
-          <FeaturedStoryCard story={FEATURED} className="lg:flex-1" />
+          <FeaturedStoryCard story={FEATURED_STORY} className="lg:flex-1" />
 
           <div className="flex flex-1 flex-col gap-4">
-            {REST.map((story) => (
+            {MORE_STORIES.map((story) => (
               <HorizontalStoryCard key={story.id} story={story} />
             ))}
           </div>
         </div>
 
-        <a
-          href="#"
-          className="inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-base font-semibold tracking-tight text-blue-600 transition-colors hover:text-blue-800"
-        >
-          See all our reporting
-          <ArrowRight className="size-4" aria-hidden />
-        </a>
+        <Button variant="ghost" size="lg" arrow className="h-12 px-6 text-sm text-blue-600 font-semibold lg:text-base">
+              See all our reporting
+        </Button>
       </div>
     </SectionShell>
   )
@@ -99,7 +38,7 @@ function StoryImage({
   sizes,
   priority,
 }: {
-  story: Story
+  story: DispatchStory
   className?: string
   sizes: string
   priority?: boolean
@@ -138,11 +77,12 @@ function StoryByline({ author, readMinutes }: { author: string; readMinutes: num
   )
 }
 
-function FeaturedStoryCard({ story, className }: { story: Story; className?: string }) {
+function FeaturedStoryCard({ story, className }: { story: DispatchStory; className?: string }) {
   return (
-    <article
+    <a
+      href={story.href}
       className={cn(
-        "flex h-full min-h-0 flex-col gap-4 rounded-3xl border border-gray-200 bg-white p-3",
+        "flex h-full min-h-0 flex-col gap-4 rounded-3xl border border-gray-200 bg-white p-3 transition-colors hover:border-gray-300",
         className
       )}
     >
@@ -164,13 +104,16 @@ function FeaturedStoryCard({ story, className }: { story: Story; className?: str
         </p>
         <StoryByline author={story.author} readMinutes={story.readMinutes} />
       </div>
-    </article>
+    </a>
   )
 }
 
-function HorizontalStoryCard({ story }: { story: Story }) {
+function HorizontalStoryCard({ story }: { story: DispatchStory }) {
   return (
-    <article className="flex min-h-[140px] flex-1 gap-4 rounded-3xl border border-gray-200 bg-white p-3 sm:min-h-[160px]">
+    <a
+      href={story.href}
+      className="flex min-h-[140px] flex-1 gap-4 rounded-3xl border border-gray-200 bg-white p-3 transition-colors hover:border-gray-300 sm:min-h-[160px]"
+    >
       <StoryImage
         story={story}
         className="w-[120px] shrink-0 self-stretch sm:w-[140px] lg:w-[160px]"
@@ -185,6 +128,6 @@ function HorizontalStoryCard({ story }: { story: Story }) {
         </div>
         <StoryByline author={story.author} readMinutes={story.readMinutes} />
       </div>
-    </article>
+    </a>
   )
 }

@@ -272,7 +272,9 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
     <nav
       className={cn(
         "relative w-full",
-        isCream ? "bg-[#f5f2eb]" : "border-b border-blue-800 bg-blue-900"
+        isCream
+          ? "bg-[#f9f9fc] lg:bg-[#f5f2eb]"
+          : "border-b border-blue-800 bg-blue-900"
       )}
     >
       {/* Desktop */}
@@ -355,8 +357,8 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
         </div>
       )}
 
-      {/* Mobile — Figma 350:4923 */}
-      <div className="flex h-[62px] items-center justify-between px-6 lg:hidden">
+      {/* Mobile — Figma 1150:9015 */}
+      <div className="flex min-h-[62px] items-center justify-between py-4 pl-6 pr-4 lg:hidden">
         <a href="/" className="block shrink-0" aria-label="Bankrate home">
           <Image
             src={isCream ? "/images/logo-navy.svg" : "/images/logo.svg"}
@@ -368,11 +370,11 @@ export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
           />
         </a>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
           <Button
             variant="primary"
             size="sm"
-            className="h-8 shrink-0 rounded px-3 text-xs font-bold tracking-[-0.25px]"
+            className="h-8 shrink-0 rounded-lg px-4 text-sm font-bold tracking-[-0.25px]"
             onClick={() => setMenuOpen(false)}
           >
             Log in
@@ -568,7 +570,7 @@ function MobileMenuButton({
     <button
       type="button"
       className={cn(
-        "flex size-10 items-center justify-center",
+        "flex size-6 items-center justify-center",
         light ? "text-blue-900" : "text-white"
       )}
       aria-expanded={open}
@@ -576,25 +578,26 @@ function MobileMenuButton({
       aria-label={open ? "Close menu" : "Open menu"}
       onClick={onClick}
     >
-      <MenuIcon className="size-6" />
+      <MobileMenuIcon className="size-6" />
     </button>
   )
 }
 
-function MenuIcon({ className }: { className?: string }) {
+/** Figma 1150:9015 — two-line menu (top bar longer) */
+function MobileMenuIcon({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
-      fill="currentColor"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
       aria-hidden
       focusable="false"
       className={className}
     >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M3.81818 6.68177H16.0909C16.5409 6.68177 16.9091 6.31359 16.9091 5.86359C16.9091 5.41359 16.5409 5.04541 16.0909 5.04541H3.81818C3.36818 5.04541 3 5.41359 3 5.86359C3 6.31359 3.36818 6.68177 3.81818 6.68177ZM20.1818 12.8181H3.81818C3.36818 12.8181 3 12.45 3 12C3 11.55 3.36818 11.1818 3.81818 11.1818H20.1818C20.6318 11.1818 21 11.55 21 12C21 12.45 20.6318 12.8181 20.1818 12.8181ZM12 18.9545H3.81818C3.36818 18.9545 3 18.5863 3 18.1363C3 17.6863 3.36818 17.3182 3.81818 17.3182H12C12.45 17.3182 12.8182 17.6863 12.8182 18.1363C12.8182 18.5863 12.45 18.9545 12 18.9545Z"
-      />
+      <path d="M4 7h16" />
+      <path d="M4 13h10" />
     </svg>
   )
 }

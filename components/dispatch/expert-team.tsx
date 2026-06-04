@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { SectionShell } from "@/components/home/shared"
+import { Button } from "../ui/button"
 
 type Expert = {
   name: string
@@ -39,13 +40,14 @@ export function ExpertTeam() {
             what&apos;s actually happening &mdash; including the parts banks would rather you
             didn&apos;t know.
           </p>
-          <a
-            href="#"
-            className="inline-flex w-fit items-center gap-2 rounded-xl py-2 text-base font-semibold tracking-tight text-blue-600 transition-colors hover:text-blue-800"
+          <Button
+            variant="ghost"
+            size="lg"
+            arrow
+            className="h-12 !px-0 self-center text-sm font-semibold text-blue-600 lg:self-start lg:text-base"
           >
-            Get the latest from our Newsroom
-            <ArrowRight className="size-4" aria-hidden />
-          </a>
+            Get the latest from our newsroom
+          </Button>
         </div>
 
         <div className="flex w-full flex-wrap items-start justify-center gap-10 md:gap-16 lg:gap-20">

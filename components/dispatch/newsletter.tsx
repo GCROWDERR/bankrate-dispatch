@@ -38,7 +38,7 @@ export function Newsletter() {
               aria-label="Email address"
               className="h-12 border-white/20 bg-white/95 text-gray-900 placeholder:text-gray-500"
             />
-            <Button type="submit" variant="primary" size="lg" className="h-12 px-6">
+            <Button type="submit" variant="primary" size="lg" arrow className="h-12 px-6">
               Subscribe
             </Button>
           </form>
