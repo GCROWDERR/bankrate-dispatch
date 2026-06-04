@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 import { SectionShell, SectionTitle } from "@/components/home/shared"
 import { cn } from "@/lib/utils"
@@ -10,6 +11,7 @@ type Story = {
   author: string
   readMinutes: number
   accent: string
+  imageSrc?: string
 }
 
 const STORIES: Story[] = [
@@ -22,6 +24,7 @@ const STORIES: Story[] = [
     author: "Matt Fellowes",
     readMinutes: 12,
     accent: "linear-gradient(135deg, #13223b 0%, #14387a 60%, #0061fe 100%)",
+    imageSrc: "/images/money-house.jpg",
   },
   {
     id: "2",
@@ -32,6 +35,7 @@ const STORIES: Story[] = [
     author: "Bankrate Research",
     readMinutes: 8,
     accent: "linear-gradient(135deg, #104bb5 0%, #13223b 100%)",
+    imageSrc: "/images/credit-chain.jpg",
   },
   {
     id: "3",
@@ -42,6 +46,7 @@ const STORIES: Story[] = [
     author: "Bankrate Editorial",
     readMinutes: 14,
     accent: "linear-gradient(135deg, #14387a 0%, #0061fe 100%)",
+    imageSrc: "/images/houseing-divide.jpg",
   },
   {
     id: "4",
@@ -52,6 +57,7 @@ const STORIES: Story[] = [
     author: "Bankrate Editorial",
     readMinutes: 6,
     accent: "linear-gradient(135deg, #13223b 0%, #104bb5 100%)",
+    imageSrc: "/images/sunbelt-housing.jpg",
   },
 ]
 
@@ -87,14 +93,34 @@ export function Stories() {
   )
 }
 
-function StoryImage({ accent, className }: { accent: string; className?: string }) {
+function StoryImage({
+  story,
+  className,
+  sizes,
+  priority,
+}: {
+  story: Story
+  className?: string
+  sizes: string
+  priority?: boolean
+}) {
   return (
     <div
       className={cn("relative w-full overflow-hidden rounded-2xl", className)}
-      style={{ background: accent }}
-      aria-hidden
+      style={story.imageSrc ? undefined : { background: story.accent }}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20" />
+      {story.imageSrc ? (
+        <Image
+          src={story.imageSrc}
+          alt={story.title}
+          fill
+          className="object-cover"
+          sizes={sizes}
+          priority={priority}
+        />
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20" aria-hidden />
+      )}
     </div>
   )
 }
@@ -128,7 +154,12 @@ function FeaturedStoryCard({ story, className }: { story: Story; className?: str
         className
       )}
     >
-      <StoryImage accent={story.accent} className="min-h-[200px] flex-1 lg:min-h-[240px]" />
+      <StoryImage
+        story={story}
+        className="min-h-[200px] flex-1 lg:min-h-[240px]"
+        sizes="(max-width: 1024px) 100vw, 50vw"
+        priority
+      />
       <div className="flex flex-col gap-4 p-2">
         <div className="flex flex-col gap-2">
           <CategoryEyebrow>{story.categoryLabel}</CategoryEyebrow>
@@ -149,8 +180,9 @@ function HorizontalStoryCard({ story }: { story: Story }) {
   return (
     <article className="flex min-h-[140px] flex-1 gap-4 rounded-3xl border border-gray-200 bg-white p-3 sm:min-h-[160px]">
       <StoryImage
-        accent={story.accent}
+        story={story}
         className="w-[120px] shrink-0 self-stretch sm:w-[140px] lg:w-[160px]"
+        sizes="160px"
       />
       <div className="flex min-w-0 flex-1 flex-col justify-center gap-4 p-2">
         <div className="flex flex-col gap-2">
