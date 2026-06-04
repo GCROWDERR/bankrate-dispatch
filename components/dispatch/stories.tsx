@@ -1,18 +1,13 @@
-"use client"
-
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
-import { SectionShell, SectionTitle, Eyebrow } from "@/components/home/shared"
-
-type Category = "all" | "watchdog" | "data" | "community" | "mortgage"
+import { ArrowRight } from "lucide-react"
+import { SectionShell, SectionTitle } from "@/components/home/shared"
+import { cn } from "@/lib/utils"
 
 type Story = {
   id: string
-  category: Exclude<Category, "all">
   categoryLabel: string
   title: string
   excerpt: string
-  date: string
+  author: string
   readMinutes: number
   accent: string
 }
@@ -20,120 +15,152 @@ type Story = {
 const STORIES: Story[] = [
   {
     id: "1",
-    category: "watchdog",
     categoryLabel: "Watchdog Reporting",
     title: "How a single closing-cost line item became a $2,400 payday for the lender",
     excerpt:
       "An undercover review of 1,400 loan estimates exposes a fee that even mortgage brokers can't explain.",
-    date: "May 21, 2026",
+    author: "Matt Fellowes",
     readMinutes: 12,
     accent: "linear-gradient(135deg, #13223b 0%, #14387a 60%, #0061fe 100%)",
   },
   {
     id: "2",
-    category: "data",
     categoryLabel: "Data Report",
     title: "The Hunker-Down Economy",
     excerpt:
       "Refinance volume just hit a 27-year low. We mapped which metros are paying the price.",
-    date: "May 14, 2026",
+    author: "Bankrate Research",
     readMinutes: 8,
     accent: "linear-gradient(135deg, #104bb5 0%, #13223b 100%)",
   },
   {
     id: "3",
-    category: "community",
     categoryLabel: "Community",
     title: "The Housing Divide",
     excerpt:
       "Two zip codes, identical credit scores, $84,000 difference in lifetime mortgage cost.",
-    date: "Apr 30, 2026",
+    author: "Bankrate Editorial",
     readMinutes: 14,
     accent: "linear-gradient(135deg, #14387a 0%, #0061fe 100%)",
   },
   {
     id: "4",
-    category: "mortgage",
     categoryLabel: "Mortgage Insights",
     title: "Sun Belt Slowdown",
     excerpt:
       "Once the country's hottest markets, Phoenix and Austin now lead the nation in price corrections.",
-    date: "Apr 22, 2026",
+    author: "Bankrate Editorial",
     readMinutes: 6,
     accent: "linear-gradient(135deg, #13223b 0%, #104bb5 100%)",
   },
 ]
 
-const TABS: { value: Category; label: string }[] = [
-  { value: "all", label: "All" },
-  { value: "watchdog", label: "Watchdog" },
-  { value: "data", label: "Data Reports" },
-  { value: "community", label: "Community" },
-  { value: "mortgage", label: "Mortgage Insights" },
-]
+const [FEATURED, ...REST] = STORIES
 
-function StoryCard({ story }: { story: Story }) {
+export function Stories() {
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-gray-200 transition-shadow hover:shadow-md">
-      <div
-        className="relative aspect-[4/3] w-full"
-        style={{ background: story.accent }}
-        aria-hidden
-      >
-        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/40 to-transparent" />
-        <Badge
-          variant="secondary"
-          className="absolute left-4 top-4 bg-white/95 text-blue-800"
-        >
-          {story.categoryLabel}
-        </Badge>
-      </div>
-      <div className="flex flex-1 flex-col gap-3 p-5">
-        <h3 className="font-serif text-lg leading-snug text-gray-900 group-hover:text-blue-800">
-          {story.title}
-        </h3>
-        <p className="text-sm text-gray-700">{story.excerpt}</p>
-        <div className="mt-auto flex items-center justify-between pt-2 text-xs uppercase tracking-wider text-gray-500">
-          <span>{story.date}</span>
-          <span>{story.readMinutes} min read</span>
+    <SectionShell id="stories" className="py-12 md:py-16 lg:py-16">
+      <div className="flex flex-col items-center gap-8">
+        <SectionTitle className="text-center text-[36px] tracking-normal">
+          Stories the rest of personal finance won&rsquo;t run.
+        </SectionTitle>
+
+        <div className="flex w-full flex-col gap-6 lg:min-h-[480px] lg:flex-row lg:gap-6">
+          <FeaturedStoryCard story={FEATURED} className="lg:flex-1" />
+
+          <div className="flex flex-1 flex-col gap-4">
+            {REST.map((story) => (
+              <HorizontalStoryCard key={story.id} story={story} />
+            ))}
+          </div>
         </div>
+
+        <a
+          href="#"
+          className="inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-base font-semibold tracking-tight text-blue-600 transition-colors hover:text-blue-800"
+        >
+          See all our reporting
+          <ArrowRight className="size-4" aria-hidden />
+        </a>
+      </div>
+    </SectionShell>
+  )
+}
+
+function StoryImage({ accent, className }: { accent: string; className?: string }) {
+  return (
+    <div
+      className={cn("relative w-full overflow-hidden rounded-2xl", className)}
+      style={{ background: accent }}
+      aria-hidden
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20" />
+    </div>
+  )
+}
+
+function CategoryEyebrow({ children }: { children: string }) {
+  return (
+    <p className="text-xs font-bold uppercase leading-[1.7] tracking-[0.15em] text-gray-600">
+      {children}
+    </p>
+  )
+}
+
+function StoryByline({ author, readMinutes }: { author: string; readMinutes: number }) {
+  return (
+    <p className="flex flex-wrap items-center gap-2 text-base leading-[1.7] tracking-tight text-gray-700">
+      <span>
+        <span className="text-gray-700">By </span>
+        <span className="font-bold text-blue-900">{author}</span>
+      </span>
+      <span className="size-0.5 rounded-full bg-gray-400" aria-hidden />
+      <span>{readMinutes} min read</span>
+    </p>
+  )
+}
+
+function FeaturedStoryCard({ story, className }: { story: Story; className?: string }) {
+  return (
+    <article
+      className={cn(
+        "flex h-full min-h-0 flex-col gap-4 rounded-3xl border border-gray-200 bg-white p-3",
+        className
+      )}
+    >
+      <StoryImage accent={story.accent} className="min-h-[200px] flex-1 lg:min-h-[240px]" />
+      <div className="flex flex-col gap-4 p-2">
+        <div className="flex flex-col gap-2">
+          <CategoryEyebrow>{story.categoryLabel}</CategoryEyebrow>
+          <h3 className="line-clamp-2 font-serif text-xl leading-[1.2] tracking-tight text-blue-900">
+            {story.title}
+          </h3>
+        </div>
+        <p className="line-clamp-2 text-base leading-[1.7] tracking-tight text-gray-700">
+          {story.excerpt}
+        </p>
+        <StoryByline author={story.author} readMinutes={story.readMinutes} />
       </div>
     </article>
   )
 }
 
-export function Stories() {
+function HorizontalStoryCard({ story }: { story: Story }) {
   return (
-    <SectionShell id="stories" className="py-16 lg:py-24">
-      <div className="mb-10 flex flex-col gap-3">
-        <Eyebrow>FEATURED INVESTIGATIONS</Eyebrow>
-        <SectionTitle className="max-w-3xl text-left">
-          Stories the rest of personal finance won&rsquo;t run.
-        </SectionTitle>
+    <article className="flex min-h-[140px] flex-1 gap-4 rounded-3xl border border-gray-200 bg-white p-3 sm:min-h-[160px]">
+      <StoryImage
+        accent={story.accent}
+        className="w-[120px] shrink-0 self-stretch sm:w-[140px] lg:w-[160px]"
+      />
+      <div className="flex min-w-0 flex-1 flex-col justify-center gap-4 p-2">
+        <div className="flex flex-col gap-2">
+          <CategoryEyebrow>{story.categoryLabel}</CategoryEyebrow>
+          <h3 className="line-clamp-2 font-serif text-xl leading-[1.2] tracking-tight text-blue-900">
+            {story.title}
+          </h3>
+        </div>
+        <StoryByline author={story.author} readMinutes={story.readMinutes} />
       </div>
-
-      <Tabs defaultValue="all" className="gap-8">
-        <TabsList variant="line" className="w-fit border-b border-gray-200">
-          {TABS.map((t) => (
-            <TabsTrigger key={t.value} value={t.value}>
-              {t.label}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-
-        {TABS.map((tab) => {
-          const visible = tab.value === "all" ? STORIES : STORIES.filter((s) => s.category === tab.value)
-          return (
-            <TabsContent key={tab.value} value={tab.value}>
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {visible.map((story) => (
-                  <StoryCard key={story.id} story={story} />
-                ))}
-              </div>
-            </TabsContent>
-          )
-        })}
-      </Tabs>
-    </SectionShell>
+    </article>
   )
 }
