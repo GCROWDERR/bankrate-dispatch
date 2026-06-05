@@ -6,7 +6,7 @@ import { SectionShell, SectionTitle, Eyebrow } from "@/components/home/shared"
 
 export function Newsletter() {
   return (
-    <SectionShell className="py-16 lg:py-24">
+    <SectionShell id="newsletter" className="py-16 lg:py-24">
       <div className="relative mx-auto overflow-hidden rounded-3xl bg-inverse px-6 py-14 text-center text-white lg:rounded-[40px] lg:px-16 lg:py-20">
         <div
           aria-hidden

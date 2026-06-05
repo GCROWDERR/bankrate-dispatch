@@ -10,11 +10,8 @@ export function Hero() {
   const descriptionParts = description.split(highlight)
 
   return (
-    <section
-      className="flex w-full justify-center bg-[#f9f9fc] py-6 lg:bg-[#f5f2eb] lg:px-12 lg:pb-10 lg:pt-6"
-      aria-label="Featured Dispatch investigation"
-    >
-      <article className="flex w-full flex-col gap-10 overflow-hidden rounded-[48px] bg-[#00143d] px-6 py-12 lg:max-w-[1312px] lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:rounded-[56px] lg:px-16 lg:py-20">
+    <section className="min-w-0 flex-1" aria-label="Featured Dispatch investigation">
+      <article className="flex w-full flex-col gap-10 overflow-hidden rounded-[48px] bg-[#00143d] px-6 py-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:rounded-[56px] lg:px-16 lg:py-20">
         <div className="flex w-full flex-col gap-8 text-white lg:max-w-[640px] lg:flex-1">
           <Eyebrow className="text-blue-300">{eyebrow}</Eyebrow>
 

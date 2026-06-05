@@ -29,7 +29,7 @@ const EXPERTS: Expert[] = [
 
 export function ExpertTeam() {
   return (
-    <SectionShell className="py-12 md:py-16 lg:py-16">
+    <SectionShell id="team" className="py-12 md:py-16 lg:py-16">
       <div className="flex flex-col items-center gap-10 border-b border-[#f2f3f7] p-8 md:gap-12 md:p-12 lg:flex-row lg:items-start lg:gap-10">
         <div className="flex w-full max-w-[520px] flex-col gap-4 lg:shrink-0">
           <h2 className="font-serif text-[36px] font-semibold leading-[1.2] tracking-normal text-[#00143d]">

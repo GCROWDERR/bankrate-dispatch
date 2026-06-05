@@ -11,8 +11,10 @@ export default function DispatchPage() {
   return (
     <>
       <div className="bg-[#f9f9fc] lg:bg-[#f5f2eb]">
-        <Nav variant="cream" />
-        <Hero />
+        <Nav variant="cream" showMediaLogin />
+        <div className="mx-auto w-full max-w-[1312px] px-6 py-6 lg:px-12 lg:pb-10 lg:pt-6">
+          <Hero />
+        </div>
       </div>
 
       <main className="bg-[var(--surface-cream)]">
