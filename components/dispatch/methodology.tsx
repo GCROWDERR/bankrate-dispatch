@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { contentWellClass, SectionTitle, Eyebrow, PrimaryCta } from "@/components/home/shared"
+import { Stat } from "@/components/ui/stat"
 import { CircledText } from "@/components/ui/circled-text"
 import { cn } from "@/lib/utils"
 
@@ -54,33 +55,7 @@ function PrincipleItem({ label, text }: { label: string; text: string }) {
   )
 }
 
-function StatCard({
-  value,
-  label,
-  className,
-}: {
-  value: string
-  label: string
-  className?: string
-}) {
-  return (
-    <div
-      className={cn(
-        "flex min-w-0 flex-1 items-center gap-[18px] rounded-[24px] border border-gray-200 bg-white p-[11px]",
-        className
-      )}
-    >
-      <div className="flex h-[84px] w-[126px] shrink-0 items-center justify-center rounded-[14px] bg-accent">
-        <p className="font-serif text-[40px] font-semibold leading-none tracking-[-2.36px] text-blue-600">
-          {value}
-        </p>
-      </div>
-      <p className="min-w-0 flex-1 text-base font-bold leading-[1.4] tracking-[-0.25px] text-blue-900">
-        {label}
-      </p>
-    </div>
-  )
-}
+const statCardClassName = "min-w-0 flex-1 border border-gray-200 p-[11px] lg:min-h-0"
 
 export function Methodology() {
   return (
@@ -116,7 +91,13 @@ export function Methodology() {
 
           <div className="flex w-full flex-col gap-4 md:flex-row md:items-stretch">
             {PROOF_POINTS.map((point) => (
-              <StatCard key={point.label} value={point.value} label={point.label} />
+              <Stat
+                key={point.label}
+                value={point.value}
+                label={point.label}
+                valueSize="lg"
+                className={statCardClassName}
+              />
             ))}
           </div>
 
