@@ -3,11 +3,11 @@ import { RESEARCH_DATA_POINTS } from "@/lib/dispatch-content"
 
 export function ResearchHighlights() {
   return (
-    <section aria-labelledby="research-highlights-heading" className="mt-8 lg:mt-10">
+    <section aria-labelledby="research-highlights-heading">
       <h2 id="research-highlights-heading" className="sr-only">
         Key findings from the Hidden Homeownership Tax research
       </h2>
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-2">
         {RESEARCH_DATA_POINTS.map((point) => (
           <Stat
             key={point.label}

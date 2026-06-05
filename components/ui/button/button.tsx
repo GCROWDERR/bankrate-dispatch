@@ -94,6 +94,30 @@ const COLOR_DATA_ATTRS: Record<string, { "data-color"?: string }> = {
   muted: { "data-color": "muted" },
 }
 
+function ButtonArrow() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 16 16"
+      className="t-button__arrow"
+      aria-hidden="true"
+    >
+      <path
+        fill="currentColor"
+        fillRule="evenodd"
+        d="M7.3 14.7c-.4-.4-.4-1.05 0-1.45L12.53 8 7.3 2.75c-.4-.4-.4-1.05 0-1.45.4-.4 1.04-.4 1.44 0l5.96 5.98c.4.4.4 1.04 0 1.44L8.74 14.7c-.4.4-1.04.4-1.44 0Z"
+        clipRule="evenodd"
+      />
+      <path
+        className="t-button__arrow-line"
+        fill="currentColor"
+        d="M2.07 7C1.48 7 1 7.45 1 8s.48 1 1.07 1V7ZM14 7H2.07v2H14V7Z"
+      />
+    </svg>
+  )
+}
+
 function Button({
   className,
   variant = "default",
@@ -110,13 +134,35 @@ function Button({
     arrow?: boolean
   }) {
   const Comp = asChild ? Slot.Root : "button"
-  if (process.env.NODE_ENV !== "production" && asChild && arrow) {
-    console.warn("Button: `arrow` has no effect when `asChild` is true — place the arrow inside the child element instead.")
-  }
   const variantAttrs = VARIANT_DATA_ATTRS[variant ?? "default"] ?? {}
   const sizeAttrs = SIZE_DATA_ATTRS[size ?? "default"] ?? {}
   const shapeAttrs = SHAPE_DATA_ATTRS[shape ?? "default"] ?? {}
   const colorAttrs = COLOR_DATA_ATTRS[color ?? "default"] ?? {}
+
+  const renderedChildren = asChild ? (
+    arrow ? (
+      (() => {
+        const child = React.Children.only(children) as React.ReactElement<{
+          children?: React.ReactNode
+        }>
+        return React.cloneElement(
+          child,
+          undefined,
+          <>
+            {child.props.children}
+            <ButtonArrow />
+          </>
+        )
+      })()
+    ) : (
+      children
+    )
+  ) : (
+    <>
+      {children}
+      {arrow ? <ButtonArrow /> : null}
+    </>
+  )
 
   return (
     <Comp
@@ -128,17 +174,7 @@ function Button({
       className={cn(buttonVariants({ variant, size, shape, color, className }))}
       {...props}
     >
-      {asChild ? children : (
-        <>
-          {children}
-          {arrow && (
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" className="t-button__arrow" aria-hidden="true">
-              <path fill="currentColor" fillRule="evenodd" d="M7.3 14.7c-.4-.4-.4-1.05 0-1.45L12.53 8 7.3 2.75c-.4-.4-.4-1.05 0-1.45.4-.4 1.04-.4 1.44 0l5.96 5.98c.4.4.4 1.04 0 1.44L8.74 14.7c-.4.4-1.04.4-1.44 0Z" clipRule="evenodd" />
-              <path className="t-button__arrow-line" fill="currentColor" d="M2.07 7C1.48 7 1 7.45 1 8s.48 1 1.07 1V7ZM14 7H2.07v2H14V7Z" />
-            </svg>
-          )}
-        </>
-      )}
+      {renderedChildren}
     </Comp>
   )
 }

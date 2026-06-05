@@ -7,6 +7,8 @@ export const DISPATCH_PAGE = {
   headline: "Bankrate News & Research",
   intro:
     "Founded in 1982, the original vision for Bankrate was to hold the financial industry accountable and give people visibility and data. Now over four decades later, we're committed to the same mission.",
+  ctaLabel: "Explore our reporting",
+  ctaHref: "#stories",
   title: "Bankrate News & Research — Investigative Financial Journalism",
   description:
     "Watchdog reporting and data investigations on how Americans overpay for mortgages and what to do about it.",
@@ -31,9 +33,12 @@ export type DispatchInvestigation = {
   description: string
   highlight: string
   href: string
-  imageSrc: string
-  imageAlt: string
   ctaLabel: string
+  stats: {
+    label: string
+    value: string
+    detail?: string
+  }[]
 }
 
 export type DispatchStory = {
@@ -76,16 +81,29 @@ export const RESEARCH_DATA_POINTS: ResearchDataPoint[] = [
   },
 ]
 
-/** Lead investigation — Dispatch hero (Hidden Homeownership Tax). */
+/** Lead investigation — Exclusive Data Report module (Hidden Homeownership Tax). */
 export const FEATURED_INVESTIGATION: DispatchInvestigation = {
   eyebrow: DISPATCH_HERO.tag,
   title: DISPATCH_HERO.title,
   description: DISPATCH_HERO.body,
   highlight: "$142 billion",
   href: DISPATCH_HERO.href,
-  imageSrc: DISPATCH_HERO.imageSrc ?? "/images/homeownership-tax.png",
-  imageAlt: DISPATCH_HERO.imageAlt ?? DISPATCH_HERO.title,
   ctaLabel: "Read the full research",
+  stats: [
+    {
+      label: "National Average",
+      value: "$73k",
+      detail: "overpaid per homebuyer, lifetime of loan",
+    },
+    {
+      label: "Markets Reviewed",
+      value: "50 states · 412 MSAs",
+    },
+    {
+      label: "Loan Estimates",
+      value: "4.3M reviewed",
+    },
+  ],
 }
 
 /** Stories shown per page in the grid (All view defaults to 8). */

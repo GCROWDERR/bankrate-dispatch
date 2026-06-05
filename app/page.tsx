@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import { Nav } from "@/components/sections/nav"
 import { ContentWell } from "@/components/home/shared"
+import { FeaturedInvestigation } from "@/components/dispatch/featured-investigation"
 import { Hero } from "@/components/dispatch/hero"
-import { PageIntro } from "@/components/dispatch/page-intro"
 import { ResearchHighlights } from "@/components/dispatch/research-highlights"
 import { Stories } from "@/components/dispatch/stories"
 import { Tracker } from "@/components/dispatch/tracker"
@@ -22,10 +22,10 @@ export default function DispatchPage() {
     <>
       <div>
         <Nav variant="cream" showMediaLogin />
-        <ContentWell className="py-6 lg:pb-10 lg:pt-6">
-          <PageIntro />
+        <ContentWell className="flex flex-col gap-8 py-6 lg:gap-10 lg:pb-10 lg:pt-6">
           <Hero />
           <ResearchHighlights />
+          <FeaturedInvestigation />
         </ContentWell>
       </div>
 
