@@ -78,7 +78,7 @@ export function Stories() {
           <>
             <div className="grid w-full gap-4 md:grid-cols-2">
               {pageStories.map((story) => (
-                <HorizontalStoryCard key={story.id} story={story} />
+                <StoryCard key={story.id} story={story} />
               ))}
             </div>
 
@@ -198,24 +198,27 @@ function StoryByline({ author, readMinutes }: { author: string; readMinutes: num
   )
 }
 
-function HorizontalStoryCard({ story }: { story: DispatchStory }) {
+function StoryCard({ story }: { story: DispatchStory }) {
   return (
     <a
       href={story.href}
-      className="flex min-h-[140px] flex-1 gap-4 rounded-3xl border border-gray-200 bg-white p-3 transition-colors hover:border-gray-300 sm:min-h-[160px]"
+      className="flex h-full flex-col gap-4 rounded-3xl border border-gray-200 bg-white p-3 transition-colors hover:border-gray-300"
     >
       <StoryImage
         story={story}
-        className="w-[120px] shrink-0 self-stretch sm:w-[140px] lg:w-[160px]"
-        sizes="160px"
+        className="h-[140px] w-full shrink-0 sm:h-[160px]"
+        sizes="(max-width: 768px) 100vw, 640px"
       />
-      <div className="flex min-w-0 flex-1 flex-col justify-center gap-4 p-2">
+      <div className="flex flex-1 flex-col gap-4 p-2">
         <div className="flex flex-col gap-2">
           <Eyebrow>{story.categoryLabel}</Eyebrow>
           <h3 className="line-clamp-2 font-serif text-xl leading-[1.2] tracking-tight text-blue-900">
             {story.title}
           </h3>
         </div>
+        <p className="line-clamp-2 text-base leading-[1.7] tracking-tight text-gray-700">
+          {story.excerpt}
+        </p>
         <StoryByline author={story.author} readMinutes={story.readMinutes} />
       </div>
     </a>

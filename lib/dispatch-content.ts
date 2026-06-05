@@ -104,8 +104,8 @@ export const FEATURED_INVESTIGATION: DispatchInvestigation = {
   ],
 }
 
-/** Stories shown per page in the grid (All view defaults to 8). */
-export const DISPATCH_STORIES_PAGE_SIZE = 8
+/** Stories shown per page in the grid. */
+export const DISPATCH_STORIES_PAGE_SIZE = 4
 
 /** Dispatch stories grid — hero topic is excluded. */
 export const DISPATCH_STORIES: DispatchStory[] = [
