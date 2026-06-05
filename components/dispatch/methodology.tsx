@@ -101,7 +101,7 @@ export function Methodology() {
       />
 
       <div className={cn("relative", contentWellClass)}>
-        <div className="mx-auto flex w-full max-w-5xl flex-col gap-10 lg:gap-12">
+        <div className="flex w-full flex-col gap-10 lg:gap-12">
           <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 text-center">
             <Eyebrow>METHODOLOGY</Eyebrow>
             <SectionTitle>
