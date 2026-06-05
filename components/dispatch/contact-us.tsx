@@ -51,9 +51,6 @@ export function ContactUs() {
             <SectionTitle className="text-center text-white">
               Questions for our reporting team?
             </SectionTitle>
-            <p className="mt-2 text-[17px] leading-[1.5] text-white/80 lg:text-lg">
-            For press and media requests, use Media inquiries above. For everything else, start here.
-            </p>
 
             <div className="mt-6">
               <Button variant="primary" size="lg" arrow className="h-12 px-6" asChild>
