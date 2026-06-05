@@ -1,7 +1,6 @@
 type InvestigationStat = {
-  label: string
   value: string
-  detail?: string
+  label: string
 }
 
 export function InvestigationStatCards({
@@ -12,40 +11,16 @@ export function InvestigationStatCards({
   className?: string
 }) {
   return (
-    <div
-      className={className}
-      aria-label="Investigation highlights"
-    >
-      {stats.map((stat, index) => (
+    <div className={className} aria-label="Investigation highlights">
+      {stats.map((stat) => (
         <div
           key={stat.label}
-          className={
-            index === 0
-              ? "rounded-2xl bg-white/95 p-5 shadow-lg"
-              : "rounded-2xl bg-blue-700/30 p-5 ring-1 ring-white/15 backdrop-blur"
-          }
+          className="rounded-[24px] bg-white p-5 shadow-[0_4px_24px_rgba(15,27,47,0.05)]"
         >
-          <p
-            className={
-              index === 0
-                ? "text-[11px] uppercase tracking-[1.5px] text-gray-600"
-                : "text-[11px] uppercase tracking-[1.5px] text-white/70"
-            }
-          >
-            {stat.label}
-          </p>
-          <p
-            className={
-              index === 0
-                ? "mt-1 font-serif text-[40px] font-semibold leading-none tracking-tight text-blue-700"
-                : "mt-1 font-serif text-[28px] font-semibold leading-none text-white"
-            }
-          >
+          <p className="font-serif text-[40px] font-semibold leading-none tracking-[-2.36px] text-[#13223b]">
             {stat.value}
           </p>
-          {stat.detail ? (
-            <p className="mt-2 text-xs text-gray-700">{stat.detail}</p>
-          ) : null}
+          <p className="mt-2 text-sm font-bold leading-[1.4] text-[#13223b] lg:text-base">{stat.label}</p>
         </div>
       ))}
     </div>

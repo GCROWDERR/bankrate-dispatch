@@ -83,18 +83,15 @@ function StatCard({
 
 export function Methodology() {
   return (
-    <section
-      id="methodology"
-      className="relative isolate overflow-hidden py-16 lg:py-24"
-    >
+    <section id="methodology" className="relative isolate overflow-hidden py-16 lg:py-24">
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-[-2.58%_-2.48%_-4.35%_-1.48%] bg-gray-100"
+        className="pointer-events-none absolute inset-y-0 -left-[1.5%] -right-[2.5%] bg-gray-100"
         style={{
           WebkitMaskImage: "url('/images/methodology-section-bg.svg')",
           maskImage: "url('/images/methodology-section-bg.svg')",
-          WebkitMaskSize: "cover",
-          maskSize: "cover",
+          WebkitMaskSize: "100% 100%",
+          maskSize: "100% 100%",
           WebkitMaskPosition: "center",
           maskPosition: "center",
           WebkitMaskRepeat: "no-repeat",

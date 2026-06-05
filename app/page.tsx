@@ -24,7 +24,6 @@ export default function DispatchPage() {
         <Nav variant="cream" showMediaLogin />
         <ContentWell className="flex flex-col gap-8 py-6 lg:gap-10 lg:pb-10 lg:pt-6">
           <Hero />
-          <ResearchHighlights />
           <FeaturedInvestigation />
         </ContentWell>
       </div>

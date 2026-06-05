@@ -1,5 +1,4 @@
 import Image from "next/image"
-import { ArrowRight } from "lucide-react"
 import { SectionShell } from "@/components/home/shared"
 import { Button } from "../ui/button"
 
@@ -31,8 +30,8 @@ export function ExpertTeam() {
   return (
     <SectionShell id="team" className="py-12 md:py-16 lg:py-16">
       <div className="flex flex-col items-center gap-10 border-b border-[#f2f3f7] p-8 md:gap-12 md:p-12 lg:flex-row lg:items-start lg:gap-10">
-        <div className="flex w-full max-w-[520px] flex-col gap-4 lg:shrink-0">
-          <h2 className="font-serif text-[36px] font-semibold leading-[1.2] tracking-normal text-[#00143d]">
+        <div className="flex w-full max-w-[480px] flex-col gap-4 lg:max-w-[440px] lg:shrink-0 xl:max-w-[480px]">
+          <h2 className="font-serif text-[length:var(--text-h2)] font-semibold leading-[1.2] tracking-normal text-[#00143d]">
             The team behind the mission
           </h2>
           <p className="text-lg leading-[1.7] text-[#515260]">
@@ -50,7 +49,7 @@ export function ExpertTeam() {
           </Button>
         </div>
 
-        <div className="flex w-full flex-wrap items-start justify-center gap-10 md:gap-16 lg:gap-20">
+        <div className="flex w-full min-w-0 flex-1 flex-nowrap items-start justify-center gap-8 sm:gap-10 md:gap-12 lg:justify-end lg:gap-14 xl:gap-16">
           {EXPERTS.map((expert) => (
             <ExpertProfile key={expert.name} expert={expert} />
           ))}
@@ -62,7 +61,7 @@ export function ExpertTeam() {
 
 function ExpertProfile({ expert }: { expert: Expert }) {
   return (
-    <div className="flex w-[142px] flex-col items-center gap-4">
+    <div className="flex w-[142px] shrink-0 flex-col items-center gap-4">
       <Image
         src={expert.portrait}
         alt={expert.name}
@@ -71,9 +70,9 @@ function ExpertProfile({ expert }: { expert: Expert }) {
         className="h-[148px] w-[142px] shrink-0"
         sizes="142px"
       />
-      <div className="min-w-[171px] text-center leading-[1.7]">
+      <div className="w-full text-center leading-[1.7]">
         <p className="text-base font-bold text-gray-900">{expert.name}</p>
-        <p className="whitespace-nowrap text-sm text-[#515260]">{expert.role}</p>
+        <p className="text-sm text-[#515260]">{expert.role}</p>
       </div>
     </div>
   )

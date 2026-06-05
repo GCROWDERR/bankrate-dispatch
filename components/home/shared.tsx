@@ -6,6 +6,17 @@ import { cn } from "@/lib/utils"
 /** Shared horizontal rhythm for page hero + section content wells. */
 export const contentWellClass = "mx-auto w-full max-w-[1312px] px-6 md:px-16"
 
+/** Cancels ContentWell horizontal padding below md so inset cards bleed to the viewport. */
+export const contentWellMobileBleedClass = "max-md:-mx-6 max-md:w-[calc(100%+3rem)]"
+
+/** Dark dispatch feature card — full-bleed on mobile with rounded corners, inset from md up. */
+export const dispatchFeatureCardClass =
+  "flex w-full flex-col gap-10 overflow-hidden rounded-[48px] bg-[#00143d] px-6 py-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:rounded-[56px] lg:px-16 lg:py-20"
+
+/** Light proof-banner card — Figma KOTA 24299:4642 colorway. */
+export const dispatchFeatureCardLightClass =
+  "flex w-full flex-col gap-10 overflow-hidden rounded-[48px] bg-blue-200 px-6 py-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:rounded-[56px] lg:px-16 lg:py-20"
+
 export function ContentWell({
   className,
   children,
@@ -38,7 +49,7 @@ export function SectionTitle({ children, className }: { children: React.ReactNod
   return (
     <h2
       className={cn(
-        "font-serif text-[48px] font-semibold leading-[1.2] tracking-[-2px] text-gray-900",
+        "font-serif text-[length:var(--text-h2)] font-semibold leading-[1.2] tracking-[-2px] text-gray-900",
         className
       )}
     >

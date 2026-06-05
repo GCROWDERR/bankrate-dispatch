@@ -1,5 +1,7 @@
 import type { ReactNode } from "react"
 import { Button } from "@/components/ui/button"
+import { contentWellMobileBleedClass, dispatchFeatureCardClass } from "@/components/home/shared"
+import { cn } from "@/lib/utils"
 import { DISPATCH_PAGE } from "@/lib/dispatch-content"
 
 export function Hero({
@@ -10,12 +12,15 @@ export function Hero({
   className?: string
 }) {
   return (
-    <section aria-labelledby="dispatch-hero-heading" className={className}>
-      <article className="flex w-full flex-col gap-10 overflow-hidden rounded-[48px] bg-[#00143d] px-6 py-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:rounded-[56px] lg:px-16 lg:py-20">
+    <section
+      aria-labelledby="dispatch-hero-heading"
+      className={cn(contentWellMobileBleedClass, className)}
+    >
+      <article className={dispatchFeatureCardClass}>
         <div className="flex w-full flex-col gap-8 text-white lg:max-w-[640px] lg:flex-1">
           <h1
             id="dispatch-hero-heading"
-            className="font-serif text-[36px] font-semibold leading-[1.15] tracking-tight lg:text-[48px]"
+            className="font-serif text-[length:var(--text-h1)] font-semibold leading-[1.15] tracking-tight"
           >
             {DISPATCH_PAGE.headline}
           </h1>

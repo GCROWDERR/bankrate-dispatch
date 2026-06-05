@@ -35,9 +35,8 @@ export type DispatchInvestigation = {
   href: string
   ctaLabel: string
   stats: {
-    label: string
     value: string
-    detail?: string
+    label: string
   }[]
 }
 
@@ -91,17 +90,16 @@ export const FEATURED_INVESTIGATION: DispatchInvestigation = {
   ctaLabel: "Read the full research",
   stats: [
     {
-      label: "National Average",
-      value: "$73k",
-      detail: "overpaid per homebuyer, lifetime of loan",
+      value: "87%",
+      label: "of borrowers failed to secure their best available rate",
     },
     {
-      label: "Markets Reviewed",
-      value: "50 states · 412 MSAs",
+      value: "$3,343",
+      label: "in annual excess costs for the typical borrower",
     },
     {
-      label: "Loan Estimates",
-      value: "4.3M reviewed",
+      value: "$65B",
+      label: "estimated annual overpayment burden across U.S. mortgages originated since 2022",
     },
   ],
 }
