@@ -77,11 +77,10 @@ export function Tracker() {
     <SectionShell id="tracker" className="py-16 lg:py-24">
       <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-start">
         <div className="flex flex-col gap-5">
-          <Eyebrow>Interactive Data</Eyebrow>
+          <Eyebrow>Live Data</Eyebrow>
           <SectionTitle>Overpayment Rate Tracker</SectionTitle>
           <p className="text-base text-gray-700">
-            Lifetime mortgage overpayment by state, recalculated monthly from 4.3M loan estimates
-            reviewed since 2019. Hover any state for the local benchmark.
+          On average, how much homebuyers are overpaying with their mortgage lenders by state.
           </p>
 
           <div className="grid grid-cols-2 gap-3 pt-2">
