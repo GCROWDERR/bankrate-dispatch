@@ -53,7 +53,7 @@ export function ExpertTeam() {
           </Button>
         </div>
 
-        <div className="flex w-full min-w-0 flex-1 flex-nowrap items-start justify-center gap-8 sm:gap-10 md:gap-12 lg:justify-end lg:gap-14 xl:gap-16">
+        <div className="flex w-full min-w-0 flex-1 flex-col items-center gap-10 lg:flex-row lg:flex-nowrap lg:items-start lg:justify-end lg:gap-14 xl:gap-16">
           {EXPERTS.map((expert) => (
             <ExpertProfile key={expert.name} expert={expert} />
           ))}
