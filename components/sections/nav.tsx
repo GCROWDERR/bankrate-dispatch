@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { MegaMenu, type MegaMenuData } from "@/components/sections/mega-menu"
-import { MediaLoginModal } from "@/components/dispatch/media-login-modal"
 import { cn } from "@/lib/utils"
 
 const MORTGAGES_MENU: MegaMenuData = {
@@ -211,18 +210,11 @@ const TOOLS = ["Mortgage calculator", "Loan calculator", "CD calculator"]
 
 type NavVariant = "dark" | "cream"
 
-export function Nav({
-  variant = "dark",
-  showMediaLogin = false,
-}: {
-  variant?: NavVariant
-  showMediaLogin?: boolean
-}) {
+export function Nav({ variant = "dark" }: { variant?: NavVariant }) {
   const isCream = variant === "cream"
   const [menuOpen, setMenuOpen] = useState(false)
   const [menuMounted, setMenuMounted] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
-  const [mediaLoginOpen, setMediaLoginOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<number | null>(null)
   const searchInputRef = useRef<HTMLInputElement>(null)
   const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -253,9 +245,9 @@ export function Nav({
   }
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen || searchOpen || mediaLoginOpen ? "hidden" : ""
+    document.body.style.overflow = menuOpen || searchOpen ? "hidden" : ""
     return () => { document.body.style.overflow = "" }
-  }, [menuOpen, searchOpen, mediaLoginOpen])
+  }, [menuOpen, searchOpen])
 
   useEffect(() => {
     if (searchOpen) searchInputRef.current?.focus()
@@ -266,7 +258,6 @@ export function Nav({
       if (event.key === "Escape") {
         setMenuOpen(false)
         setSearchOpen(false)
-        setMediaLoginOpen(false)
         setActiveMenu(null)
       }
     }
@@ -329,26 +320,10 @@ export function Nav({
           </ul>
         </div>
 
-        <div className="flex shrink-0 items-center gap-3">
-          {showMediaLogin ? (
-            <>
-              <Button variant="ghost" size="default" className="h-12 px-6 text-[15px] text-blue-600">
-                Log in or sign up
-              </Button>
-              <Button
-                variant="primary"
-                size="default"
-                className="h-12 px-6 text-[15px]"
-                onClick={() => setMediaLoginOpen(true)}
-              >
-                Media login
-              </Button>
-            </>
-          ) : (
-            <Button variant="primary" size="default" className="h-12 px-6 text-[15px]">
-              Log in or sign up
-            </Button>
-          )}
+        <div className="flex shrink-0 items-center gap-6">
+          <Button variant="primary" size="default" className="h-12 px-6 text-[15px]">
+            Log in or sign up
+          </Button>
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
@@ -395,39 +370,15 @@ export function Nav({
           />
         </a>
 
-        <div className="flex items-center gap-3">
-          {showMediaLogin ? (
-            <>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="h-8 shrink-0 rounded-lg px-3 text-sm font-bold tracking-[-0.25px] text-blue-600"
-                onClick={() => setMenuOpen(false)}
-              >
-                Log in
-              </Button>
-              <Button
-                variant="primary"
-                size="sm"
-                className="h-8 shrink-0 rounded-lg px-4 text-sm font-bold tracking-[-0.25px]"
-                onClick={() => {
-                  setMenuOpen(false)
-                  setMediaLoginOpen(true)
-                }}
-              >
-                Media login
-              </Button>
-            </>
-          ) : (
-            <Button
-              variant="primary"
-              size="sm"
-              className="h-8 shrink-0 rounded-lg px-4 text-sm font-bold tracking-[-0.25px]"
-              onClick={() => setMenuOpen(false)}
-            >
-              Log in
-            </Button>
-          )}
+        <div className="flex items-center gap-6">
+          <Button
+            variant="primary"
+            size="sm"
+            className="h-8 shrink-0 rounded-lg px-4 text-sm font-bold tracking-[-0.25px]"
+            onClick={() => setMenuOpen(false)}
+          >
+            Log in
+          </Button>
           <button
             type="button"
             onClick={() => setSearchOpen(true)}
@@ -526,38 +477,14 @@ export function Nav({
               height={20}
               className="h-[22px] w-auto"
             />
-            {showMediaLogin ? (
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="ghost"
-                  size="default"
-                  className="rounded px-3 py-3 text-sm font-bold tracking-[-0.25px] text-blue-600"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  Log in
-                </Button>
-                <Button
-                  variant="primary"
-                  size="default"
-                  className="rounded px-4 py-3 text-sm font-bold tracking-[-0.25px]"
-                  onClick={() => {
-                    setMenuOpen(false)
-                    setMediaLoginOpen(true)
-                  }}
-                >
-                  Media login
-                </Button>
-              </div>
-            ) : (
-              <Button
-                variant="primary"
-                size="default"
-                className="rounded px-4 py-3 text-sm font-bold tracking-[-0.25px]"
-                onClick={() => setMenuOpen(false)}
-              >
-                Log in or sign up
-              </Button>
-            )}
+            <Button
+              variant="primary"
+              size="default"
+              className="rounded px-4 py-3 text-sm font-bold tracking-[-0.25px]"
+              onClick={() => setMenuOpen(false)}
+            >
+              Log in or sign up
+            </Button>
           </div>
           </div>
         </>
@@ -626,9 +553,6 @@ export function Nav({
           </div>
         </div>
       )}
-      {showMediaLogin ? (
-        <MediaLoginModal open={mediaLoginOpen} onClose={() => setMediaLoginOpen(false)} />
-      ) : null}
     </nav>
   )
 }

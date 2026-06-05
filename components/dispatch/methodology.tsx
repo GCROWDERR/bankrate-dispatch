@@ -121,7 +121,7 @@ export function Methodology() {
           </div>
 
           <div className="mx-auto flex w-full max-w-3xl flex-col gap-12">
-            <ul className="flex flex-col gap-8">
+            <ul className="mx-auto flex w-fit max-w-xl flex-col gap-8">
               {PRINCIPLES.map((principle) => (
                 <PrincipleItem key={principle.label} label={principle.label} text={principle.text} />
               ))}
