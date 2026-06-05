@@ -282,7 +282,7 @@ export function Nav({
       className={cn(
         "relative w-full",
         isCream
-          ? "bg-[#f9f9fc] lg:bg-[#f5f2eb]"
+          ? "bg-[var(--surface-cream)]"
           : "border-b border-blue-800 bg-blue-900"
       )}
     >

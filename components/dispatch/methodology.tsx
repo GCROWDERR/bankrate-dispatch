@@ -93,7 +93,7 @@ export function Methodology() {
               ))}
             </ul>
 
-            <PrimaryCta>Read our standards</PrimaryCta>
+            <PrimaryCta className="w-fit self-start">Read our standards</PrimaryCta>
           </div>
 
           <MethodologyArtifact />
