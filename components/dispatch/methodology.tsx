@@ -71,7 +71,7 @@ export function Methodology() {
               Trust earned through <CircledText>transparency</CircledText>
             </SectionTitle>
             <p className="text-sm leading-[1.7] text-gray-700">
-              We don&rsquo;t take undisclosed payments from lenders. Every Dispatch story is annotated
+              We don&rsquo;t take undisclosed payments from lenders. Every Newsroom story is annotated
               with its data source, sample size, and the people we spoke to. Our standards are
               public, our corrections are public, and so is the spreadsheet.
             </p>

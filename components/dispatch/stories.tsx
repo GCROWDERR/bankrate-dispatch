@@ -67,7 +67,7 @@ export function Stories() {
 
   return (
     <section id="stories" className="relative isolate overflow-hidden py-12 md:py-16 lg:py-16">
-      <SectionMaskBackground className="bg-white" />
+      <SectionMaskBackground />
       <div className={cn("relative", contentWellClass)}>
       <div className="flex flex-col items-center gap-8">
         <SectionTitle className="text-center tracking-normal">
