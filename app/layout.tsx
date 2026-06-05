@@ -10,15 +10,17 @@ const instrumentSans = Instrument_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "Bankrate Dispatch — Investigative Financial Journalism",
-  description:
-    "Watchdog reporting and data investigations on how Americans overpay for mortgages and what to do about it.",
+  title: {
+    default: "Bankrate",
+    template: "%s",
+  },
+  description: "Compare mortgage, savings, and credit card rates from hundreds of lenders.",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={instrumentSans.variable}>
-      <body className="bg-[var(--surface-cream)] font-sans text-pretty text-gray-900 antialiased">
+      <body className="bg-gray-50 font-sans text-pretty text-gray-900 antialiased">
         {children}
       </body>
     </html>

@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { SectionShell, SectionTitle, Eyebrow, PrimaryCta } from "@/components/home/shared"
+import { SectionTitle, Eyebrow, PrimaryCta } from "@/components/home/shared"
 import { cn } from "@/lib/utils"
 
 const PRINCIPLES = [
@@ -83,9 +83,28 @@ function StatCard({
 
 export function Methodology() {
   return (
-    <SectionShell id="methodology" className="py-16 lg:py-24">
-      <div className="flex flex-col gap-10 lg:gap-12">
-        <div className="flex max-w-3xl flex-col gap-4">
+    <section
+      id="methodology"
+      className="relative isolate overflow-hidden py-16 lg:py-24"
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-[-2.58%_-2.48%_-4.35%_-1.48%] bg-gray-100"
+        style={{
+          WebkitMaskImage: "url('/images/methodology-section-bg.svg')",
+          maskImage: "url('/images/methodology-section-bg.svg')",
+          WebkitMaskSize: "cover",
+          maskSize: "cover",
+          WebkitMaskPosition: "center",
+          maskPosition: "center",
+          WebkitMaskRepeat: "no-repeat",
+          maskRepeat: "no-repeat",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-[1312px] px-6 md:px-16">
+        <div className="flex flex-col gap-10 lg:gap-12">
+          <div className="flex max-w-3xl flex-col gap-4">
           <Eyebrow>METHODOLOGY</Eyebrow>
           <SectionTitle className="text-left">
             Trust earned through transparency.
@@ -117,7 +136,8 @@ export function Methodology() {
           <MethodologyArtifact />
         </div>
       </div>
-    </SectionShell>
+      </div>
+    </section>
   )
 }
 

@@ -1,5 +1,13 @@
 import { DISPATCH_HERO } from "@/lib/editorial-content"
 
+/** Site-wide Dispatch page identity — edit here for title, nav, and hero branding. */
+export const DISPATCH_PAGE = {
+  name: "Bankrate Dispatch",
+  title: "Bankrate Dispatch — Investigative Financial Journalism",
+  description:
+    "Watchdog reporting and data investigations on how Americans overpay for mortgages and what to do about it.",
+} as const
+
 export type DispatchInvestigation = {
   eyebrow: string
   title: string
