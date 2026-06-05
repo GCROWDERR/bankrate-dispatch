@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { SectionShell } from "@/components/home/shared"
+import { BrushUnderline } from "@/components/ui/brush-underline"
 import { Button } from "../ui/button"
 
 type Expert = {
@@ -32,7 +33,10 @@ export function ExpertTeam() {
       <div className="flex flex-col items-center gap-10 border-b border-[#f2f3f7] p-8 md:gap-12 md:p-12 lg:flex-row lg:items-start lg:gap-10">
         <div className="flex w-full max-w-[480px] flex-col gap-4 lg:max-w-[440px] lg:shrink-0 xl:max-w-[480px]">
           <h2 className="font-serif text-[length:var(--text-h2)] font-semibold leading-[1.2] tracking-normal text-[#00143d]">
-            The team behind the mission
+            The team behind{" "}
+            <BrushUnderline href="#mission" textClassName="text-inherit no-underline">
+              the mission
+            </BrushUnderline>
           </h2>
           <p className="text-lg leading-[1.7] text-[#515260]">
             Our journalists and analysts have spent decades covering this market. They report on

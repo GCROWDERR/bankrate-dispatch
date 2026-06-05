@@ -25,7 +25,7 @@ export function Newsletter() {
             Investigative findings that other outlets miss.
           </SectionTitle>
           <p className="mt-2 text-base text-white/80 lg:text-lg">
-            One newsletter, sent Tuesday mornings. No sponsorships, no affiliate links.
+            One newsletter, sent once a week. No sponsorships, no affiliate links.
           </p>
 
           <form
@@ -44,7 +44,7 @@ export function Newsletter() {
             </Button>
           </form>
           <p className="text-xs text-white/60">
-            Unsubscribe in one click. Read by 38,200 industry pros.
+            Unsubscribe in one click.
           </p>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { contentWellClass, SectionTitle, Eyebrow, PrimaryCta } from "@/components/home/shared"
+import { CircledText } from "@/components/ui/circled-text"
 import { cn } from "@/lib/utils"
 
 const PRINCIPLES = [
@@ -100,35 +101,35 @@ export function Methodology() {
       />
 
       <div className={cn("relative", contentWellClass)}>
-        <div className="flex flex-col gap-10 lg:gap-12">
-          <div className="flex max-w-3xl flex-col gap-4">
-          <Eyebrow>METHODOLOGY</Eyebrow>
-          <SectionTitle className="text-left">
-            Trust earned through transparency.
-          </SectionTitle>
-          <p className="text-sm leading-[1.7] text-gray-700">
-            We don&rsquo;t take undisclosed payments from lenders. Every Dispatch story is annotated
-            with its data source, sample size, and the people we spoke to. Our standards are
-            public, our corrections are public, and so is the spreadsheet.
-          </p>
-        </div>
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-10 lg:gap-12">
+          <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 text-center">
+            <Eyebrow>METHODOLOGY</Eyebrow>
+            <SectionTitle>
+              Trust earned through <CircledText>transparency</CircledText>.
+            </SectionTitle>
+            <p className="text-sm leading-[1.7] text-gray-700">
+              We don&rsquo;t take undisclosed payments from lenders. Every Dispatch story is annotated
+              with its data source, sample size, and the people we spoke to. Our standards are
+              public, our corrections are public, and so is the spreadsheet.
+            </p>
+          </div>
 
-        <div className="flex w-full flex-col gap-4 md:flex-row md:items-stretch">
-          {PROOF_POINTS.map((point) => (
-            <StatCard key={point.label} value={point.value} label={point.label} />
-          ))}
-        </div>
-
-        <div className="flex max-w-3xl flex-col gap-12">
-          <ul className="flex flex-col gap-8">
-            {PRINCIPLES.map((principle) => (
-              <PrincipleItem key={principle.label} label={principle.label} text={principle.text} />
+          <div className="flex w-full flex-col gap-4 md:flex-row md:items-stretch">
+            {PROOF_POINTS.map((point) => (
+              <StatCard key={point.label} value={point.value} label={point.label} />
             ))}
-          </ul>
+          </div>
 
-          <PrimaryCta className="h-10 w-fit self-start px-6 text-sm">Read our standards</PrimaryCta>
+          <div className="mx-auto flex w-full max-w-3xl flex-col gap-12">
+            <ul className="flex flex-col gap-8">
+              {PRINCIPLES.map((principle) => (
+                <PrincipleItem key={principle.label} label={principle.label} text={principle.text} />
+              ))}
+            </ul>
+
+            <PrimaryCta className="h-10 w-fit self-center px-6 text-sm">Read our standards</PrimaryCta>
+          </div>
         </div>
-      </div>
       </div>
     </section>
   )
