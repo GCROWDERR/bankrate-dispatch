@@ -32,6 +32,27 @@ const PROOF_POINTS = [
   },
 ] as const
 
+function PrincipleItem({ label, text }: { label: string; text: string }) {
+  return (
+    <li className="flex items-start gap-4">
+      <Image
+        src="/images/list-bullet.svg"
+        alt=""
+        width={14}
+        height={13}
+        className="mt-1.5 h-[13px] w-[14px] shrink-0 object-contain"
+        aria-hidden
+      />
+      <div className="flex min-w-0 flex-1 flex-col gap-1">
+        <p className="font-serif text-[20px] font-bold leading-[1.2] tracking-[-0.15px] text-blue-900">
+          {label}
+        </p>
+        <p className="text-sm leading-[1.7] text-gray-700">{text}</p>
+      </div>
+    </li>
+  )
+}
+
 function StatCard({
   value,
   label,
@@ -69,7 +90,7 @@ export function Methodology() {
           <SectionTitle className="text-left">
             Trust earned through transparency.
           </SectionTitle>
-          <p className="text-base text-gray-700">
+          <p className="text-sm leading-[1.7] text-gray-700">
             We don&rsquo;t take undisclosed payments from lenders. Every Dispatch story is annotated
             with its data source, sample size, and the people we spoke to. Our standards are
             public, our corrections are public, and so is the spreadsheet.
@@ -83,17 +104,14 @@ export function Methodology() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[1.05fr_1fr] lg:items-stretch lg:gap-10">
-          <div className="flex flex-col gap-6">
-            <ul className="list-disc space-y-3 pl-5 text-base leading-[1.7] text-gray-700 marker:text-blue-700">
+          <div className="flex flex-col gap-12">
+            <ul className="flex flex-col gap-8">
               {PRINCIPLES.map((principle) => (
-                <li key={principle.label}>
-                  <span className="font-semibold text-gray-900">{principle.label}.</span>{" "}
-                  {principle.text}
-                </li>
+                <PrincipleItem key={principle.label} label={principle.label} text={principle.text} />
               ))}
             </ul>
 
-            <PrimaryCta className="w-fit self-start">Read our standards</PrimaryCta>
+            <PrimaryCta className="h-10 w-fit self-start px-6 text-sm">Read our standards</PrimaryCta>
           </div>
 
           <MethodologyArtifact />

@@ -47,13 +47,13 @@ export function MemberExperience() {
             </p>
             <ul className="flex flex-col gap-4">
               {FEATURES.map((feature) => (
-                <li key={feature.rest} className="flex gap-3 text-base leading-[1.7] text-[#13223b] lg:text-[18px]">
+                <li key={feature.rest} className="flex items-start gap-3 text-base leading-[1.7] text-[#13223b] lg:text-[18px]">
                   <Image
                     src="/images/list-bullet.svg"
                     alt=""
                     width={14}
                     height={13}
-                    className="mt-1.5 shrink-0 lg:mt-2"
+                    className="mt-1.5 h-[13px] w-[14px] shrink-0 object-contain lg:mt-2"
                     aria-hidden
                   />
                   <span>
