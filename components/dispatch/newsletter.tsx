@@ -18,7 +18,8 @@ export function Newsletter() {
         />
         <div className="relative mx-auto flex max-w-[45rem] flex-col items-center gap-4">
           <Eyebrow>
-            <span className="text-blue-300">BANKRATE DISPATCH</span>
+            <span className="text-blue-300">Bankrate News & Research
+            </span>
           </Eyebrow>
           <SectionTitle className="text-center text-white">
             Investigative findings that other outlets miss.
