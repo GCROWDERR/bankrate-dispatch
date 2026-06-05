@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { contentWellClass, SectionTitle, Eyebrow, PrimaryCta } from "@/components/home/shared"
+import { SectionMaskBackground } from "@/components/dispatch/section-mask-bg"
 import { Stat } from "@/components/ui/stat"
 import { CircledText } from "@/components/ui/circled-text"
 import { cn } from "@/lib/utils"
@@ -60,20 +61,7 @@ const statCardClassName = "min-w-0 flex-1 border border-gray-200 p-[11px] lg:min
 export function Methodology() {
   return (
     <section id="methodology" className="relative isolate overflow-hidden py-16 lg:py-24">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-y-0 -left-[1.5%] -right-[2.5%] bg-gray-100"
-        style={{
-          WebkitMaskImage: "url('/images/methodology-section-bg.svg')",
-          maskImage: "url('/images/methodology-section-bg.svg')",
-          WebkitMaskSize: "100% 100%",
-          maskSize: "100% 100%",
-          WebkitMaskPosition: "center",
-          maskPosition: "center",
-          WebkitMaskRepeat: "no-repeat",
-          maskRepeat: "no-repeat",
-        }}
-      />
+      <SectionMaskBackground />
 
       <div className={cn("relative", contentWellClass)}>
         <div className="flex w-full flex-col gap-10 lg:gap-12">

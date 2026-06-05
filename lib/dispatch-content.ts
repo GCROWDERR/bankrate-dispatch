@@ -21,10 +21,10 @@ export const DISPATCH_CONTENT_TYPES: {
   label: string
 }[] = [
   { id: "all", label: "All" },
-  { id: "watchdog", label: "Watchdog" },
+  { id: "community", label: "Community" },
   { id: "data", label: "Data reports" },
   { id: "insights", label: "Market insights" },
-  { id: "community", label: "Community" },
+  { id: "watchdog", label: "Watchdog" },
 ]
 
 export type DispatchInvestigation = {
@@ -101,6 +101,26 @@ export const FEATURED_INVESTIGATION: DispatchInvestigation = {
       value: "$65B",
       label: "estimated annual overpayment burden across U.S. mortgages originated since 2022",
     },
+  ],
+}
+
+export type DispatchSeries = {
+  id: string
+  tentpoleTitle: string
+  tentpoleHref: string
+  /** Ordered peel stories supporting the tentpole narrative. */
+  supportingStoryIds: string[]
+}
+
+/** Supporting stories for the current hero investigation. */
+export const FEATURED_INVESTIGATION_SERIES: DispatchSeries = {
+  id: "hidden-homeownership-tax",
+  tentpoleTitle: FEATURED_INVESTIGATION.title,
+  tentpoleHref: FEATURED_INVESTIGATION.href,
+  supportingStoryIds: [
+    "overpayment-paradox",
+    "broker-markup",
+    "refi-trap",
   ],
 }
 
@@ -269,4 +289,22 @@ export const DISPATCH_STORIES: DispatchStory[] = [
 export function storiesForContentType(contentType: DispatchContentTypeId) {
   if (contentType === "all") return DISPATCH_STORIES
   return DISPATCH_STORIES.filter((story) => story.contentType === contentType)
+}
+
+/** Stories for the paginated grid — excludes peel stories shown under the hero. */
+export function storiesForStoriesSection(contentType: DispatchContentTypeId) {
+  const supportingIds = new Set(FEATURED_INVESTIGATION_SERIES.supportingStoryIds)
+  return storiesForContentType(contentType).filter((story) => !supportingIds.has(story.id))
+}
+
+export function storiesByIds(ids: string[]) {
+  const storiesById = new Map(DISPATCH_STORIES.map((story) => [story.id, story]))
+  return ids.flatMap((id) => {
+    const story = storiesById.get(id)
+    return story ? [story] : []
+  })
+}
+
+export function supportingStoriesForSeries(series: DispatchSeries) {
+  return storiesByIds(series.supportingStoryIds)
 }
