@@ -49,7 +49,7 @@ export function ExpertTeam() {
             arrow
             className="h-12 !px-0 self-center text-sm font-semibold text-blue-600 lg:self-start lg:text-base"
           >
-            Get the latest from our newsroom
+            Meet our journalists
           </Button>
         </div>
 
