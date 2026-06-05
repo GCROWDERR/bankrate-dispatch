@@ -101,7 +101,7 @@ export function MediaLoginModal({ open, onClose }: MediaLoginModalProps) {
             className="h-11 w-full bg-[#00143d] hover:bg-[#00143d]/90"
             asChild
           >
-            <Link href="#newsletter" onClick={onClose}>
+            <Link href="#contact" onClick={onClose}>
               Subscribe to Dispatch
             </Link>
           </Button>

@@ -8,7 +8,7 @@ import { Stories } from "@/components/dispatch/stories"
 import { Tracker } from "@/components/dispatch/tracker"
 import { Methodology } from "@/components/dispatch/methodology"
 import { ExpertTeam } from "@/components/dispatch/expert-team"
-import { Newsletter } from "@/components/dispatch/newsletter"
+import { ContactUs } from "@/components/dispatch/contact-us"
 import { Footer } from "@/components/sections/footer"
 import { DISPATCH_PAGE } from "@/lib/dispatch-content"
 
@@ -34,7 +34,7 @@ export default function DispatchPage() {
         <Tracker />
         <Methodology />
         <ExpertTeam />
-        <Newsletter />
+        <ContactUs />
       </main>
 
       <Footer />
