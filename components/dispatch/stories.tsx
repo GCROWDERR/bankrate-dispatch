@@ -69,7 +69,7 @@ export function Stories() {
     <SectionShell id="stories" className="py-12 md:py-16 lg:py-16">
       <div className="flex flex-col items-center gap-8">
         <SectionTitle className="text-center tracking-normal">
-          Stories the rest of personal finance won&rsquo;t run.
+          Stories the rest of personal finance won&rsquo;t run
         </SectionTitle>
 
         <ContentTypeSwitcher value={contentType} onChange={handleContentTypeChange} />

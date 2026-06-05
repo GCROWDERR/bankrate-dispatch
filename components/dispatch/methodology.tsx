@@ -105,7 +105,7 @@ export function Methodology() {
           <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 text-center">
             <Eyebrow>METHODOLOGY</Eyebrow>
             <SectionTitle>
-              Trust earned through <CircledText>transparency</CircledText>.
+              Trust earned through <CircledText>transparency</CircledText>
             </SectionTitle>
             <p className="text-sm leading-[1.7] text-gray-700">
               We don&rsquo;t take undisclosed payments from lenders. Every Dispatch story is annotated

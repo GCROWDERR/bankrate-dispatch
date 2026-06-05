@@ -178,7 +178,7 @@ export const DISPATCH_STORIES: DispatchStory[] = [
     id: "rate-survey",
     contentType: "insights",
     categoryLabel: "Market Survey",
-    title: "600+ banks, surveyed this week. Here's where mortgage rates actually moved.",
+    title: "600+ banks, surveyed this week — Here's where mortgage rates actually moved",
     excerpt:
       "Our weekly lender survey cuts through headline rate chatter with what institutions are quoting right now.",
     author: "Alex Gailey",

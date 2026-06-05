@@ -38,7 +38,7 @@ export const EDITORIAL_LEAD: EditorialArticle = {
 export const EDITORIAL_SECONDARIES: EditorialArticle[] = [
   {
     tag: "DATA DROP",
-    title: "The borrowers most likely to overpay aren't who you'd think.",
+    title: "The borrowers most likely to overpay aren't who you'd think",
     body:
       "Upper-income households carry the highest mortgage overpayment rate of any income group — 93%. Better credit makes it worse, not better.",
     author: "Sarah Foster",
@@ -47,7 +47,7 @@ export const EDITORIAL_SECONDARIES: EditorialArticle[] = [
   },
   {
     tag: "MARKET SURVEY",
-    title: "600+ banks, surveyed this week. Here's where mortgage rates actually moved.",
+    title: "600+ banks, surveyed this week — Here's where mortgage rates actually moved",
     body: "",
     author: "Alex Gailey",
     avatar: authorAvatar("Alex Gailey"),
@@ -55,7 +55,7 @@ export const EDITORIAL_SECONDARIES: EditorialArticle[] = [
   },
   {
     tag: "RATE WATCH",
-    title: "Your savings account is probably paying you less than 1%.",
+    title: "Your savings account is probably paying you less than 1%",
     body: "Here's what the market is actually offering right now.",
     author: "Greg McBride",
     avatar: authorAvatar("Greg McBride"),

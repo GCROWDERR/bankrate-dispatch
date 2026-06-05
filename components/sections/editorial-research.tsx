@@ -85,7 +85,7 @@ export function EditorialResearch() {
   return (
     <SectionShell id="editorial" className="py-20">
       <h2 className="max-w-[860px] font-serif text-[length:var(--text-heading-lg)] font-semibold leading-[1.15] tracking-[-2px] text-gray-900">
-        What the market looks like when someone&apos;s actually been watching it.
+        What the market looks like when someone&apos;s actually been watching it
       </h2>
 
       <div className="mt-12 grid gap-6 lg:grid-cols-[1.4fr_1fr]">

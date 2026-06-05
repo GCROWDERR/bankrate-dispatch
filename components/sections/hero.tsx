@@ -14,9 +14,9 @@ export function Hero() {
         <div className="relative z-10 flex w-full flex-col gap-10 lg:max-w-[653px] lg:flex-1 lg:pb-6">
           <div className="relative flex flex-col gap-8 text-white">
             <h1 className="font-serif text-[36px] font-semibold leading-[1.2] tracking-normal lg:text-[48px]">
-              9 out of 10 homebuyers overpay for their mortgage.{" "}
+              9 out of 10 homebuyers overpay for their mortgage{" "}
               <span className="relative inline">
-                Don&rsquo;t be one of them.
+                Don&rsquo;t be one of them
                 <span className="pointer-events-none absolute -bottom-1 left-0 hidden w-[127px] lg:block">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img

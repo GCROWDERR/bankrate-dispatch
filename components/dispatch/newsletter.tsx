@@ -53,7 +53,7 @@ export function Newsletter() {
             <SectionTitle className="text-center text-white">
               Get the findings others{" "}
               <span className="relative inline-block whitespace-nowrap">
-                miss.
+                miss
                 <span
                   aria-hidden
                   className="pointer-events-none absolute -right-5 -top-1.5 inline-flex sm:-right-6 lg:-right-7 lg:-top-1"
