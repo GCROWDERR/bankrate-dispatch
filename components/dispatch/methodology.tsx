@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { SectionTitle, Eyebrow, PrimaryCta } from "@/components/home/shared"
+import { contentWellClass, SectionTitle, Eyebrow, PrimaryCta } from "@/components/home/shared"
 import { cn } from "@/lib/utils"
 
 const PRINCIPLES = [
@@ -102,7 +102,7 @@ export function Methodology() {
         }}
       />
 
-      <div className="relative mx-auto max-w-[1312px] px-6 md:px-16">
+      <div className={cn("relative", contentWellClass)}>
         <div className="flex flex-col gap-10 lg:gap-12">
           <div className="flex max-w-3xl flex-col gap-4">
           <Eyebrow>METHODOLOGY</Eyebrow>

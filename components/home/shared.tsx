@@ -3,6 +3,21 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
+/** Shared horizontal rhythm for page hero + section content wells. */
+export const contentWellClass = "mx-auto w-full max-w-[1312px] px-6 md:px-16"
+
+export function ContentWell({
+  className,
+  children,
+  as: Tag = "div",
+}: {
+  className?: string
+  children: ReactNode
+  as?: "div" | "section" | "header"
+}) {
+  return <Tag className={cn(contentWellClass, className)}>{children}</Tag>
+}
+
 export function SectionShell({
   className,
   children,
@@ -13,8 +28,8 @@ export function SectionShell({
   id?: string
 }) {
   return (
-    <section id={id} className={cn("px-6 md:px-16", className)}>
-      <div className="mx-auto max-w-[1312px]">{children}</div>
+    <section id={id} className={cn(contentWellClass, className)}>
+      {children}
     </section>
   )
 }

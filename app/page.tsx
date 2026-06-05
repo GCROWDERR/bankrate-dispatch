@@ -1,6 +1,9 @@
 import type { Metadata } from "next"
 import { Nav } from "@/components/sections/nav"
+import { ContentWell } from "@/components/home/shared"
 import { Hero } from "@/components/dispatch/hero"
+import { PageIntro } from "@/components/dispatch/page-intro"
+import { ResearchHighlights } from "@/components/dispatch/research-highlights"
 import { Stories } from "@/components/dispatch/stories"
 import { Tracker } from "@/components/dispatch/tracker"
 import { Methodology } from "@/components/dispatch/methodology"
@@ -19,9 +22,11 @@ export default function DispatchPage() {
     <>
       <div>
         <Nav variant="cream" showMediaLogin />
-        <div className="mx-auto w-full max-w-[1312px] px-6 py-6 lg:px-12 lg:pb-10 lg:pt-6">
+        <ContentWell className="py-6 lg:pb-10 lg:pt-6">
+          <PageIntro />
           <Hero />
-        </div>
+          <ResearchHighlights />
+        </ContentWell>
       </div>
 
       <main>

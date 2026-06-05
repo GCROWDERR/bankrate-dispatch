@@ -1,12 +1,70 @@
+"use client"
+
+import { useEffect, useMemo, useState } from "react"
 import Image from "next/image"
 import { Eyebrow, SectionShell, SectionTitle } from "@/components/home/shared"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { DISPATCH_STORIES, type DispatchStory } from "@/lib/dispatch-content"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+import {
+  DISPATCH_STORIES_PAGE_SIZE,
+  storiesForContentType,
+  type DispatchContentTypeId,
+  type DispatchStory,
+} from "@/lib/dispatch-content"
+import { ContentTypeSwitcher } from "@/components/dispatch/content-type-switcher"
 
-const [FEATURED_STORY, ...MORE_STORIES] = DISPATCH_STORIES
+function getVisiblePages(currentPage: number, totalPages: number) {
+  if (totalPages <= 5) {
+    return Array.from({ length: totalPages }, (_, index) => index + 1)
+  }
+
+  if (currentPage <= 3) {
+    return [1, 2, 3, 4, "ellipsis", totalPages] as const
+  }
+
+  if (currentPage >= totalPages - 2) {
+    return [1, "ellipsis", totalPages - 3, totalPages - 2, totalPages - 1, totalPages] as const
+  }
+
+  return [1, "ellipsis", currentPage - 1, currentPage, currentPage + 1, "ellipsis", totalPages] as const
+}
 
 export function Stories() {
+  const [contentType, setContentType] = useState<DispatchContentTypeId>("all")
+  const [page, setPage] = useState(1)
+
+  const stories = useMemo(() => storiesForContentType(contentType), [contentType])
+  const totalPages = Math.max(1, Math.ceil(stories.length / DISPATCH_STORIES_PAGE_SIZE))
+  const currentPage = Math.min(page, totalPages)
+  const pageStories = useMemo(() => {
+    const start = (currentPage - 1) * DISPATCH_STORIES_PAGE_SIZE
+    return stories.slice(start, start + DISPATCH_STORIES_PAGE_SIZE)
+  }, [stories, currentPage])
+
+  useEffect(() => {
+    setPage(1)
+  }, [contentType])
+
+  useEffect(() => {
+    if (page > totalPages) {
+      setPage(totalPages)
+    }
+  }, [page, totalPages])
+
+  function handleContentTypeChange(nextType: DispatchContentTypeId) {
+    setContentType(nextType)
+    setPage(1)
+  }
+
   return (
     <SectionShell id="stories" className="py-12 md:py-16 lg:py-16">
       <div className="flex flex-col items-center gap-8">
@@ -14,18 +72,78 @@ export function Stories() {
           Stories the rest of personal finance won&rsquo;t run.
         </SectionTitle>
 
-        <div className="flex w-full flex-col gap-6 lg:min-h-[480px] lg:flex-row lg:gap-6">
-          <FeaturedStoryCard story={FEATURED_STORY} className="lg:flex-1" />
+        <ContentTypeSwitcher value={contentType} onChange={handleContentTypeChange} />
 
-          <div className="flex flex-1 flex-col gap-4">
-            {MORE_STORIES.map((story) => (
-              <HorizontalStoryCard key={story.id} story={story} />
-            ))}
-          </div>
-        </div>
+        {pageStories.length > 0 ? (
+          <>
+            <div className="grid w-full gap-4 md:grid-cols-2">
+              {pageStories.map((story) => (
+                <HorizontalStoryCard key={story.id} story={story} />
+              ))}
+            </div>
 
-        <Button variant="ghost" size="lg" arrow className="h-12 px-6 text-sm text-blue-600 font-semibold lg:text-base">
-              See all our reporting
+            {totalPages > 1 ? (
+              <Pagination className="w-full">
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious
+                      href="#stories"
+                      className={cn(currentPage === 1 && "pointer-events-none opacity-50")}
+                      onClick={(event) => {
+                        event.preventDefault()
+                        setPage((current) => Math.max(1, current - 1))
+                      }}
+                    />
+                  </PaginationItem>
+
+                  {getVisiblePages(currentPage, totalPages).map((item, index) =>
+                    item === "ellipsis" ? (
+                      <PaginationItem key={`ellipsis-${index}`}>
+                        <PaginationEllipsis />
+                      </PaginationItem>
+                    ) : (
+                      <PaginationItem key={item}>
+                        <PaginationLink
+                          href="#stories"
+                          isActive={item === currentPage}
+                          onClick={(event) => {
+                            event.preventDefault()
+                            setPage(item)
+                          }}
+                        >
+                          {item}
+                        </PaginationLink>
+                      </PaginationItem>
+                    )
+                  )}
+
+                  <PaginationItem>
+                    <PaginationNext
+                      href="#stories"
+                      className={cn(currentPage === totalPages && "pointer-events-none opacity-50")}
+                      onClick={(event) => {
+                        event.preventDefault()
+                        setPage((current) => Math.min(totalPages, current + 1))
+                      }}
+                    />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            ) : null}
+          </>
+        ) : (
+          <p className="py-12 text-center text-base text-gray-700">
+            No stories in this category yet. Try another filter.
+          </p>
+        )}
+
+        <Button
+          variant="ghost"
+          size="lg"
+          arrow
+          className="h-12 px-6 text-sm font-semibold text-blue-600 lg:text-base"
+        >
+          See all our reporting
         </Button>
       </div>
     </SectionShell>
@@ -58,7 +176,10 @@ function StoryImage({
           priority={priority}
         />
       ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20" aria-hidden />
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20"
+          aria-hidden
+        />
       )}
     </div>
   )
@@ -74,37 +195,6 @@ function StoryByline({ author, readMinutes }: { author: string; readMinutes: num
       <span className="size-0.5 rounded-full bg-gray-400" aria-hidden />
       <span>{readMinutes} min read</span>
     </p>
-  )
-}
-
-function FeaturedStoryCard({ story, className }: { story: DispatchStory; className?: string }) {
-  return (
-    <a
-      href={story.href}
-      className={cn(
-        "flex h-full min-h-0 flex-col gap-4 rounded-3xl border border-gray-200 bg-white p-3 transition-colors hover:border-gray-300",
-        className
-      )}
-    >
-      <StoryImage
-        story={story}
-        className="min-h-[200px] flex-1 lg:min-h-[240px]"
-        sizes="(max-width: 1024px) 100vw, 50vw"
-        priority
-      />
-      <div className="flex flex-col gap-4 p-2">
-        <div className="flex flex-col gap-2">
-          <Eyebrow>{story.categoryLabel}</Eyebrow>
-          <h3 className="line-clamp-2 font-serif text-xl leading-[1.2] tracking-tight text-blue-900">
-            {story.title}
-          </h3>
-        </div>
-        <p className="line-clamp-2 text-base leading-[1.7] tracking-tight text-gray-700">
-          {story.excerpt}
-        </p>
-        <StoryByline author={story.author} readMinutes={story.readMinutes} />
-      </div>
-    </a>
   )
 }
 
