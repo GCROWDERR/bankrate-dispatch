@@ -40,12 +40,20 @@ export function NewsyHeroContained() {
           />
 
           <aside
-            className="flex h-full flex-col gap-5 lg:justify-between lg:gap-4"
-            aria-label="Related investigation stories"
+            className="flex h-full flex-col gap-5 border-t border-white/15 pt-6 lg:justify-between lg:gap-4 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0 xl:pl-12"
+            aria-labelledby="hero-top-stories-heading"
           >
-            {tentpoleStories.map((story) => (
-              <EditorialSidebarCard key={story.id} story={story} inverse />
-            ))}
+            <p
+              id="hero-top-stories-heading"
+              className="text-sm font-bold uppercase leading-[1.7] tracking-[2.5px] text-blue-300"
+            >
+              Top stories
+            </p>
+            <div className="flex flex-col gap-5 lg:flex-1 lg:justify-between lg:gap-4">
+              {tentpoleStories.map((story) => (
+                <EditorialSidebarCard key={story.id} story={story} inverse />
+              ))}
+            </div>
           </aside>
         </div>
       </article>
