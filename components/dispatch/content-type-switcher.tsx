@@ -33,7 +33,7 @@ export function ContentTypeSwitcher({ value, onChange, className }: ContentTypeS
                 aria-selected={isActive}
                 onClick={() => onChange(type.id)}
                 className={cn(
-                  "shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-colors sm:px-5 sm:py-2.5 sm:text-base lg:px-6",
+                  "shrink-0 rounded-full px-4 py-2 text-base font-semibold transition-colors sm:px-5 sm:py-2.5 lg:px-6",
                   isActive
                     ? "bg-primary text-white"
                     : "bg-transparent text-gray-900 hover:bg-transparent"
