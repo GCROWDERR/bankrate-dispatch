@@ -23,7 +23,6 @@ export const DISPATCH_CONTENT_TYPES: {
   { id: "all", label: "All" },
   { id: "community", label: "Community" },
   { id: "data", label: "Data reports" },
-  { id: "insights", label: "Market insights" },
   { id: "watchdog", label: "Watchdog" },
 ]
 

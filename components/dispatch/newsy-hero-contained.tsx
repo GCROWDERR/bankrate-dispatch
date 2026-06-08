@@ -24,10 +24,10 @@ export function NewsyHeroContained() {
       <article
         className={cn(
           dispatchFeatureCardClass,
-          "lg:flex-col lg:items-stretch lg:gap-0 lg:py-10 xl:py-12"
+          "py-6 lg:flex-col lg:items-stretch lg:gap-0 lg:py-16"
         )}
       >
-        <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] lg:items-stretch lg:gap-10 xl:gap-12">
+        <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1.28fr)_minmax(0,1fr)] lg:items-stretch lg:gap-8 xl:gap-10">
           <MainArticle
             eyebrow={eyebrow}
             title={title}
@@ -45,13 +45,13 @@ export function NewsyHeroContained() {
           >
             <p
               id="hero-top-stories-heading"
-              className="text-sm font-bold uppercase leading-[1.7] tracking-[2.5px] text-blue-300"
+              className="text-sm font-bold uppercase leading-[1.7] tracking-[2.5px] text-blue-300 lg:text-[15px]"
             >
               Top stories
             </p>
-            <div className="flex flex-col gap-5 lg:flex-1 lg:justify-between lg:gap-4">
+            <div className="flex flex-col gap-5 lg:flex-1 lg:justify-between lg:gap-5">
               {tentpoleStories.map((story) => (
-                <EditorialSidebarCard key={story.id} story={story} inverse />
+                <EditorialSidebarCard key={story.id} story={story} inverse size="lg" />
               ))}
             </div>
           </aside>
@@ -85,7 +85,7 @@ function MainArticle({
       {imageSrc ? (
         <a
           href={href}
-          className="relative block h-[200px] w-full shrink-0 overflow-hidden rounded-2xl sm:h-[220px] lg:h-[240px]"
+          className="relative block aspect-video w-full shrink-0 overflow-hidden rounded-3xl"
         >
           <Image
             src={imageSrc}
