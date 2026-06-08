@@ -9,6 +9,7 @@ export type EditorialArticle = {
   imageSrc?: string
   imageAlt?: string
   avatar?: string
+  readMinutes?: number
 }
 
 /** Dispatch hero — not repeated as the editorial lead card. */
@@ -21,6 +22,7 @@ export const DISPATCH_HERO: EditorialArticle = {
   href: "#research-paper",
   imageSrc: "/images/homeownership-tax.png",
   imageAlt: "Matt Fellowes — The Hidden Homeownership Tax",
+  readMinutes: 12,
 }
 
 /** Large lead card in the editorial section. */
