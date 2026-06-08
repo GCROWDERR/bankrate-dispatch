@@ -71,7 +71,7 @@ export function Stories() {
       <div className={cn("relative", contentWellClass)}>
       <div className="flex flex-col items-center gap-8">
         <SectionTitle className="text-center tracking-normal">
-          Stories the rest of personal finance won&rsquo;t run
+          The research banks don&rsquo;t want you to read
         </SectionTitle>
 
         <ContentTypeSwitcher value={contentType} onChange={handleContentTypeChange} />

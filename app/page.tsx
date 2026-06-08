@@ -2,8 +2,7 @@ import type { Metadata } from "next"
 import { Nav } from "@/components/sections/nav"
 import { DispatchSubnav } from "@/components/dispatch/dispatch-subnav"
 import { ContentWell } from "@/components/home/shared"
-import { FeaturedInvestigation } from "@/components/dispatch/featured-investigation"
-import { InvestigationSupportingStories } from "@/components/dispatch/investigation-supporting-stories"
+import { NewsyHeroContained } from "@/components/dispatch/newsy-hero-contained"
 import { Stories } from "@/components/dispatch/stories"
 import { Tracker } from "@/components/dispatch/tracker"
 import { Methodology } from "@/components/dispatch/methodology"
@@ -23,13 +22,12 @@ export default function DispatchPage() {
       <div>
         <Nav variant="cream" />
         <DispatchSubnav />
-        <ContentWell className="py-6 lg:pb-10 lg:pt-6">
-          <FeaturedInvestigation />
+        <ContentWell className="py-8 md:py-9 lg:py-10">
+          <NewsyHeroContained />
         </ContentWell>
       </div>
 
       <main>
-        <InvestigationSupportingStories />
         <Stories />
         <Tracker />
         <Methodology />
