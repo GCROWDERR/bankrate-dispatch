@@ -104,3 +104,88 @@ export function HorizontalStoryCard({ story }: { story: DispatchStory }) {
     </a>
   )
 }
+
+/** Compact horizontal card for the newsy hero tentpole column. */
+export function TentpoleStoryCard({ story }: { story: DispatchStory }) {
+  return (
+    <a
+      href={story.href}
+      className="flex gap-3 rounded-2xl border border-gray-200 bg-white p-2 transition-colors hover:border-gray-300"
+    >
+      <StoryImage
+        story={story}
+        className="h-[88px] w-[88px] shrink-0 sm:h-[96px] sm:w-[96px]"
+        sizes="96px"
+      />
+      <div className="flex min-w-0 flex-1 flex-col justify-center gap-1.5 py-1 pr-2">
+        <Eyebrow className="text-[10px]">{story.categoryLabel}</Eyebrow>
+        <h3 className="line-clamp-3 font-serif text-base leading-[1.25] tracking-tight text-blue-900">
+          {story.title}
+        </h3>
+      </div>
+    </a>
+  )
+}
+
+/** Editorial sidebar card — thumbnail left, headline right. */
+export function EditorialSidebarCard({
+  story,
+  className,
+  inverse = false,
+  size = "default",
+}: {
+  story: DispatchStory
+  className?: string
+  inverse?: boolean
+  size?: "default" | "lg"
+}) {
+  return (
+    <a
+      href={story.href}
+      className={cn(
+        "group flex lg:min-h-0 lg:flex-1 lg:items-center",
+        size === "lg" ? "gap-4 lg:gap-5" : "gap-4",
+        className
+      )}
+    >
+      <StoryImage
+        story={story}
+        className={cn(
+          "shrink-0",
+          size === "lg"
+            ? "h-[80px] w-[112px] sm:h-[88px] sm:w-[124px] lg:h-[96px] lg:w-[136px]"
+            : "h-[72px] w-[96px] sm:h-[80px] sm:w-[108px] lg:h-[88px] lg:w-[118px]"
+        )}
+        sizes={size === "lg" ? "136px" : "118px"}
+      />
+      <div
+        className={cn(
+          "flex min-w-0 flex-1 flex-col justify-center py-0.5",
+          size === "lg" ? "gap-2 lg:gap-2.5" : "gap-1.5 lg:gap-2"
+        )}
+      >
+        <Eyebrow className={cn(size === "lg" ? "text-[11px]" : "text-[10px]", inverse && "text-blue-300")}>
+          {story.categoryLabel}
+        </Eyebrow>
+        <h3
+          className={cn(
+            "line-clamp-2 font-serif font-semibold leading-[1.3] tracking-tight group-hover:underline",
+            size === "lg" ? "text-[17px] lg:text-lg" : "text-base lg:text-[17px]",
+            inverse ? "text-white" : "text-blue-900"
+          )}
+        >
+          {story.title}
+        </h3>
+        <p
+          className={cn(
+            "leading-[1.7] tracking-tight",
+            size === "lg" ? "text-sm lg:text-base" : "text-sm",
+            inverse ? "text-blue-300" : "text-gray-700"
+          )}
+        >
+          {story.readMinutes} min read
+        </p>
+      </div>
+    </a>
+  )
+}
