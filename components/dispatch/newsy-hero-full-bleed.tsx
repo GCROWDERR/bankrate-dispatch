@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { EditorialSidebarCard } from "@/components/dispatch/story-card"
+import { heroToMaskedSectionOverlap } from "@/components/dispatch/section-mask-bg"
 import { contentWellClass, Eyebrow } from "@/components/home/shared"
 import {
   FEATURED_INVESTIGATION,
@@ -18,7 +19,10 @@ export function NewsyHeroFullBleed() {
   const readMinutes = DISPATCH_HERO.readMinutes ?? 12
 
   return (
-    <section aria-labelledby="dispatch-hero-heading" className="w-full bg-[#00143d]">
+    <section
+      aria-labelledby="dispatch-hero-heading"
+      className={cn("relative z-0 w-full bg-[#00143d]", heroToMaskedSectionOverlap.heroPadding)}
+    >
       <div className={heroShellClass}>
         <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] lg:items-stretch lg:gap-10 xl:gap-12">
           <MainArticle

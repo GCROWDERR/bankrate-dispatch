@@ -21,11 +21,13 @@ export default function DispatchPage() {
       <div>
         <Nav variant="cream" />
         <DispatchSubnav />
-        <NewsyHeroFullBleed />
+        <div className="relative">
+          <NewsyHeroFullBleed />
+        </div>
       </div>
 
       <main>
-        <Stories />
+        <Stories heroBrushHandoff />
         <Tracker />
         <Methodology />
         <ExpertTeam />

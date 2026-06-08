@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react"
 import { contentWellClass, SectionTitle } from "@/components/home/shared"
-import { SectionMaskBackground } from "@/components/dispatch/section-mask-bg"
+import { SectionMaskBackground, heroToMaskedSectionOverlap } from "@/components/dispatch/section-mask-bg"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { HorizontalStoryCard } from "@/components/dispatch/story-card"
@@ -38,7 +38,7 @@ function getVisiblePages(currentPage: number, totalPages: number) {
   return [1, "ellipsis", currentPage - 1, currentPage, currentPage + 1, "ellipsis", totalPages] as const
 }
 
-export function Stories() {
+export function Stories({ heroBrushHandoff = false }: { heroBrushHandoff?: boolean }) {
   const [contentType, setContentType] = useState<DispatchContentTypeId>("all")
   const [page, setPage] = useState(1)
 
@@ -66,9 +66,21 @@ export function Stories() {
   }
 
   return (
-    <section id="stories" className="relative isolate overflow-hidden py-12 md:py-16 lg:py-16">
-      <SectionMaskBackground />
-      <div className={cn("relative", contentWellClass)}>
+    <section
+      id="stories"
+      className={cn(
+        "relative pb-12 md:pb-16 lg:pb-16",
+        heroBrushHandoff
+          ? cn(
+              "z-10 overflow-x-clip",
+              heroToMaskedSectionOverlap.sectionPullUp,
+              heroToMaskedSectionOverlap.sectionPaddingTop
+            )
+          : "isolate overflow-hidden py-12 md:py-16 lg:py-16"
+      )}
+    >
+      <SectionMaskBackground maskPosition={heroBrushHandoff ? "top center" : "center"} />
+      <div className={cn("relative z-10", contentWellClass)}>
       <div className="flex flex-col items-center gap-8">
         <SectionTitle className="text-center tracking-normal">
           The research banks don&rsquo;t want you to read
