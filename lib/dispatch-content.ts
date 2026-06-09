@@ -117,171 +117,191 @@ export const FEATURED_INVESTIGATION_SERIES: DispatchSeries = {
   tentpoleTitle: FEATURED_INVESTIGATION.title,
   tentpoleHref: FEATURED_INVESTIGATION.href,
   supportingStoryIds: [
-    "overpayment-paradox",
-    "broker-markup",
-    "refi-trap",
+    "where-borrowers-overpay-most",
+    "why-mortgage-rate-higher",
+    "refinance-savings-millions",
   ],
 }
 
 /** Stories shown per page in the grid. */
 export const DISPATCH_STORIES_PAGE_SIZE = 4
 
-/** Dispatch stories grid — hero topic is excluded. */
+const STORY_IMAGES = [
+  "/images/money-house.jpg",
+  "/images/credit-chain.jpg",
+  "/images/sunbelt-housing.jpg",
+  "/images/houseing-divide.jpg",
+] as const
+
+const STORY_ACCENTS = [
+  "linear-gradient(135deg, #13223b 0%, #14387a 60%, #0061fe 100%)",
+  "linear-gradient(135deg, #104bb5 0%, #13223b 100%)",
+  "linear-gradient(135deg, #13223b 0%, #104bb5 100%)",
+  "linear-gradient(135deg, #14387a 0%, #0061fe 100%)",
+] as const
+
+/** Dispatch stories grid — hero tentpole and sidebar peel stories are excluded in the feed. */
 export const DISPATCH_STORIES: DispatchStory[] = [
   {
-    id: "closing-costs",
-    contentType: "watchdog",
-    categoryLabel: "Watchdog Reporting",
-    title: "How a single closing-cost line item became a $2,400 payday for the lender",
+    id: "hidden-homeownership-tax",
+    contentType: "data",
+    categoryLabel: "Data Report",
+    title:
+      "The Hidden Homeownership Tax: How Overpaying for Mortgages Costs Americans $70 Billion a Year",
     excerpt:
-      "An undercover review of 1,400 loan estimates exposes a fee that even mortgage brokers can't explain.",
+      "Our national analysis quantifies the spread between the rates borrowers pay and the best available offers in their market.",
     author: "Matt Fellowes",
     readMinutes: 12,
-    accent: "linear-gradient(135deg, #13223b 0%, #14387a 60%, #0061fe 100%)",
-    imageSrc: "/images/money-house.jpg",
-    href: "#watchdog-closing-costs",
+    accent: STORY_ACCENTS[0],
+    imageSrc: STORY_IMAGES[0],
+    href: "#hidden-homeownership-tax",
   },
   {
-    id: "overpayment-paradox",
+    id: "where-borrowers-overpay-most",
     contentType: "data",
     categoryLabel: "Data Report",
-    title: "The borrowers most likely to overpay aren't who you'd think",
+    title: "Where Borrowers Are Overpaying the Most",
     excerpt:
-      "Upper-income households carry the highest mortgage overpayment rate of any income group — 93%. Better credit makes it worse, not better.",
-    author: "Sarah Foster",
-    readMinutes: 10,
-    accent: "linear-gradient(135deg, #104bb5 0%, #13223b 100%)",
-    imageSrc: "/images/credit-chain.jpg",
-    href: "#data-drop",
-  },
-  {
-    id: "sunbelt",
-    contentType: "insights",
-    categoryLabel: "Mortgage Insights",
-    title: "Sun Belt Slowdown",
-    excerpt:
-      "Once the country's hottest markets, Phoenix and Austin now lead the nation in price corrections.",
-    author: "Bankrate Editorial",
-    readMinutes: 6,
-    accent: "linear-gradient(135deg, #13223b 0%, #104bb5 100%)",
-    imageSrc: "/images/sunbelt-housing.jpg",
-    href: "#",
-  },
-  {
-    id: "hunker-down",
-    contentType: "data",
-    categoryLabel: "Data Report",
-    title: "The Hunker-Down Economy",
-    excerpt:
-      "Refinance volume just hit a 27-year low. We mapped which metros are paying the price.",
-    author: "Bankrate Research",
-    readMinutes: 8,
-    accent: "linear-gradient(135deg, #104bb5 0%, #13223b 100%)",
-    imageSrc: "/images/credit-chain.jpg",
-    href: "#",
-  },
-  {
-    id: "housing-divide",
-    contentType: "community",
-    categoryLabel: "Community",
-    title: "The Housing Divide",
-    excerpt:
-      "Two zip codes, identical credit scores, $84,000 difference in lifetime mortgage cost.",
-    author: "Bankrate Editorial",
-    readMinutes: 14,
-    accent: "linear-gradient(135deg, #14387a 0%, #0061fe 100%)",
-    imageSrc: "/images/houseing-divide.jpg",
-    href: "#",
-  },
-  {
-    id: "rate-survey",
-    contentType: "insights",
-    categoryLabel: "Market Survey",
-    title: "600+ banks, surveyed this week — Here's where mortgage rates actually moved",
-    excerpt:
-      "Our weekly lender survey cuts through headline rate chatter with what institutions are quoting right now.",
-    author: "Alex Gailey",
-    readMinutes: 5,
-    accent: "linear-gradient(135deg, #13223b 0%, #0061fe 100%)",
-    imageSrc: "/images/sunbelt-housing.jpg",
-    href: "#weekly-rate-survey",
-  },
-  {
-    id: "savings-gap",
-    contentType: "insights",
-    categoryLabel: "Rate Watch",
-    title: "Your savings account is probably paying you less than 1%",
-    excerpt: "Here's what the market is actually offering right now — and how far behind the average account sits.",
-    author: "Greg McBride",
-    readMinutes: 4,
-    accent: "linear-gradient(135deg, #104bb5 0%, #14387a 100%)",
-    imageSrc: "/images/money-house.jpg",
-    href: "#best-savings-rates",
-  },
-  {
-    id: "broker-markup",
-    contentType: "watchdog",
-    categoryLabel: "Watchdog Reporting",
-    title: "The broker markup borrowers never see on their closing disclosure",
-    excerpt:
-      "We matched 920 Loan Estimates to final disclosures and found a recurring fee with no documented service behind it.",
-    author: "Matt Fellowes",
-    readMinutes: 11,
-    accent: "linear-gradient(135deg, #14387a 0%, #0061fe 100%)",
-    imageSrc: "/images/money-house.jpg",
-    href: "#broker-markup",
-  },
-  {
-    id: "refi-trap",
-    contentType: "data",
-    categoryLabel: "Data Report",
-    title: "The refinance trap: who keeps paying after rates fall",
-    excerpt:
-      "Borrowers who missed the 2020–2021 window are still paying above-market rates — we mapped how many by state.",
+      "State-by-state maps show where lifetime mortgage overpayment is widest — and where competition keeps rates closer to fair value.",
     author: "Bankrate Research",
     readMinutes: 9,
-    accent: "linear-gradient(135deg, #104bb5 0%, #13223b 100%)",
-    imageSrc: "/images/credit-chain.jpg",
-    href: "#refi-trap",
+    accent: STORY_ACCENTS[1],
+    imageSrc: STORY_IMAGES[1],
+    href: "#where-borrowers-overpay-most",
   },
   {
-    id: "first-time-buyers",
+    id: "why-mortgage-rate-higher",
+    contentType: "watchdog",
+    categoryLabel: "Watchdog Reporting",
+    title: "Why Your Mortgage Rate Is Higher Than It Should Be, and How Much It's Costing You",
+    excerpt:
+      "We trace the pricing decisions and broker incentives that push qualified borrowers above the best rate they could qualify for.",
+    author: "Matt Fellowes",
+    readMinutes: 11,
+    accent: STORY_ACCENTS[2],
+    imageSrc: STORY_IMAGES[2],
+    href: "#why-mortgage-rate-higher",
+  },
+  {
+    id: "loan-officer-close-deals",
+    contentType: "watchdog",
+    categoryLabel: "Watchdog Reporting",
+    title:
+      'How Some Mortgage Lenders Incentivize Loan Officers to "Close Deals," Not Get You the Best One',
+    excerpt:
+      "Compensation structures reward speed and margin — not rate shopping — and borrowers rarely see how that shows up in their Loan Estimate.",
+    author: "Matt Fellowes",
+    readMinutes: 10,
+    accent: STORY_ACCENTS[3],
+    imageSrc: STORY_IMAGES[3],
+    href: "#loan-officer-close-deals",
+  },
+  {
+    id: "rates-high-still-buying",
     contentType: "community",
     categoryLabel: "Community",
-    title: "First-time buyers are paying the highest overpayment premium in a decade",
+    title: "Rates Are High, but They're Buying Anyway. Why Waiting Isn't an Option",
     excerpt:
-      "New homeowners without rate-shopping experience overpaid by an average of $9,400 in our 2024 sample.",
+      "Homebuyers explain why they're moving now despite elevated rates — and the tradeoffs they're accepting to get keys in hand.",
+    author: "Bankrate Editorial",
+    readMinutes: 8,
+    accent: STORY_ACCENTS[0],
+    imageSrc: STORY_IMAGES[0],
+    href: "#rates-high-still-buying",
+  },
+  {
+    id: "three-mortgage-traps",
+    contentType: "watchdog",
+    categoryLabel: "Watchdog Reporting",
+    title: "3 Traps the Mortgage Industry Doesn't Want You to Know About — and How to Avoid Them",
+    excerpt:
+      "From teaser-rate advertising to hidden markups, three common practices that cost borrowers thousands — and what to ask before you sign.",
+    author: "Matt Fellowes",
+    readMinutes: 9,
+    accent: STORY_ACCENTS[1],
+    imageSrc: STORY_IMAGES[1],
+    href: "#three-mortgage-traps",
+  },
+  {
+    id: "nine-properties-financing-tips",
+    contentType: "community",
+    categoryLabel: "Community",
+    title:
+      "This Couple Mortgaged 9 Properties in Under a Decade. Here Are the Financing Tips They Swear By",
+    excerpt:
+      "Repeat buyers share the rate-shopping habits, lender questions, and timing moves that helped them keep financing costs in check.",
     author: "Bankrate Editorial",
     readMinutes: 7,
-    accent: "linear-gradient(135deg, #13223b 0%, #104bb5 100%)",
-    imageSrc: "/images/houseing-divide.jpg",
-    href: "#first-time-buyers",
+    accent: STORY_ACCENTS[2],
+    imageSrc: STORY_IMAGES[2],
+    href: "#nine-properties-financing-tips",
   },
   {
-    id: "credit-score-myth",
+    id: "best-worst-markets-homebuyers",
     contentType: "data",
     categoryLabel: "Data Report",
-    title: "Why a 780 credit score doesn't guarantee a competitive mortgage rate",
+    title: "Best and Worst Markets for Homebuyers, Ranked",
     excerpt:
-      "Rate dispersion among prime borrowers is wider than at any point since we started tracking Loan Estimates in 2019.",
-    author: "Sarah Foster",
-    readMinutes: 8,
-    accent: "linear-gradient(135deg, #14387a 0%, #0061fe 100%)",
-    imageSrc: "/images/credit-chain.jpg",
-    href: "#credit-score-myth",
+      "We ranked metros on affordability, overpayment risk, and inventory to show where buyers get the most — and least — leverage.",
+    author: "Bankrate Research",
+    readMinutes: 10,
+    accent: STORY_ACCENTS[3],
+    imageSrc: STORY_IMAGES[3],
+    href: "#best-worst-markets-homebuyers",
   },
   {
-    id: "rural-lending",
-    contentType: "community",
-    categoryLabel: "Community",
-    title: "Rural borrowers face a wider rate gap — and fewer lenders to shop",
+    id: "fha-loans-price",
+    contentType: "watchdog",
+    categoryLabel: "Watchdog Reporting",
+    title: "FHA Loans Can Open the Door to Homeownership: But They Come at a Price",
     excerpt:
-      "Counties with a single dominant lender show overpayment rates 18 points higher than competitive markets.",
+      "Low down payments help buyers get in the door — but insurance premiums and rate spreads can add up over the life of the loan.",
     author: "Bankrate Editorial",
-    readMinutes: 13,
-    accent: "linear-gradient(135deg, #104bb5 0%, #13223b 100%)",
-    imageSrc: "/images/sunbelt-housing.jpg",
-    href: "#rural-lending",
+    readMinutes: 8,
+    accent: STORY_ACCENTS[0],
+    imageSrc: STORY_IMAGES[0],
+    href: "#fha-loans-price",
+  },
+  {
+    id: "buy-now-refi-later",
+    contentType: "watchdog",
+    categoryLabel: "Watchdog Reporting",
+    title:
+      'The Dangers of "Buy Now, Refi Later" Mortgage Advertising — and What to Be Wary of Before You Get a Home Loan',
+    excerpt:
+      "Lenders pitch future refinances as a safety net. We examine when that promise holds up — and when it leaves borrowers stuck paying more.",
+    author: "Matt Fellowes",
+    readMinutes: 11,
+    accent: STORY_ACCENTS[1],
+    imageSrc: STORY_IMAGES[1],
+    href: "#buy-now-refi-later",
+  },
+  {
+    id: "refinance-savings-millions",
+    contentType: "data",
+    categoryLabel: "Data Report",
+    title: "Nearly 2.7 Million Homeowners Could Save With a Refinance. Are You One of Them?",
+    excerpt:
+      "Millions of borrowers are still paying above today's market rates. Our model estimates who has the most to gain from shopping again.",
+    author: "Bankrate Research",
+    readMinutes: 9,
+    accent: STORY_ACCENTS[2],
+    imageSrc: STORY_IMAGES[2],
+    href: "#refinance-savings-millions",
+  },
+  {
+    id: "debunking-30-percent-rule",
+    contentType: "data",
+    categoryLabel: "Data Report",
+    title:
+      'Debunking Your Broker\'s "30% Rule" — Americans Need to Set Aside 43% of Their Income for a Home',
+    excerpt:
+      "The old affordability benchmark no longer matches real housing costs. Updated math shows how much income buyers actually need set aside.",
+    author: "Sarah Foster",
+    readMinutes: 8,
+    accent: STORY_ACCENTS[3],
+    imageSrc: STORY_IMAGES[3],
+    href: "#debunking-30-percent-rule",
   },
 ]
 
@@ -290,10 +310,13 @@ export function storiesForContentType(contentType: DispatchContentTypeId) {
   return DISPATCH_STORIES.filter((story) => story.contentType === contentType)
 }
 
-/** Stories for the paginated grid — excludes peel stories shown under the hero. */
+/** Stories for the paginated grid — excludes hero tentpole and sidebar peel stories. */
 export function storiesForStoriesSection(contentType: DispatchContentTypeId) {
-  const supportingIds = new Set(FEATURED_INVESTIGATION_SERIES.supportingStoryIds)
-  return storiesForContentType(contentType).filter((story) => !supportingIds.has(story.id))
+  const excludedIds = new Set([
+    ...FEATURED_INVESTIGATION_SERIES.supportingStoryIds,
+    "hidden-homeownership-tax",
+  ])
+  return storiesForContentType(contentType).filter((story) => !excludedIds.has(story.id))
 }
 
 export function storiesByIds(ids: string[]) {
