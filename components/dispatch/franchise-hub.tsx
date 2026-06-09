@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { contentWellClass } from "@/components/home/shared"
+import { SectionMaskBackground, maskedSectionOverlap } from "@/components/dispatch/section-mask-bg"
 import {
   featuredFranchiseInstallment,
   HOMEBUYING_IN_AMERICA_FRANCHISE,
@@ -110,9 +111,14 @@ export function FranchiseHub() {
     <section
       id={franchise.id}
       aria-label={franchise.title}
-      className="border-y border-gray-200 bg-white py-12 md:py-16 lg:py-20"
+      className={cn(
+        "relative z-10 overflow-x-clip pb-12 md:pb-16 lg:pb-20",
+        maskedSectionOverlap.sectionPullUp,
+        maskedSectionOverlap.sectionPaddingTop
+      )}
     >
-      <div className={contentWellClass}>
+      <SectionMaskBackground maskPosition="top center" />
+      <div className={cn("relative z-10", contentWellClass)}>
         <div className="border-b border-gray-200 pb-4 md:pb-5">
           <h2 className="font-serif text-[length:var(--text-h2)] font-semibold leading-[1.2] tracking-[-2px] text-gray-900">
             {franchise.title}

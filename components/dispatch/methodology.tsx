@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { contentWellClass, SectionTitle, Eyebrow, PrimaryCta } from "@/components/home/shared"
-import { SectionMaskBackground } from "@/components/dispatch/section-mask-bg"
+import { SectionMaskBackground, maskedSectionOverlap } from "@/components/dispatch/section-mask-bg"
 import { Stat } from "@/components/ui/stat"
 import { CircledText } from "@/components/ui/circled-text"
 import { cn } from "@/lib/utils"
@@ -60,10 +60,17 @@ const statCardClassName = "min-w-0 flex-1 border border-gray-200 p-[11px] lg:min
 
 export function Methodology() {
   return (
-    <section id="methodology" className="relative isolate overflow-hidden py-16 lg:py-24">
-      <SectionMaskBackground />
+    <section
+      id="methodology"
+      className={cn(
+        "relative z-10 overflow-x-clip pb-16 lg:pb-24",
+        maskedSectionOverlap.sectionPullUp,
+        maskedSectionOverlap.sectionPaddingTop
+      )}
+    >
+      <SectionMaskBackground maskPosition="top center" />
 
-      <div className={cn("relative", contentWellClass)}>
+      <div className={cn("relative z-10", contentWellClass)}>
         <div className="flex w-full flex-col gap-10 lg:gap-12">
           <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 text-center">
             <Eyebrow>METHODOLOGY</Eyebrow>
