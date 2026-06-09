@@ -318,6 +318,8 @@ export type DispatchFranchiseInstallment = {
   status: FranchiseInstallmentStatus
   /** True North calendar window for this episode. */
   calendarLabel: string
+  /** Display date for the featured header row. */
+  publishedDate?: string
   href?: string
   readMinutes?: number
   author?: string
@@ -328,15 +330,13 @@ export type DispatchFranchiseInstallment = {
 /** Homebuying in America — serial franchise hub within News & Research. */
 export const HOMEBUYING_IN_AMERICA_FRANCHISE = {
   id: "homebuying-in-america",
-  eyebrow: "Franchise hub",
   title: "Homebuying in America",
   description:
-    "A recurring editorial franchise inside Bankrate News & Research. Each installment follows one homebuying thread across watchdog reporting, data, and community voices — with release windows aligned to the True North calendar.",
-  hubHref: "#homebuying-in-america",
-  hubCtaLabel: "Explore the franchise hub",
-  installmentsLabel: "Serial installments",
+    "A recurring editorial franchise — each installment follows one homebuying thread, aligned to the True North calendar.",
+  seeAllHref: "#homebuying-in-america",
+  seeAllLabel: "See all installments",
   calendarNote:
-    "Published and upcoming installments map to the True North editorial calendar so franchise episodes stay in sync with tentpole research.",
+    "Upcoming episodes reflect dates on the True North editorial calendar.",
   installments: [
     {
       id: "hia-affordability-line",
@@ -346,6 +346,7 @@ export const HOMEBUYING_IN_AMERICA_FRANCHISE = {
         "We mapped income, rates, and inventory to show where the typical household can still qualify — and where the math breaks.",
       status: "published",
       calendarLabel: "True North · January 2026",
+      publishedDate: "Jan. 14, 2026",
       href: "#hia-affordability-line",
       readMinutes: 11,
       author: "Sarah Foster",
@@ -359,6 +360,7 @@ export const HOMEBUYING_IN_AMERICA_FRANCHISE = {
         "The second installment traces how neighborhood lending patterns widen lifetime mortgage cost for otherwise similar buyers.",
       status: "published",
       calendarLabel: "True North · February 2026",
+      publishedDate: "Feb. 11, 2026",
       href: "#housing-divide",
       readMinutes: 14,
       author: "Bankrate Editorial",
@@ -372,6 +374,7 @@ export const HOMEBUYING_IN_AMERICA_FRANCHISE = {
         "Installment three follows new homeowners without rate-shopping experience — and the lenders who capture the spread.",
       status: "published",
       calendarLabel: "True North · March 2026",
+      publishedDate: "March 4, 2026",
       href: "#first-time-buyers",
       readMinutes: 7,
       author: "Bankrate Editorial",
@@ -389,3 +392,18 @@ export const HOMEBUYING_IN_AMERICA_FRANCHISE = {
     },
   ] satisfies DispatchFranchiseInstallment[],
 } as const
+
+export function featuredFranchiseInstallment(
+  franchise: typeof HOMEBUYING_IN_AMERICA_FRANCHISE
+) {
+  return [...franchise.installments]
+    .filter((installment) => installment.status === "published")
+    .sort((a, b) => b.installment - a.installment)[0]
+}
+
+export function sidebarFranchiseInstallments(
+  franchise: typeof HOMEBUYING_IN_AMERICA_FRANCHISE,
+  featuredId: string
+) {
+  return franchise.installments.filter((installment) => installment.id !== featuredId)
+}
