@@ -1,8 +1,14 @@
 import Image from "next/image"
-import { contentWellClass } from "@/components/home/shared"
-import { SectionMaskBackground, maskedSectionOverlap } from "@/components/dispatch/section-mask-bg"
+import { EditorialSidebarCard } from "@/components/dispatch/story-card"
+import {
+  contentWellClass,
+  contentWellMobileBleedClass,
+  dispatchFeatureCardLightClass,
+  Eyebrow,
+} from "@/components/home/shared"
 import {
   featuredFranchiseInstallment,
+  franchiseInstallmentAsStory,
   HOMEBUYING_IN_AMERICA_FRANCHISE,
   sidebarFranchiseInstallments,
   type DispatchFranchiseInstallment,
@@ -18,7 +24,7 @@ function InstallmentThumbnail({
 }) {
   return (
     <div
-      className={cn("relative shrink-0 overflow-hidden rounded-lg bg-gray-200", className)}
+      className={cn("relative shrink-0 overflow-hidden rounded-2xl bg-white/60", className)}
       style={
         installment.imageSrc
           ? undefined
@@ -31,7 +37,7 @@ function InstallmentThumbnail({
           alt=""
           fill
           className="object-cover"
-          sizes="112px"
+          sizes="(max-width: 768px) 100vw, 640px"
         />
       ) : (
         <div
@@ -46,6 +52,9 @@ function InstallmentThumbnail({
 function FeaturedInstallment({ installment }: { installment: DispatchFranchiseInstallment }) {
   return (
     <a href={installment.href} className="group flex flex-col gap-4 lg:gap-5">
+      <Eyebrow className="text-blue-800">
+        Latest installment · {installment.installment}
+      </Eyebrow>
       <div className="flex items-start justify-between gap-4">
         <h3 className="min-w-0 font-serif text-xl font-semibold leading-[1.2] tracking-tight text-blue-900 group-hover:underline sm:text-2xl">
           {installment.title}
@@ -53,47 +62,17 @@ function FeaturedInstallment({ installment }: { installment: DispatchFranchiseIn
         {installment.publishedDate ? (
           <time
             dateTime={installment.publishedDate}
-            className="shrink-0 pt-0.5 text-sm leading-[1.7] text-gray-600"
+            className="shrink-0 pt-0.5 text-sm leading-[1.7] text-blue-900/70"
           >
             {installment.publishedDate}
           </time>
         ) : null}
       </div>
 
-      <InstallmentThumbnail
-        installment={installment}
-        className="aspect-video w-full rounded-2xl"
-      />
+      <InstallmentThumbnail installment={installment} className="aspect-video w-full" />
 
-      <p className="text-base leading-[1.7] text-gray-700">{installment.excerpt}</p>
+      <p className="text-base leading-[1.7] text-blue-900/80">{installment.excerpt}</p>
     </a>
-  )
-}
-
-function SidebarInstallment({ installment }: { installment: DispatchFranchiseInstallment }) {
-  const isPublished = installment.status === "published" && installment.href
-  const Tag = isPublished ? "a" : "div"
-
-  return (
-    <Tag
-      href={isPublished ? installment.href : undefined}
-      className={cn(
-        "group flex gap-4 py-5 first:pt-0",
-        isPublished ? "hover:[&_h4]:underline" : "opacity-80"
-      )}
-    >
-      <InstallmentThumbnail installment={installment} className="h-16 w-28 sm:h-[72px] sm:w-32" />
-      <div className="flex min-w-0 flex-1 flex-col gap-1.5">
-        <h4 className="line-clamp-3 font-serif text-base font-semibold leading-[1.25] tracking-tight text-blue-900">
-          {installment.title}
-        </h4>
-        {installment.status === "scheduled" ? (
-          <p className="text-xs font-semibold uppercase tracking-[1.5px] text-gray-600">
-            Coming soon · {installment.calendarLabel}
-          </p>
-        ) : null}
-      </div>
-    </Tag>
   )
 }
 
@@ -111,47 +90,53 @@ export function FranchiseHub() {
     <section
       id={franchise.id}
       aria-label={franchise.title}
-      className={cn(
-        "relative z-10 overflow-x-clip pb-12 md:pb-16 lg:pb-20",
-        maskedSectionOverlap.sectionPullUp,
-        maskedSectionOverlap.sectionPaddingTop
-      )}
+      className={cn("pt-8 md:pt-10", "pb-16 md:pb-20 lg:pb-24")}
     >
-      <SectionMaskBackground maskPosition="top center" />
-      <div className={cn("relative z-10", contentWellClass)}>
-        <div className="border-b border-gray-200 pb-4 md:pb-5">
-          <h2 className="font-serif text-[length:var(--text-h2)] font-semibold leading-[1.2] tracking-[-2px] text-gray-900">
-            {franchise.title}
-          </h2>
-          <p className="mt-3 max-w-2xl text-sm leading-[1.7] text-gray-700">{franchise.description}</p>
-        </div>
+      <div className={contentWellClass}>
+        <div className={contentWellMobileBleedClass}>
+          <article
+            className={cn(
+              dispatchFeatureCardLightClass,
+              "gap-8 py-10 lg:flex-col lg:items-stretch lg:gap-10 lg:py-14"
+            )}
+          >
+            <header className="flex flex-col gap-3 border-b border-blue-900/10 pb-5 md:pb-6">
+              <Eyebrow className="text-blue-800">Series</Eyebrow>
+              <h2 className="font-serif text-[length:var(--text-h2)] font-semibold leading-[1.2] tracking-[-2px] text-blue-900">
+                {franchise.title}
+              </h2>
+              <p className="max-w-2xl text-base leading-[1.7] text-blue-900/80">
+                {franchise.description}
+              </p>
+            </header>
 
-        <div className="grid gap-8 pt-8 lg:grid-cols-[minmax(0,1.75fr)_minmax(0,1fr)] lg:gap-10 xl:gap-12">
-          <FeaturedInstallment installment={featured} />
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1.75fr)_minmax(0,1fr)] lg:gap-10 xl:gap-12">
+              <FeaturedInstallment installment={featured} />
 
-          <aside className="flex flex-col lg:border-l lg:border-gray-200 lg:pl-10 xl:pl-12">
-            <div className="divide-y divide-gray-200">
-              {sidebarInstallments.map((installment) => (
-                <SidebarInstallment key={installment.id} installment={installment} />
-              ))}
+              <aside
+                className="flex flex-col lg:border-l lg:border-blue-900/10 lg:pl-10 xl:pl-12"
+                aria-labelledby="franchise-series-heading"
+              >
+                <p
+                  id="franchise-series-heading"
+                  className="mb-5 text-sm font-bold uppercase leading-[1.7] tracking-[2.5px] text-blue-800"
+                >
+                  More in this series
+                </p>
+                <div className="flex flex-col gap-5 lg:flex-1 lg:justify-between lg:gap-5">
+                  {sidebarInstallments.map((installment) => (
+                    <EditorialSidebarCard
+                      key={installment.id}
+                      story={franchiseInstallmentAsStory(installment)}
+                      size="lg"
+                      interactive={installment.status === "published" && Boolean(installment.href)}
+                      className={installment.status === "scheduled" ? "opacity-80" : undefined}
+                    />
+                  ))}
+                </div>
+              </aside>
             </div>
-
-            <a
-              href={franchise.seeAllHref}
-              className="mt-2 inline-flex items-center gap-1.5 self-start pt-4 text-sm font-bold uppercase tracking-[1.5px] text-blue-600 hover:underline"
-            >
-              {franchise.seeAllLabel}
-              <Image
-                src="/images/chevron-right-blue.svg"
-                alt=""
-                width={12}
-                height={12}
-                aria-hidden
-              />
-            </a>
-
-            <p className="mt-4 text-xs leading-[1.7] text-gray-600">{franchise.calendarNote}</p>
-          </aside>
+          </article>
         </div>
       </div>
     </section>

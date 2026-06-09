@@ -339,7 +339,7 @@ export type DispatchFranchiseInstallment = {
   title: string
   excerpt: string
   status: FranchiseInstallmentStatus
-  /** True North calendar window for this episode. */
+  /** Release window for this episode. */
   calendarLabel: string
   /** Display date for the featured header row. */
   publishedDate?: string
@@ -355,11 +355,7 @@ export const HOMEBUYING_IN_AMERICA_FRANCHISE = {
   id: "homebuying-in-america",
   title: "Homebuying in America",
   description:
-    "A recurring editorial franchise — each installment follows one homebuying thread, aligned to the True North calendar.",
-  seeAllHref: "#homebuying-in-america",
-  seeAllLabel: "See all installments",
-  calendarNote:
-    "Upcoming episodes reflect dates on the True North editorial calendar.",
+    "A recurring editorial franchise — each installment follows one homebuying thread across reporting, data, and community voices.",
   installments: [
     {
       id: "hia-affordability-line",
@@ -368,7 +364,7 @@ export const HOMEBUYING_IN_AMERICA_FRANCHISE = {
       excerpt:
         "We mapped income, rates, and inventory to show where the typical household can still qualify — and where the math breaks.",
       status: "published",
-      calendarLabel: "True North · January 2026",
+      calendarLabel: "January 2026",
       publishedDate: "Jan. 14, 2026",
       href: "#hia-affordability-line",
       readMinutes: 11,
@@ -382,7 +378,7 @@ export const HOMEBUYING_IN_AMERICA_FRANCHISE = {
       excerpt:
         "The second installment ranks metros on affordability, overpayment risk, and inventory — and where buyers have the most leverage.",
       status: "published",
-      calendarLabel: "True North · February 2026",
+      calendarLabel: "February 2026",
       publishedDate: "Feb. 11, 2026",
       href: "#best-worst-markets-homebuyers",
       readMinutes: 10,
@@ -396,7 +392,7 @@ export const HOMEBUYING_IN_AMERICA_FRANCHISE = {
       excerpt:
         "Installment three follows buyers moving now despite elevated rates — and the tradeoffs they're accepting to get keys in hand.",
       status: "published",
-      calendarLabel: "True North · March 2026",
+      calendarLabel: "March 2026",
       publishedDate: "March 4, 2026",
       href: "#rates-high-still-buying",
       readMinutes: 8,
@@ -410,7 +406,7 @@ export const HOMEBUYING_IN_AMERICA_FRANCHISE = {
       excerpt:
         "Next in the series: where entry-level supply is recovering, stalling, or disappearing — and what it means for monthly payment math.",
       status: "scheduled",
-      calendarLabel: "True North · Q2 2026",
+      calendarLabel: "Q2 2026",
       accent: "linear-gradient(135deg, #13223b 0%, #104bb5 100%)",
     },
   ] satisfies DispatchFranchiseInstallment[],
@@ -429,4 +425,30 @@ export function sidebarFranchiseInstallments(
   featuredId: string
 ) {
   return franchise.installments.filter((installment) => installment.id !== featuredId)
+}
+
+export function franchiseInstallmentAsStory(
+  installment: DispatchFranchiseInstallment
+): DispatchStory {
+  const linked = installment.href
+    ? DISPATCH_STORIES.find((story) => story.href === installment.href)
+    : undefined
+
+  if (linked) {
+    return linked
+  }
+
+  return {
+    id: installment.id,
+    contentType: "data",
+    categoryLabel:
+      installment.status === "scheduled" ? "Coming soon" : "Franchise",
+    title: installment.title,
+    excerpt: installment.excerpt,
+    author: installment.author ?? "Bankrate Editorial",
+    readMinutes: installment.readMinutes ?? 0,
+    accent: installment.accent ?? STORY_ACCENTS[0],
+    imageSrc: installment.imageSrc,
+    href: installment.href ?? "#",
+  }
 }

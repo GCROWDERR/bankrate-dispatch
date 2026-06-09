@@ -133,15 +133,19 @@ export function EditorialSidebarCard({
   className,
   inverse = false,
   size = "default",
+  interactive = true,
 }: {
   story: DispatchStory
   className?: string
   inverse?: boolean
   size?: "default" | "lg"
+  interactive?: boolean
 }) {
+  const Tag = interactive ? "a" : "div"
+
   return (
-    <a
-      href={story.href}
+    <Tag
+      href={interactive ? story.href : undefined}
       className={cn(
         "group flex lg:min-h-0 lg:flex-1 lg:items-center",
         size === "lg" ? "gap-4 lg:gap-5" : "gap-4",
@@ -176,16 +180,18 @@ export function EditorialSidebarCard({
         >
           {story.title}
         </h3>
-        <p
-          className={cn(
-            "leading-[1.7] tracking-tight",
-            size === "lg" ? "text-sm lg:text-base" : "text-sm",
-            inverse ? "text-blue-300" : "text-gray-700"
-          )}
-        >
-          {story.readMinutes} min read
-        </p>
+        {story.readMinutes > 0 ? (
+          <p
+            className={cn(
+              "leading-[1.7] tracking-tight",
+              size === "lg" ? "text-sm lg:text-base" : "text-sm",
+              inverse ? "text-blue-300" : "text-gray-700"
+            )}
+          >
+            {story.readMinutes} min read
+          </p>
+        ) : null}
       </div>
-    </a>
+    </Tag>
   )
 }
