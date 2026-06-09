@@ -307,3 +307,85 @@ export function storiesByIds(ids: string[]) {
 export function supportingStoriesForSeries(series: DispatchSeries) {
   return storiesByIds(series.supportingStoryIds)
 }
+
+export type FranchiseInstallmentStatus = "published" | "scheduled"
+
+export type DispatchFranchiseInstallment = {
+  id: string
+  installment: number
+  title: string
+  excerpt: string
+  status: FranchiseInstallmentStatus
+  /** True North calendar window for this episode. */
+  calendarLabel: string
+  href?: string
+  readMinutes?: number
+  author?: string
+  imageSrc?: string
+  accent?: string
+}
+
+/** Homebuying in America — serial franchise hub within News & Research. */
+export const HOMEBUYING_IN_AMERICA_FRANCHISE = {
+  id: "homebuying-in-america",
+  eyebrow: "Franchise hub",
+  title: "Homebuying in America",
+  description:
+    "A recurring editorial franchise inside Bankrate News & Research. Each installment follows one homebuying thread across watchdog reporting, data, and community voices — with release windows aligned to the True North calendar.",
+  hubHref: "#homebuying-in-america",
+  hubCtaLabel: "Explore the franchise hub",
+  installmentsLabel: "Serial installments",
+  calendarNote:
+    "Published and upcoming installments map to the True North editorial calendar so franchise episodes stay in sync with tentpole research.",
+  installments: [
+    {
+      id: "hia-affordability-line",
+      installment: 1,
+      title: "The affordability line: who can still buy in 2026",
+      excerpt:
+        "We mapped income, rates, and inventory to show where the typical household can still qualify — and where the math breaks.",
+      status: "published",
+      calendarLabel: "True North · January 2026",
+      href: "#hia-affordability-line",
+      readMinutes: 11,
+      author: "Sarah Foster",
+      imageSrc: "/images/money-house.jpg",
+    },
+    {
+      id: "hia-housing-divide",
+      installment: 2,
+      title: "Two zip codes, identical credit scores, $84,000 apart",
+      excerpt:
+        "The second installment traces how neighborhood lending patterns widen lifetime mortgage cost for otherwise similar buyers.",
+      status: "published",
+      calendarLabel: "True North · February 2026",
+      href: "#housing-divide",
+      readMinutes: 14,
+      author: "Bankrate Editorial",
+      imageSrc: "/images/houseing-divide.jpg",
+    },
+    {
+      id: "hia-first-time-premium",
+      installment: 3,
+      title: "First-time buyers are paying the highest overpayment premium in a decade",
+      excerpt:
+        "Installment three follows new homeowners without rate-shopping experience — and the lenders who capture the spread.",
+      status: "published",
+      calendarLabel: "True North · March 2026",
+      href: "#first-time-buyers",
+      readMinutes: 7,
+      author: "Bankrate Editorial",
+      imageSrc: "/images/credit-chain.jpg",
+    },
+    {
+      id: "hia-starter-inventory",
+      installment: 4,
+      title: "The starter-home inventory crunch, mapped by metro",
+      excerpt:
+        "Next in the series: where entry-level supply is recovering, stalling, or disappearing — and what it means for monthly payment math.",
+      status: "scheduled",
+      calendarLabel: "True North · Q2 2026",
+      accent: "linear-gradient(135deg, #13223b 0%, #104bb5 100%)",
+    },
+  ] satisfies DispatchFranchiseInstallment[],
+} as const

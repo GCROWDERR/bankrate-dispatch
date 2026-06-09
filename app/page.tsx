@@ -3,6 +3,7 @@ import { Nav } from "@/components/sections/nav"
 import { DispatchSubnav } from "@/components/dispatch/dispatch-subnav"
 import { ContentWell } from "@/components/home/shared"
 import { NewsyHeroContained } from "@/components/dispatch/newsy-hero-contained"
+import { FranchiseHub } from "@/components/dispatch/franchise-hub"
 import { Stories } from "@/components/dispatch/stories"
 import { Tracker } from "@/components/dispatch/tracker"
 import { Methodology } from "@/components/dispatch/methodology"
@@ -28,6 +29,7 @@ export default function DispatchPage() {
       </div>
 
       <main>
+        <FranchiseHub />
         <Stories />
         <Tracker />
         <Methodology />
