@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { EditorialSidebarCard } from "@/components/dispatch/story-card"
+import { featureModuleGutter } from "@/components/dispatch/section-mask-bg"
 import {
   contentWellClass,
   contentWellMobileBleedClass,
@@ -90,14 +91,14 @@ export function FranchiseHub() {
     <section
       id={franchise.id}
       aria-label={franchise.title}
-      className={cn("pt-8 md:pt-10", "pb-16 md:pb-20 lg:pb-24")}
+      className={featureModuleGutter}
     >
       <div className={contentWellClass}>
         <div className={contentWellMobileBleedClass}>
           <article
             className={cn(
               dispatchFeatureCardLightClass,
-              "gap-8 py-10 lg:flex-col lg:items-stretch lg:gap-10 lg:py-14"
+              "gap-8 py-6 lg:flex-col lg:items-stretch lg:gap-10 lg:py-16"
             )}
           >
             <header className="flex flex-col gap-3 border-b border-blue-900/10 pb-5 md:pb-6">

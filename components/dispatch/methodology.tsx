@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { contentWellClass, SectionTitle, Eyebrow, PrimaryCta } from "@/components/home/shared"
-import { SectionMaskBackground, maskedSectionOverlap } from "@/components/dispatch/section-mask-bg"
+import { SectionMaskBackground } from "@/components/dispatch/section-mask-bg"
 import { Stat } from "@/components/ui/stat"
 import { CircledText } from "@/components/ui/circled-text"
 import { cn } from "@/lib/utils"
@@ -62,15 +62,11 @@ export function Methodology() {
   return (
     <section
       id="methodology"
-      className={cn(
-        "relative z-10 overflow-x-clip pb-16 lg:pb-24",
-        maskedSectionOverlap.sectionPullUp,
-        maskedSectionOverlap.sectionPaddingTop
-      )}
+      className="relative isolate overflow-hidden pb-16 lg:pb-24"
     >
       <SectionMaskBackground maskPosition="top center" />
 
-      <div className={cn("relative z-10", contentWellClass)}>
+      <div className={cn("relative z-10 pt-8 md:pt-10 lg:pt-12", contentWellClass)}>
         <div className="flex w-full flex-col gap-10 lg:gap-12">
           <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 text-center">
             <Eyebrow>METHODOLOGY</Eyebrow>

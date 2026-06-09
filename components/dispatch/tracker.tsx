@@ -74,7 +74,7 @@ export function Tracker() {
   const lowest = STATES.reduce((a, b) => (a.value < b.value ? a : b))
 
   return (
-    <SectionShell id="tracker" className="py-16 lg:py-24">
+    <SectionShell id="tracker" className="pt-16 pb-0 lg:pt-24 lg:pb-0">
       <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-start">
         <div className="flex flex-col gap-5">
           <Eyebrow>Live Data</Eyebrow>

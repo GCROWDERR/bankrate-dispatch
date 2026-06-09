@@ -70,6 +70,7 @@ export function Stories() {
       id="stories"
       className={cn(
         "relative z-10 overflow-x-clip pb-12 md:pb-16 lg:pb-16",
+        maskedSectionOverlap.sectionTrailingSpace,
         maskedSectionOverlap.sectionPullUp,
         maskedSectionOverlap.sectionPaddingTop
       )}
