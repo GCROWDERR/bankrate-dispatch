@@ -7,20 +7,22 @@ import type { Topology, GeometryCollection } from "topojson-specification"
 import type { Feature, Geometry } from "geojson"
 
 import { FIPS_TO_POSTAL } from "@/lib/us-fips"
-
-export type StateDatum = {
-  postal: string
-  name: string
-  bucket: number
-  value: number
-}
+import type { HmdaOverpaymentRow } from "@/lib/hmda-overpayment-by-state"
 
 type Props = {
-  data: StateDatum[]
+  data: HmdaOverpaymentRow[]
   bucketColors: string[]
 }
 
-type Tip = { x: number; y: number; postal: string; name: string; value: number } | null
+type Tip = {
+  x: number
+  y: number
+  postal: string
+  name: string
+  overpayRate: number
+  annualOverpayment: number
+  lifetimeLoanTax: number
+} | null
 
 const WIDTH = 975
 const HEIGHT = 610
@@ -57,7 +59,7 @@ export function USMap({ data, bucketColors }: Props) {
       <svg
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         role="img"
-        aria-label="United States map shaded by lifetime mortgage overpayment per homebuyer"
+        aria-label="United States map shaded by mortgage overpay rate"
         className="block h-auto w-full"
       >
         {features.map((f) => {
@@ -75,7 +77,11 @@ export function USMap({ data, bucketColors }: Props) {
               strokeWidth={1}
               strokeLinejoin="round"
               tabIndex={datum ? 0 : -1}
-              aria-label={datum ? `${datum.name}: $${datum.value.toFixed(1)}k average overpayment` : undefined}
+              aria-label={
+                datum
+                  ? `${datum.name}: ${datum.overpayRate.toFixed(1)}% overpay rate`
+                  : undefined
+              }
               className="cursor-pointer outline-none transition-[filter] duration-150 hover:brightness-110 focus-visible:brightness-110 focus-visible:[stroke:#0061fe] focus-visible:[stroke-width:2]"
               onMouseMove={(e) => {
                 if (!datum || !containerRef.current) return
@@ -85,7 +91,9 @@ export function USMap({ data, bucketColors }: Props) {
                   y: e.clientY - rect.top,
                   postal: datum.postal,
                   name: datum.name,
-                  value: datum.value,
+                  overpayRate: datum.overpayRate,
+                  annualOverpayment: datum.annualOverpayment,
+                  lifetimeLoanTax: datum.lifetimeLoanTax,
                 })
               }}
               onMouseLeave={() => setTip(null)}
@@ -98,7 +106,9 @@ export function USMap({ data, bucketColors }: Props) {
                   y: bbox.top + bbox.height / 2 - rect.top,
                   postal: datum.postal,
                   name: datum.name,
-                  value: datum.value,
+                  overpayRate: datum.overpayRate,
+                  annualOverpayment: datum.annualOverpayment,
+                  lifetimeLoanTax: datum.lifetimeLoanTax,
                 })
               }}
               onBlur={() => setTip(null)}
@@ -114,7 +124,9 @@ export function USMap({ data, bucketColors }: Props) {
           style={{ left: tip.x, top: tip.y }}
         >
           <div className="font-semibold">{tip.name}</div>
-          <div className="text-white/70">${tip.value.toFixed(1)}k avg overpayment</div>
+          <div className="text-white/70">{tip.overpayRate.toFixed(1)}% overpay rate</div>
+          <div className="text-white/70">${tip.annualOverpayment.toFixed(1)}k annual overpayment</div>
+          <div className="text-white/70">{tip.lifetimeLoanTax}% lifetime loan tax</div>
           <span className="absolute left-1/2 top-full size-2 -translate-x-1/2 -translate-y-1 rotate-45 bg-[#13223b]" />
         </div>
       )}
