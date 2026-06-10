@@ -53,9 +53,6 @@ function InstallmentThumbnail({
 function FeaturedInstallment({ installment }: { installment: DispatchFranchiseInstallment }) {
   return (
     <a href={installment.href} className="group flex flex-col gap-4 lg:gap-5">
-      <Eyebrow className="text-blue-800">
-        Latest installment · {installment.installment}
-      </Eyebrow>
       <div className="flex items-start justify-between gap-4">
         <h3 className="min-w-0 font-serif text-xl font-semibold leading-[1.2] tracking-tight text-blue-900 group-hover:underline sm:text-2xl">
           {installment.title}
@@ -71,8 +68,6 @@ function FeaturedInstallment({ installment }: { installment: DispatchFranchiseIn
       </div>
 
       <InstallmentThumbnail installment={installment} className="aspect-video w-full" />
-
-      <p className="text-base leading-[1.7] text-blue-900/80">{installment.excerpt}</p>
     </a>
   )
 }

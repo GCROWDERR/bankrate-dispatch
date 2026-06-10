@@ -22,7 +22,7 @@ export const DISPATCH_CONTENT_TYPES: {
 }[] = [
   { id: "all", label: "All" },
   { id: "community", label: "Community" },
-  { id: "data", label: "Data reports" },
+  { id: "data", label: "Data" },
   { id: "watchdog", label: "Watchdog" },
 ]
 
@@ -79,7 +79,7 @@ export const RESEARCH_DATA_POINTS: ResearchDataPoint[] = [
   },
 ]
 
-/** Lead investigation — Exclusive Data Report module (Hidden Homeownership Tax). */
+/** Lead investigation — Exclusive Bankrate Research module (Hidden Homeownership Tax). */
 export const FEATURED_INVESTIGATION: DispatchInvestigation = {
   eyebrow: DISPATCH_HERO.tag,
   title: DISPATCH_HERO.title,
@@ -172,7 +172,7 @@ export const DISPATCH_STORIES: DispatchStory[] = [
   {
     id: "why-mortgage-rate-higher",
     contentType: "watchdog",
-    categoryLabel: "Watchdog Reporting",
+    categoryLabel: "Watchdog Report",
     title: "Why Your Mortgage Rate Is Higher Than It Should Be, and How Much It's Costing You",
     excerpt:
       "We trace the pricing decisions and broker incentives that push qualified borrowers above the best rate they could qualify for.",
@@ -185,7 +185,7 @@ export const DISPATCH_STORIES: DispatchStory[] = [
   {
     id: "loan-officer-close-deals",
     contentType: "watchdog",
-    categoryLabel: "Watchdog Reporting",
+    categoryLabel: "Watchdog Report",
     title:
       'How Some Mortgage Lenders Incentivize Loan Officers to "Close Deals," Not Get You the Best One',
     excerpt:
@@ -199,7 +199,7 @@ export const DISPATCH_STORIES: DispatchStory[] = [
   {
     id: "rates-high-still-buying",
     contentType: "community",
-    categoryLabel: "Community",
+    categoryLabel: "Community Report",
     title: "Rates Are High, but They're Buying Anyway. Why Waiting Isn't an Option",
     excerpt:
       "Homebuyers explain why they're moving now despite elevated rates — and the tradeoffs they're accepting to get keys in hand.",
@@ -212,7 +212,7 @@ export const DISPATCH_STORIES: DispatchStory[] = [
   {
     id: "three-mortgage-traps",
     contentType: "watchdog",
-    categoryLabel: "Watchdog Reporting",
+    categoryLabel: "Watchdog Report",
     title: "3 Traps the Mortgage Industry Doesn't Want You to Know About — and How to Avoid Them",
     excerpt:
       "From teaser-rate advertising to hidden markups, three common practices that cost borrowers thousands — and what to ask before you sign.",
@@ -225,7 +225,7 @@ export const DISPATCH_STORIES: DispatchStory[] = [
   {
     id: "nine-properties-financing-tips",
     contentType: "community",
-    categoryLabel: "Community",
+    categoryLabel: "Community Report",
     title:
       "This Couple Mortgaged 9 Properties in Under a Decade. Here Are the Financing Tips They Swear By",
     excerpt:
@@ -252,7 +252,7 @@ export const DISPATCH_STORIES: DispatchStory[] = [
   {
     id: "fha-loans-price",
     contentType: "watchdog",
-    categoryLabel: "Watchdog Reporting",
+    categoryLabel: "Watchdog Report",
     title: "FHA Loans Can Open the Door to Homeownership: But They Come at a Price",
     excerpt:
       "Low down payments help buyers get in the door — but insurance premiums and rate spreads can add up over the life of the loan.",
@@ -265,7 +265,7 @@ export const DISPATCH_STORIES: DispatchStory[] = [
   {
     id: "buy-now-refi-later",
     contentType: "watchdog",
-    categoryLabel: "Watchdog Reporting",
+    categoryLabel: "Watchdog Report",
     title:
       'The Dangers of "Buy Now, Refi Later" Mortgage Advertising — and What to Be Wary of Before You Get a Home Loan',
     excerpt:
@@ -355,7 +355,7 @@ export const HOMEBUYING_IN_AMERICA_FRANCHISE = {
   id: "homebuying-in-america",
   title: "Homebuying in America",
   description:
-    "A recurring editorial franchise — each installment follows one homebuying thread across reporting, data, and community voices.",
+    "Real stories from the front lines of homebuying — what buyers are learning, and what it means for you.",
   installments: [
     {
       id: "hia-affordability-line",
@@ -376,7 +376,7 @@ export const HOMEBUYING_IN_AMERICA_FRANCHISE = {
       installment: 2,
       title: "Best and Worst Markets for Homebuyers, Ranked",
       excerpt:
-        "The second installment ranks metros on affordability, overpayment risk, and inventory — and where buyers have the most leverage.",
+        "We ranked metros on affordability, overpayment risk, and inventory — and where buyers have the most leverage.",
       status: "published",
       calendarLabel: "February 2026",
       publishedDate: "Feb. 11, 2026",
@@ -390,7 +390,7 @@ export const HOMEBUYING_IN_AMERICA_FRANCHISE = {
       installment: 3,
       title: "Rates Are High, but They're Buying Anyway. Why Waiting Isn't an Option",
       excerpt:
-        "Installment three follows buyers moving now despite elevated rates — and the tradeoffs they're accepting to get keys in hand.",
+        "Homebuyers explain why they're moving now despite elevated rates — and the tradeoffs they're accepting to get keys in hand.",
       status: "published",
       calendarLabel: "March 2026",
       publishedDate: "March 4, 2026",

@@ -14,7 +14,7 @@ export type EditorialArticle = {
 
 /** Dispatch hero — not repeated as the editorial lead card. */
 export const DISPATCH_HERO: EditorialArticle = {
-  tag: "Exclusive Data Report",
+  tag: "Exclusive Bankrate Research",
   title: "The Hidden Homeownership Tax",
   body:
     "How overpaying for mortgages costs Americans $142 billion a year — and the lending practices that make it routine.",
@@ -27,7 +27,7 @@ export const DISPATCH_HERO: EditorialArticle = {
 
 /** Large lead card in the editorial section. */
 export const EDITORIAL_LEAD: EditorialArticle = {
-  tag: "Watchdog Reporting",
+  tag: "Watchdog Report",
   title: "How a single closing-cost line item became a $2,400 payday for the lender",
   body:
     "An undercover review of 1,400 loan estimates exposes a fee that even mortgage brokers can't explain — and who profits when borrowers never ask.",

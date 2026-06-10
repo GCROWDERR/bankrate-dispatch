@@ -47,7 +47,7 @@ export function NewsyHeroContained() {
               id="hero-top-stories-heading"
               className="text-sm font-bold uppercase leading-[1.7] tracking-[2.5px] text-blue-300 lg:text-[15px]"
             >
-              Top stories
+              The Findings
             </p>
             <div className="flex flex-col gap-5 lg:flex-1 lg:justify-between lg:gap-5">
               {tentpoleStories.map((story) => (

@@ -12,7 +12,7 @@ type Expert = {
 const EXPERTS: Expert[] = [
   {
     name: "Katie Kelton",
-    role: "Lead Community Reporter",
+    role: "Community Reporter",
     portrait: "/images/expert-katie-composite.png",
   },
   {
@@ -22,7 +22,7 @@ const EXPERTS: Expert[] = [
   },
   {
     name: "Linda Bell",
-    role: "Home Lending Analyst",
+    role: "Home Lending Reporter",
     portrait: "/images/expert-linda-composite.png",
   },
 ]
@@ -39,9 +39,7 @@ export function ExpertTeam() {
             </BrushUnderline>
           </h2>
           <p className="text-lg leading-[1.7] text-[#515260]">
-            Our journalists and analysts have spent decades covering this market. They report on
-            what&apos;s actually happening &mdash; including the parts banks would rather you
-            didn&apos;t know.
+            Their expertise is in consumer finance. Their loyalty is to you.
           </p>
           <Button
             variant="ghost"
