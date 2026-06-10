@@ -30,7 +30,7 @@ export function CircledText({
 }: CircledTextProps) {
   return (
     <span
-      className={cn("relative inline-block whitespace-nowrap", className)}
+      className={cn("relative isolate inline-block whitespace-nowrap", className)}
       style={
         {
           "--circled-text-bleed": ringBleed,
@@ -38,11 +38,10 @@ export function CircledText({
         } as CSSProperties
       }
     >
-      <span className={cn("relative z-[1]", textClassName)}>{children}</span>
       <span
         aria-hidden
         className={cn(
-          "pointer-events-none absolute left-1/2 top-1/2 h-[var(--circled-text-height)] w-[calc(100%+var(--circled-text-bleed))] -translate-x-1/2 -translate-y-1/2 [container-type:inline-size]",
+          "pointer-events-none absolute left-1/2 top-1/2 z-0 h-[var(--circled-text-height)] w-[calc(100%+var(--circled-text-bleed))] -translate-x-1/2 -translate-y-1/2 [container-type:inline-size]",
           ringClassName
         )}
       >
@@ -53,6 +52,7 @@ export function CircledText({
           className="absolute left-1/2 top-1/2 block h-[100cqw] w-[var(--circled-text-height)] max-w-none -translate-x-1/2 -translate-y-1/2 -rotate-90"
         />
       </span>
+      <span className={cn("relative z-[1]", textClassName)}>{children}</span>
     </span>
   )
 }

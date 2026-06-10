@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { SectionShell } from "@/components/home/shared"
-import { BrushUnderline } from "@/components/ui/brush-underline"
+import { CircledText } from "@/components/ui/circled-text"
 import { Button } from "../ui/button"
 
 type Expert = {
@@ -34,9 +34,11 @@ export function ExpertTeam() {
         <div className="flex w-full max-w-[480px] flex-col gap-4 lg:max-w-[440px] lg:shrink-0 xl:max-w-[480px]">
           <h2 className="font-serif text-[length:var(--text-h2)] font-semibold leading-[1.2] tracking-normal text-[#00143d]">
             The team behind{" "}
-            <BrushUnderline href="#mission" textClassName="text-inherit no-underline">
-              the mission
-            </BrushUnderline>
+            <CircledText ringBleed="2em">
+              <a href="#mission" className="text-inherit no-underline hover:opacity-90">
+                the mission
+              </a>
+            </CircledText>
           </h2>
           <p className="text-lg leading-[1.7] text-[#515260]">
             Their expertise is in consumer finance. Their loyalty is to you.

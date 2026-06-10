@@ -69,25 +69,36 @@ export function Tracker() {
           </div>
         </div>
 
-        <div className="rounded-3xl bg-white p-6 ring-1 ring-gray-200 lg:p-8">
-          <div className="flex items-baseline justify-between gap-4 pb-5">
-            <h3 className="font-serif text-lg text-gray-900">Overpay rate by state</h3>
-            <span className="text-[11px] uppercase tracking-[1.5px] text-gray-500">HMDA 2026</span>
-          </div>
-
-          <USMap data={states} bucketColors={BUCKET_COLORS} />
-
-          <div className="mt-6 flex items-center justify-between gap-3">
-            <span className="text-[11px] uppercase tracking-[1.5px] text-gray-500">Lower ←</span>
-            <div className="flex flex-1 items-center gap-1.5">
-              {BUCKETS.map((b) => (
-                <div key={b.range} className="flex flex-1 flex-col items-center gap-1">
-                  <span className="h-3 w-full rounded-sm" style={{ backgroundColor: b.color }} />
-                  <span className="text-[10px] text-gray-600">{b.range}</span>
-                </div>
-              ))}
+        <div className="relative">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/hero-sparkle-r.svg"
+            alt=""
+            aria-hidden
+            width={60}
+            height={71}
+            className="pointer-events-none absolute right-0 top-0 z-20 w-12 translate-x-1/3 -translate-y-1/2 lg:w-[3.75rem]"
+          />
+          <div className="rounded-3xl bg-white p-6 ring-1 ring-gray-200 lg:p-8">
+            <div className="flex items-baseline justify-between gap-4 pb-5">
+              <h3 className="font-serif text-lg text-gray-900">Overpay rate by state</h3>
+              <span className="text-[11px] uppercase tracking-[1.5px] text-gray-500">HMDA 2026</span>
             </div>
-            <span className="text-[11px] uppercase tracking-[1.5px] text-gray-500">→ Higher</span>
+
+            <USMap data={states} bucketColors={BUCKET_COLORS} />
+
+            <div className="mt-6 flex items-center justify-between gap-3">
+              <span className="text-[11px] uppercase tracking-[1.5px] text-gray-500">Lower ←</span>
+              <div className="flex flex-1 items-center gap-1.5">
+                {BUCKETS.map((b) => (
+                  <div key={b.range} className="flex flex-1 flex-col items-center gap-1">
+                    <span className="h-3 w-full rounded-sm" style={{ backgroundColor: b.color }} />
+                    <span className="text-[10px] text-gray-600">{b.range}</span>
+                  </div>
+                ))}
+              </div>
+              <span className="text-[11px] uppercase tracking-[1.5px] text-gray-500">→ Higher</span>
+            </div>
           </div>
         </div>
       </div>

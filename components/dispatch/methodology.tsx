@@ -2,6 +2,7 @@ import Image from "next/image"
 import { contentWellClass, SectionTitle, Eyebrow, PrimaryCta } from "@/components/home/shared"
 import { SectionMaskBackground } from "@/components/dispatch/section-mask-bg"
 import { Stat } from "@/components/ui/stat"
+import { BrushUnderline } from "@/components/ui/brush-underline"
 import { cn } from "@/lib/utils"
 
 const PRINCIPLES = [
@@ -69,7 +70,10 @@ export function Methodology() {
         <div className="flex w-full flex-col gap-10 lg:gap-12">
           <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 text-center">
             <Eyebrow>METHODOLOGY</Eyebrow>
-            <SectionTitle>Journalism that answers to you, not lenders</SectionTitle>
+            <SectionTitle>
+              Journalism that answers to{" "}
+              <BrushUnderline textClassName="text-inherit">you</BrushUnderline>, not lenders
+            </SectionTitle>
             <p className="text-sm leading-[1.7] text-gray-700">
               Bankrate&rsquo;s editorial team exists for one reason: To give you the information the
               consumer finance industry would rather keep complicated. Every story we publish is built

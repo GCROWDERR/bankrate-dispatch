@@ -78,7 +78,7 @@ export function Stories() {
       <SectionMaskBackground maskPosition="top center" />
       <div className={cn("relative z-10", contentWellClass)}>
       <div className="flex flex-col items-center gap-8">
-        <SectionTitle className="text-center tracking-normal">
+        <SectionTitle className="text-center">
           What banks don&rsquo;t want you to read
         </SectionTitle>
 
