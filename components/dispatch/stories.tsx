@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react"
 import { contentWellClass, SectionTitle } from "@/components/home/shared"
-import { SectionMaskBackground } from "@/components/dispatch/section-mask-bg"
+import { SectionMaskBackground, maskedSectionOverlap } from "@/components/dispatch/section-mask-bg"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { HorizontalStoryCard } from "@/components/dispatch/story-card"
@@ -66,9 +66,17 @@ export function Stories() {
   }
 
   return (
-    <section id="stories" className="relative isolate overflow-hidden py-12 md:py-16 lg:py-16">
-      <SectionMaskBackground />
-      <div className={cn("relative", contentWellClass)}>
+    <section
+      id="stories"
+      className={cn(
+        "relative z-10 overflow-x-clip pb-12 md:pb-16 lg:pb-16",
+        maskedSectionOverlap.sectionTrailingSpace,
+        maskedSectionOverlap.sectionPullUp,
+        maskedSectionOverlap.sectionPaddingTop
+      )}
+    >
+      <SectionMaskBackground maskPosition="top center" />
+      <div className={cn("relative z-10", contentWellClass)}>
       <div className="flex flex-col items-center gap-8">
         <SectionTitle className="text-center tracking-normal">
           The research banks don&rsquo;t want you to read

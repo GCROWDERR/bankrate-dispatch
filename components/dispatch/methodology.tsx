@@ -60,10 +60,13 @@ const statCardClassName = "min-w-0 flex-1 border border-gray-200 p-[11px] lg:min
 
 export function Methodology() {
   return (
-    <section id="methodology" className="relative isolate overflow-hidden py-16 lg:py-24">
-      <SectionMaskBackground />
+    <section
+      id="methodology"
+      className="relative isolate overflow-hidden pb-16 lg:pb-24"
+    >
+      <SectionMaskBackground maskPosition="top center" />
 
-      <div className={cn("relative", contentWellClass)}>
+      <div className={cn("relative z-10 pt-8 md:pt-10 lg:pt-12", contentWellClass)}>
         <div className="flex w-full flex-col gap-10 lg:gap-12">
           <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 text-center">
             <Eyebrow>METHODOLOGY</Eyebrow>
