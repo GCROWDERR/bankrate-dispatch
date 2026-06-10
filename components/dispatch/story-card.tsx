@@ -134,12 +134,14 @@ export function EditorialSidebarCard({
   inverse = false,
   size = "default",
   interactive = true,
+  showCategoryLabel = true,
 }: {
   story: DispatchStory
   className?: string
   inverse?: boolean
   size?: "default" | "lg"
   interactive?: boolean
+  showCategoryLabel?: boolean
 }) {
   const Tag = interactive ? "a" : "div"
 
@@ -168,9 +170,11 @@ export function EditorialSidebarCard({
           size === "lg" ? "gap-2 lg:gap-2.5" : "gap-1.5 lg:gap-2"
         )}
       >
-        <Eyebrow className={cn(size === "lg" ? "text-[11px]" : "text-[10px]", inverse && "text-blue-300")}>
-          {story.categoryLabel}
-        </Eyebrow>
+        {showCategoryLabel ? (
+          <Eyebrow className={cn(size === "lg" ? "text-[11px]" : "text-[10px]", inverse && "text-blue-300")}>
+            {story.categoryLabel}
+          </Eyebrow>
+        ) : null}
         <h3
           className={cn(
             "line-clamp-2 font-serif font-semibold leading-[1.3] tracking-tight group-hover:underline",

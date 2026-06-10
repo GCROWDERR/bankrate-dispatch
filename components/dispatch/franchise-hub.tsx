@@ -125,6 +125,7 @@ export function FranchiseHub() {
                       key={installment.id}
                       story={franchiseInstallmentAsStory(installment)}
                       size="lg"
+                      showCategoryLabel={false}
                       interactive={installment.status === "published" && Boolean(installment.href)}
                       className={installment.status === "scheduled" ? "opacity-80" : undefined}
                     />
