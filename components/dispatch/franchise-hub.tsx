@@ -53,17 +53,12 @@ function InstallmentThumbnail({
 function FeaturedInstallment({ installment }: { installment: DispatchFranchiseInstallment }) {
   return (
     <a href={installment.href} className="group flex flex-col gap-4 lg:gap-5">
-      <div className="flex items-start justify-between gap-4">
-        <h3 className="min-w-0 font-serif text-xl font-semibold leading-[1.2] tracking-tight text-blue-900 group-hover:underline sm:text-2xl">
+      <div className="flex flex-col gap-2">
+        <h3 className="font-serif text-xl font-semibold leading-[1.2] tracking-tight text-blue-900 group-hover:underline sm:text-2xl">
           {installment.title}
         </h3>
-        {installment.publishedDate ? (
-          <time
-            dateTime={installment.publishedDate}
-            className="shrink-0 pt-0.5 text-sm leading-[1.7] text-blue-900/70"
-          >
-            {installment.publishedDate}
-          </time>
+        {installment.readMinutes && installment.readMinutes > 0 ? (
+          <p className="text-sm leading-[1.7] text-blue-900/70">{installment.readMinutes} min read</p>
         ) : null}
       </div>
 
